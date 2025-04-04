@@ -182,14 +182,14 @@ namespace KinematicCharacterController
         [SerializeField]
         [Tooltip("Height of the Character Capsule")]
         private float CapsuleYOffset = 1f;
-        /// <summary>
-        /// Physics material of the character's capsule
-        /// </summary>
-        [SerializeField]
-        [Tooltip("Physics material of the Character Capsule (Does not affect character movement. Only affects things colliding with it)")]
-#pragma warning disable 0649
-        private PhysicsMaterial CapsulePhysicsMaterial;
-#pragma warning restore 0649
+//         /// <summary>
+//         /// Physics material of the character's capsule
+//         /// </summary>
+//         [SerializeField]
+//         [Tooltip("Physics material of the Character Capsule (Does not affect character movement. Only affects things colliding with it)")]
+// #pragma warning disable 0649
+//         private PhysicsMaterial CapsulePhysicsMaterial;
+// #pragma warning restore 0649
 
 
         [Header("Grounding settings")]
@@ -566,7 +566,7 @@ namespace KinematicCharacterController
             Capsule = GetComponent<CapsuleCollider>();
             CapsuleRadius = Mathf.Clamp(CapsuleRadius, 0f, CapsuleHeight * 0.5f);
             Capsule.direction = 1;
-            Capsule.sharedMaterial = CapsulePhysicsMaterial;
+            //Capsule.sharedMaterial = CapsulePhysicsMaterial;
             SetCapsuleDimensions(CapsuleRadius, CapsuleHeight, CapsuleYOffset);
 
             MaxStepHeight = Mathf.Clamp(MaxStepHeight, 0f, Mathf.Infinity);
@@ -1845,7 +1845,7 @@ namespace KinematicCharacterController
                         bool hitBodyIsDynamic = !bodyHit.Rigidbody.isKinematic;
                         float hitBodyMass = bodyHit.Rigidbody.mass;
                         float hitBodyMassAtPoint = bodyHit.Rigidbody.mass; // todo
-                        Vector3 hitBodyVelocity = bodyHit.Rigidbody.linearVelocity;
+                        Vector3 hitBodyVelocity = bodyHit.Rigidbody.velocity;
                         if (hitBodyIsCharacter)
                         {
                             hitBodyMass = hitCharacterMotor.SimulatedCharacterMass;
@@ -2278,7 +2278,7 @@ namespace KinematicCharacterController
         {
             if (deltaTime > 0f)
             {
-                linearVelocity = interactiveRigidbody.linearVelocity;
+                linearVelocity = interactiveRigidbody.velocity;
                 angularVelocity = interactiveRigidbody.angularVelocity;
                 if(interactiveRigidbody.isKinematic)
                 {
