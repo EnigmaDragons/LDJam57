@@ -5,7 +5,7 @@ public interface Card
     CardType Type { get; }
     int Id { get; }
 
-    void Apply(GameState gs);
+    void Apply(GameState gs, PlayerState actingPlayer);
 }
 
 public enum CardType 
@@ -29,9 +29,9 @@ public class OfferCard : Card
     public CardType Type => CardType.Offer;
     public int Id { get; }
     
-    public void Apply(GameState gs)
+    public void Apply(GameState gs, PlayerState actingPlayer)
     {
-        throw new System.NotImplementedException();
+        CurrentGameState.UpdateState(gs => actingPlayer.ChangeCash(_value));
     }
 
     public int id => _id + 1000;

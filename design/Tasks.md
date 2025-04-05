@@ -7,8 +7,10 @@
 - [x] Implement Offer Card type with money values
 - [x] Main Menu Music
 - [x] Create turn manager to handle player/AI sequence
+- [x] Implement card drawing from deck
 
 # In-Progress
+- [ ] Create card drawing system with animation hooks
 
 # Todo
 
@@ -16,7 +18,6 @@
 - [ ] Implement Perk Card type with special abilities
 - [ ] Implement CEO Snap Card type with failure conditions
 - [ ] Implement Corporate Shenanigans Card type with random events
-- [ ] Create card drawing system with animation hooks
 - [ ] Implement deck shuffling and management
 
 ### Turn Structure

@@ -86,6 +86,7 @@ public class DayNegotiation
         switch (_currentSetupStep)
         {
             case SetupStep.InitDeck:
+                _gameState.CurrentDeck = BasicDeck.CreateStandardDeck();
                 _gameState.CurrentDeck.Shuffle();
                 _currentSetupStep = SetupStep.DetermineFirstPlayer;
                 ProcessCurrentStep();
@@ -200,17 +201,8 @@ public class DayNegotiation
     
     private void ProcessDrawnCard()
     {
-        // ATTN: Need to implement complete card system with all card types
-        // For now, just simulate drawing a money card
-        _currentPlayer.ChangeCash(UnityEngine.Random.Range(100, 500));
-        
-        // ATTN: Need to implement draw limit (6 cards max) and tracking of drawn cards
-        
-        // ATTN: Need to implement various card effect types:
-        // - Money cards (add to current offer)
-        // - Perk cards (provide benefits)
-        // - CEO Snap cards (lose all money and get removed from turn)
-        // - Corporate Shenanigans cards (random events)
+        var card = _gameState.CurrentDeck.DrawOne();
+        card.Apply(_gameState, _currentPlayer);
     }
     
     // Called by UI when player chooses to accept current offer

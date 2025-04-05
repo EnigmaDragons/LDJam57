@@ -14,6 +14,7 @@ public sealed class GameState
     public Day CurrentDay = Day.MONDAY;
     public PlayerState[] PlayerStates = Array.Empty<PlayerState>();
     public Deck CurrentDeck = BasicDeck.CreateStandardDeck();
+    public bool IsGameOver = false;
     
     public void AdvanceToNextDay()
     {

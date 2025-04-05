@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+
+[Serializable]
 public class Player
 {
     public Player(int index, Character c)
