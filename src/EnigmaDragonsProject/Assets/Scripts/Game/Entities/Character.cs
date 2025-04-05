@@ -24,6 +24,6 @@ public class StaticCharacter : Character
     public string SpritePathProfile { get; set; }
     public string SpritePathFace { get; set; }
     
-    public Sprite Profile => Resources.Load<Sprite>(SpritePathProfile);
-    public Sprite Face => Resources.Load<Sprite>(SpritePathFace);
+    public Sprite Profile => ResourceUtils.LoadOrThrow<Sprite>(SpritePathProfile);
+    public Sprite Face => ResourceUtils.LoadOrThrow<Sprite>(SpritePathFace);
 }

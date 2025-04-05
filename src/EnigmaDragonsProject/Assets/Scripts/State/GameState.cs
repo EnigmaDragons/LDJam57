@@ -12,7 +12,7 @@ public sealed class GameState
     // This is necessary to preserve backwards save compatibility.
 
     public bool IsInitialized = false;
-    public Day CurrentDay = Day.MONDAY;
+    public Day CurrentDay = Day.Monday;
     public BossState BossState = new BossState(Bosses.DrFelixBytepaws, 0);
     public PlayerState[] PlayerStates = Array.Empty<PlayerState>();
     public Deck CurrentDeck = BasicDeck.CreateStandardDeck();
@@ -21,14 +21,14 @@ public sealed class GameState
     public void AdvanceToNextDay()
     {
         // Advance to the next day in the work week
-        if (CurrentDay == Day.MONDAY)
-            CurrentDay = Day.TUESDAY;
-        else if (CurrentDay == Day.TUESDAY)
-            CurrentDay = Day.WEDNESDAY;
-        else if (CurrentDay == Day.WEDNESDAY)
-            CurrentDay = Day.THURSDAY;
-        else if (CurrentDay == Day.THURSDAY)
-            CurrentDay = Day.FRIDAY;
+        if (CurrentDay == Day.Monday)
+            CurrentDay = Day.Tuesday;
+        else if (CurrentDay == Day.Tuesday)
+            CurrentDay = Day.Wednesday;
+        else if (CurrentDay == Day.Wednesday)
+            CurrentDay = Day.Thursday;
+        else if (CurrentDay == Day.Thursday)
+            CurrentDay = Day.Friday;
             
         // Notify all players of the day change
         foreach (var player in PlayerStates)

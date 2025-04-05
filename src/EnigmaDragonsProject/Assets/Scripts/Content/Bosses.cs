@@ -125,11 +125,11 @@ public static class Bosses
     
     public static readonly Dictionary<Day, Boss> DayBossMap = new Dictionary<Day, Boss>
     {
-        { Day.MONDAY, DrFelixBytepaws },
-        { Day.TUESDAY, PawlaWhiskerberg },
-        { Day.WEDNESDAY, RexGrowlington },
-        { Day.THURSDAY, VictoriaClawford },
-        { Day.FRIDAY, MrMittens }
+        { Day.Monday, DrFelixBytepaws },
+        { Day.Tuesday, PawlaWhiskerberg },
+        { Day.Wednesday, RexGrowlington },
+        { Day.Thursday, VictoriaClawford },
+        { Day.Friday, MrMittens }
     };
 
     public static readonly Boss[] All = {

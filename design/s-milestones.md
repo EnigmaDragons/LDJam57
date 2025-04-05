@@ -1,15 +1,27 @@
 
 Milestone 1:
 [x] Launch Game
-[] Start Game
-  [] No Cat Picking. All Cats Vanilla
+[x] Start Game
+  [x] No Cat Picking. All Cats Vanilla
 
 [] Main Game
-  [] Monday
-    [] Boss
-    [] Environment
-    [] Music
+  [x] Monday
+    [x] Day Label
+    [x] Boss Profile
+    [x] Boss Name
+    [x] Environment
+    [x] Music
+    [] Boss Mood Bar
+    [] Deck 
+      [] Num Cards
+      [] Num Snaps
     [] Gameplay
+    [] Show Player Characters
+      [] Name
+      [] Face
+      [] Color for Player Character
+      [] Total Cash
+      [] Today Cash
     [] Go until end of day
   [] Most Money Wins
 

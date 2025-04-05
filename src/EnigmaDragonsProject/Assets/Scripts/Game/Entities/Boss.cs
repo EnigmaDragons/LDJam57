@@ -24,7 +24,7 @@ public class StaticBoss : Boss
     public string SpriteProfilePath { get; set; }
     public string MusicPath { get; set; }
     
-    public Sprite Environment => Resources.Load<Sprite>(SpriteEnvironmentPath);
-    public Sprite Profile => Resources.Load<Sprite>(SpriteProfilePath);
-    public AudioClip Music => Resources.Load<AudioClip>(MusicPath);
+    public Sprite Environment => ResourceUtils.LoadOrThrow<Sprite>(SpriteEnvironmentPath);
+    public Sprite Profile =>  ResourceUtils.LoadOrThrow<Sprite>(SpriteProfilePath);
+    public AudioClip Music => ResourceUtils.LoadOrThrow<AudioClip>(MusicPath);
 }

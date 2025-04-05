@@ -7,8 +7,8 @@ public class Characters
         Name = "Tabby Tom",
         PowerDescription = "Beginner's Luck - Once per game, can reroll a bad draw.",
         Department = "Customer Service",
-        SpritePathProfile = "Characters/TabbyTom/Profile",
-        SpritePathFace = "Characters/TabbyTom/Face",
+        SpritePathProfile = "Sprites/PlayerCharacters/Profile-TabbyTom",
+        SpritePathFace = "Sprites/PlayerCharacters/Face-TabbyTom",
     };
     
 
