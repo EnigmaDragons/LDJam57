@@ -137,8 +137,8 @@ Corporate office setting, semi-polished linework, defined edges, newspaper comic
 
 Version 6
 
-## Environment Base Prompt v6
-Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, {{environment_specific_details}} --ar 16:9
+  ## Environment Base Prompt v6
+  Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, {{environment_specific_details}} --ar 16:9
 
 ---
 

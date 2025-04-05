@@ -1,115 +1,64 @@
-A great UI for Raise the Paw should be charming, tactile, and clear, emphasizing the push-your-luck tension and the personality of each cat. Here's a breakdown of how the UI could work across the main phases of the game:
-🧾 Overall UI Design Principles
+# Deep Meowgotiations: UI Design Guidelines
 
-    Visual Style: Clean, colorful, with soft drop shadows and playful rounded shapes.
+Based on our established art direction, here are revised UI design guidelines for "Raise the Paw":
 
-    Tone: Cute corporate—think pastel spreadsheets, cat-sized laptops, and big bold buttons.
+## Core Visual Style
+- **Line Work**: Semi-polished linework with defined edges in a newspaper comic style - clean but not overly refined strokes that give character without being messy
+- **Color Palette**: Vibrant but not overwhelming - orange, teal, cream, and navy as primary colors that pop without causing visual fatigue
+- **Shapes**: Clean, simple shapes with visible outlines and rounded corners for UI elements - avoiding complex or realistic forms
+- **Depth**: Minimal shadowing and subtle highlights for a slightly dimensional but mostly flat appearance - not fully 3D but not completely flat either
 
-    Font: Chunky but readable (like Baloo or Fredoka One).
+## Typography
+- **Primary Font**: Fredoka One or similar chunky, rounded font for headers and important text
+- **Secondary Font**: Clean sans-serif for descriptions and smaller text
+- **Text Hierarchy**: Bold, larger text for names and titles, regular weight for descriptions
+- **Colors**: Dark text on light backgrounds, light text on dark backgrounds for optimal readability
 
-    Animations: Snappy and satisfying. Cards flip, earnings sparkle, Snap cards shake the screen.
+## UI Elements
+- **Cards & Containers**:
+  - Thick outlined borders (2-3px) in dark colors that stand out clearly
+  - White/cream backgrounds with subtle texture
+  - 5:7 ratio for character cards, showing characters from roughly chest up
+  - Round corners (8-10px radius)
 
-    Sound: Office ambiance with purring, soft meows for UI hovers, dramatic “SLAM” for Snap card.
+- **Buttons**:
+  - Slightly raised appearance
+  - Bold colored fills (orange for primary actions, navy for secondary)
+  - Thick outlines that define the button shape clearly
+  - Clear hover/pressed states with subtle animation
 
-🪑 Main Game Screen – The Boardroom
-Layout
+- **Icons & Decorative Elements**:
+  - Paw prints and dollar signs as motifs throughout the interface
+  - Simple, bold iconography with outlines - easily recognizable at small sizes
+  - Stylized cat whisker Whiskr company logo integrated throughout the UI
 
-    Top-Center: Round Tracker ("Monday" to "Friday" with silly calendar icons)
+## Screens & Layout
+- **Main Menu**:
+  - Corporate lobby aesthetic with cat company branding - a sleek modern reception area with the Whiskr logo prominently displayed
+  - Clean, spacious layout with clear navigation - not cluttered or overwhelming
+  - Prominent "Play" button
 
-    Center Stage: The Boardroom Table
+- **Game Board**:
+  - Boardroom table as the central element - an oval conference table that serves as the game space
+  - Character portraits showing corporate cats from chest up with expressive faces around the edges
+  - Card area in the center with clear delineation
 
-        Cats sit around the table, animated idly (grooming, typing on laptops, sipping coffee).
+- **Character Selection**:
+  - Single prominent character card in focus - showing a corporate cat character with their distinct personality traits
+  - Left/right navigation arrows
+  - Stats and abilities clearly labeled
+  - Department badges as visual indicators (Tech Development, Legal Department, Security, Finance, Executive Suite)
 
-        The active cat’s seat is highlighted with a spotlight or raised platform.
+## Animation & Feedback
+- **Transitions**: Quick, snappy movements between screens
+- **Interactions**: Slight bounce or pop when elements are selected
+- **Card Draws**: Smooth pull animations with appropriate sound effects
+- **Risk Indication**: Visual cues in comic style (like small sweat drops or exclamation marks)
 
-    Bottom Center (Player Turn):
+## Audio Design
+- **UI Sounds**: Quick, satisfying clicks and swipes
+- **Ambient**: Light office background noises
+- **Character Sounds**: Short meows or purrs for reactions
+- **Special Events**: Dramatic "SLAM" for Snap cards
 
-        Large draw deck labeled “Raise Deck” with animated card shuffles.
-
-        Cards drawn fan out above the deck.
-
-        Buttons:
-
-            Draw Again 🐾
-
-            Bank It! 💼
-
-    Bottom Left: Tooltip area showing card descriptions and flavor text on hover.
-
-    Bottom Right: Player's stats:
-
-        Name, power, current total money, reprimands
-
-        Cat icon (purrs or reacts to draw outcomes)
-
-Other Cats’ Info
-
-    Above each seated cat:
-
-        Nameplate (Miss Meowgan, Sir Pouncelot, etc.)
-
-        Mini card pile (face down)
-
-        Visible money pile and power icon
-
-        Speech bubble reactions (jealous, smug, panicked)
-
-🃏 Card Draw UX
-
-    Every Draw:
-
-        Smooth card pull animation from deck to the table.
-
-        Offer cards show with a ka-ching sparkle.
-
-        Snap cards cause screen shake, red vignette, dramatic meow gasp SFX.
-
-        Perk cards bounce into view, with quirky animations.
-
-    Optional: Suspense Meter
-
-        A risk meter that fills with each card drawn (like a cat paw creeping toward the "SLAP" button).
-
-        Glows red if Snap odds are high.
-
-🧶 Between Rounds Screen
-
-    Overview:
-
-        Daily Summary Email from the CEO (fake memo style)
-
-        Money earned
-
-        Round leaderboard with cats posing or sulking
-
-    Unlocks:
-
-        “New Cat Unlocked!” splash with animations
-
-        New cosmetic earned? You get a badge or title on your cat’s desk
-
-    Cat Picker (if unlocked):
-
-        Side-scroll roster of cats with bios, powers, and stats
-
-        Your current chosen cat is animated and highlighted
-
-        "Bring to Work!" button
-
-🏢 Menu UI (Main Menu / Pause Menu)
-
-    Background: A cozy corner office with framed pictures of cats in power suits.
-
-    Options as desktop items:
-
-        New Game – giant red “Urgent” button
-
-        Continue – folder labeled “In Progress”
-
-        Options – coffee mug with a gear logo
-
-        Unlockables – filing cabinet drawer opens to show collectibles
-
-        Credits – plaque that reads “Employee of the Meowth”
-
-Want a mockup sketch next, or a playable turn flow walkthrough? Or should we dream up the Corporate Ladder system (badges, unlocks, etc)?
+This unified style creates a cohesive experience that balances the corporate theme with the playful cat characters, maintaining the newspaper comic aesthetic while ensuring clear user interaction.

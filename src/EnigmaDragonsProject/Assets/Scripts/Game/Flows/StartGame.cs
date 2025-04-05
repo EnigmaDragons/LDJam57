@@ -7,11 +7,11 @@ public class StartGame : MonoBehaviour
     [SerializeField] private int startingCash = 0;
     
     [Tooltip("Whether to initialize the game when this script starts")]
-    [SerializeField] private bool initializeOnStart = true;
+    [SerializeField] private bool initializeOnStartIfNotInitialized = true;
 
-    private void Start()
+    private void Awake()
     {
-        if (initializeOnStart)
+        if (initializeOnStartIfNotInitialized && CurrentGameState.ReadOnly == null || !CurrentGameState.ReadOnly.IsInitialized)
         {
             InitializeGame();
         }
@@ -33,10 +33,13 @@ public class StartGame : MonoBehaviour
             players.Add(aiPlayer);
         }
         
+        gameState.IsInitialized = true;
         gameState.PlayerStates = players.ToArray();
+        gameState.CurrentDay = Day.MONDAY;
+        gameState.CurrentBoss = Bosses.DayBossMap[Day.MONDAY];
         CurrentGameState.Init(gameState);
         
-        Debug.Log("Game initialized with 1 human player and 5 AI players, all using Tabby Tom");
+        Debug.Log($"Game initialized with 1 human player and 5 AI players, all using Tabby Tom. Current day is {gameState.CurrentDay}, current boss is {gameState.CurrentBoss.Name}");
     }
     
     private PlayerState CreatePlayer(int index, bool isHuman)

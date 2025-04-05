@@ -11,7 +11,9 @@ public sealed class GameState
     // All enums used in this class should have specified integer values.
     // This is necessary to preserve backwards save compatibility.
 
+    public bool IsInitialized = false;
     public Day CurrentDay = Day.MONDAY;
+    public Boss CurrentBoss = Bosses.DrFelixBytepaws;
     public PlayerState[] PlayerStates = Array.Empty<PlayerState>();
     public Deck CurrentDeck = BasicDeck.CreateStandardDeck();
     public bool IsGameOver = false;
