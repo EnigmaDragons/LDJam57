@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public interface Boss
 {
     public string Name { get; }
+    public Dictionary<int, int> MoodSnapsTable { get; }
 
     public string EnvironmentName { get; }
     public Sprite Environment { get; }
@@ -16,6 +18,7 @@ public class StaticBoss : Boss
 {
     public string Name { get; set; }
     public string EnvironmentName { get; set; }
+    public Dictionary<int, int> MoodSnapsTable { get; set; }
     
     public string SpriteEnvironmentPath { get; set; }
     public string SpriteProfilePath { get; set; }

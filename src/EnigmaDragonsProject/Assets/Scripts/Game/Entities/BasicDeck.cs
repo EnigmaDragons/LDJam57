@@ -4,11 +4,11 @@ public static class BasicDeck
 {
     private static readonly Dictionary<Card, int> OfferCardCounts = new Dictionary<Card, int>
     {
-        { new OfferCard(5), 10 },   // Common offers ($5) - 20 cards
-        { new OfferCard(10), 32 },  // Uncommon offers ($10) - 15 cards
-        { new OfferCard(15), 8 },   // Rare offers ($15) - 8 cards
-        { new OfferCard(20), 5 },   // Very Rare offers ($20) - 5 cards
-        { new OfferCard(25), 2 }    // Legendary offers ($25) - 2 cards
+        { new OfferCard(5, -1), 10 },
+        { new OfferCard(10, +1), 32 },
+        { new OfferCard(15, +2), 8 },
+        { new OfferCard(20, +3), 5 },
+        { new OfferCard(25, +4), 2 }
     };
 
     public static Deck CreateStandardDeck()

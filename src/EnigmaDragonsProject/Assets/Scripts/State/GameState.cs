@@ -45,29 +45,83 @@ public sealed class GameState
 public class PlayerState
 {
     public Player Player { get; }
-    public int Cash { get; private set; }
+    public int BankedCash { get; private set; }
+    public int CurrentRoundCash { get; private set; }
     public bool PowerUsedToday { get; private set; }
     public bool PowerUsedEver { get; private set; }
 
     public PlayerState(Player p, int currentCash)
     {
         Player = p;
-        Cash = currentCash;
+        BankedCash = currentCash;
     }
 
-    public void ChangeCash(int byAmount)
+    public void ChangeCurrentDayCash(int byAmount)
     {
-        Cash += byAmount;
+        CurrentRoundCash += byAmount;
     }
 
     public void NotifyDayChanged()
     {
         PowerUsedToday = false;
+        BankedCash += CurrentRoundCash;
+        CurrentRoundCash = 0;
     }
 
     public void RecordPowerUser()
     {
         PowerUsedToday = true;
         PowerUsedEver = true;
+    }
+}
+
+public class BossState
+{
+    public Boss Boss { get; private set; }
+    public int CurrentMood { get; private set; }
+    public int CurrentMoodTier { get; private set; }
+    
+    public BossState(Boss boss, int initialMood)
+    {
+        Boss = boss;
+        CurrentMood = initialMood;
+        CurrentMoodTier = GetMoodTier(initialMood);
+    }
+
+    public int UpdateMoodAndGetSnapsChanges(int moodChange)
+    {
+        CurrentMood += moodChange;
+        int newMoodTier = GetMoodTier(CurrentMood);
+        
+        // Check if we've crossed a mood threshold to a higher tier
+        if (newMoodTier > CurrentMoodTier)
+        {
+            CurrentMoodTier = newMoodTier;
+            
+            // Return the number of snaps for the new tier
+            if (Boss.MoodSnapsTable.TryGetValue(newMoodTier, out int snapsForTier))
+            {
+                return snapsForTier;
+            }
+        }
+        
+        // No tier change or no snaps defined for this tier
+        return 0;
+    }
+    
+    private int GetMoodTier(int mood)
+    {
+        // Find the highest tier that the current mood exceeds
+        int highestTier = 0;
+        
+        foreach (var tier in Boss.MoodSnapsTable.Keys)
+        {
+            if (mood >= tier && tier > highestTier)
+            {
+                highestTier = tier;
+            }
+        }
+        
+        return highestTier;
     }
 }
