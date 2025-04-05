@@ -26,12 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797388358581155490}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &797388358581155488
 MonoBehaviour:
@@ -58,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70a64aadd044ec8855c8e23db761393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 11400000, guid: 655f1680206d70e43af28114e8823089, type: 2}
+  music: {fileID: 0}
   musicPlayer: {fileID: 11400000, guid: 95f47694e0b28ce48a808ae15f18f4d8, type: 2}
 --- !u!114 &797388358581155494
 MonoBehaviour:
@@ -75,8 +76,8 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: d6eedae8265dd6146907e7ef03b80fb6, type: 2}
   valueName: MusicVolume
   reductionDb:
-    UseConstant: 0
-    ConstantValue: 6
-    FloatVariable: {fileID: 11400000, guid: 9ac918dfd50115d40affcd6790d23bf9, type: 2}
+    UseConstant: 1
+    ConstantValue: 0
+    FloatVariable: {fileID: 0}
   player: {fileID: 0}
   demoSound: {fileID: 0}

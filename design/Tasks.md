@@ -3,15 +3,15 @@
 ## Core Game Mechanics
 
 # Done
-
+- [x] Create Card base class with common properties
+- [x] Implement Offer Card type with money values
+- [x] Main Menu Music
 
 # In-Progress
-- [ ] Create Card base class with common properties
 
 # Todo
 
 ### Card System
-- [ ] Implement Offer Card type with money values
 - [ ] Implement Perk Card type with special abilities
 - [ ] Implement CEO Snap Card type with failure conditions
 - [ ] Implement Corporate Shenanigans Card type with random events
