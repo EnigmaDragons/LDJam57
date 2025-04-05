@@ -34,9 +34,6 @@ Corporate office setting, vibrant American comic style, Dilbert-inspired, rich c
 ### Mr. Mittens' Executive Suite (Friday)
 Corporate office setting, vibrant American comic style, Dilbert-inspired, rich colors, precise linework, clean crisp lines, bold outlines, flat colors, subtle shading, bright professional atmosphere, satirical corporate feel, detailed illustration, no characters, empty room, opulent corner executive office, floor-to-ceiling windows, expensive hardwood desk with gold nameplate, leather executive chair, awards and framed magazine covers, small putting green, executive boardroom table shaped like cat paw, trophy wall with mounted business competitors, red emergency nap button, luxury cat toys hidden among business items --ar 16:9
 
-### Generic Executive Boardroom (Meeting Room)
-Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, no characters, empty room, large oval conference table, executive leather chairs, floor-to-ceiling windows with city view, projector screen, whiteboard with quarterly goals, water pitcher and glasses, company logo on wall, presentation podium, modern lighting fixtures, business charts and graphs on walls, sleek minimalist design --ar 16:9
-
 ---
 
 Version 3
@@ -98,6 +95,9 @@ Corporate office setting, semi-polished linework, defined edges, newspaper comic
 ### Whiskr Boardroom (Meeting Room)
 Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, cat-themed corporate environment, no characters, empty room, large oval conference table shaped like fish, executive leather chairs with scratching posts as legs, floor-to-ceiling windows with bird feeders outside, projector screen showing SnapCat app mockups, whiteboard with quarterly goals and paw-print bullet points, water pitcher and glasses shaped like milk bottles, Whiskr logo with stylized whiskers on wall, presentation podium with scratched corners, laser pointer presentation tools, business charts shaped like yarn balls, fish-shaped water cooler, carpeted platforms at different heights --ar 16:9
 
+### Whiskr Grand Pawditorium (Company Events)
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, cat-themed corporate environment, no characters, empty room, large corporate auditorium with stadium seating, giant Whiskr logo backdrop on stage, dramatic stage lighting with laser pointers, red velvet curtains with claw marks, presentation screen shaped like giant smartphone, cat-sized seating with built-in cushions, VIP balcony boxes with premium sunbeam spots, trophy display cases along walls, yarn ball decorations hanging from ceiling, fish-shaped podium on stage, catnip diffusers disguised as air fresheners, litter box emergency exits, carpeted ramps between seating levels, wall-mounted monitors showing company metrics, mood lighting in calming blues and purples --ar 16:9
+
 ---
 
 Version 5
@@ -129,6 +129,44 @@ Corporate office setting, semi-polished linework, defined edges, newspaper comic
 
 ### Whiskr Boardroom (Meeting Room)
 Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, cat-themed corporate environment, no characters, empty room, large oval conference table shaped like fish, executive leather chairs with scratching posts as legs, floor-to-ceiling windows with bird feeders outside, projector screen showing SnapCat app mockups, whiteboard with quarterly goals and paw-print bullet points, water pitcher and glasses shaped like milk bottles, Whiskr logo with stylized whiskers on wall, presentation podium with scratched corners, laser pointer presentation tools, business charts shaped like yarn balls, fish-shaped water cooler, carpeted platforms at different heights --ar 16:9
+
+### Whiskr Grand Pawditorium (Company Events)
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, cat-themed corporate environment, no characters, empty room, large corporate auditorium with stadium seating, giant Whiskr logo backdrop on stage, dramatic stage lighting with laser pointers, red velvet curtains with claw marks, presentation screen shaped like giant smartphone, cat-sized seating with built-in cushions, VIP balcony boxes with premium sunbeam spots, trophy display cases along walls, yarn ball decorations hanging from ceiling, fish-shaped podium on stage, catnip diffusers disguised as air fresheners, litter box emergency exits, carpeted ramps between seating levels, wall-mounted monitors showing company metrics, mood lighting in calming blues and purples --ar 16:9
+
+---
+
+Version 6
+
+## Environment Base Prompt v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, {{environment_specific_details}} --ar 16:9
+
+---
+
+## Environment Specific Prompts v6
+
+### Whiskr Inc. Lobby (Main Menu) v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, open airy reception area, large stylized whisker logo symbol on wall, modern curved reception desk, comfortable waiting area, few scattered furniture pieces, tall windows with city view, decorative award case, ambient monitor displays, indoor plants --ar 16:9
+
+### Dr. Felix Bytepaws' Tech Development Lab (Monday) v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, open-plan tech workspace, scattered workstations with space between them, server towers with blinking lights, several colorful prototype devices, scattered beanbag chairs, workstations with multiple monitors, toy robots on floor, VR headset on desk, colorful wires, dramatic lighting effects --ar 16:9
+
+### Pawla Whiskerberg's Legal Department (Tuesday) v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, elegant wood-paneled room, tall bookshelves along walls, large conference table, few document stacks, oversized leather chair, ceremonial gavel on stand, ornate desk lamp, vintage wall clock, potted plants, natural lighting through windows --ar 16:9
+
+### Rex Growlington's Security Operations Center (Wednesday) v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, basement security room, dim blue lighting, wall of blank monitors, blinking server lights, tactical equipment on racks, wall map with pins and string, reinforced door with security scanner, surveillance cameras, prominent red warning light, climbing equipment --ar 16:9
+
+### Victoria Clawford's Finance Department (Thursday) v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, clean minimalist office space, white and gray color scheme, glass partition walls, wall-mounted displays with colorful graphs, perfectly organized desk, calculating machines, sleek office furniture, artistic chart displays, cold sterile atmosphere, ambient blue lighting --ar 16:9
+
+### Mr. Mittens' Executive Suite (Friday) v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, luxurious corner office, floor-to-ceiling windows with city view, massive hardwood desk, throne-like executive chair, display shelves with trophies and awards, small putting green area, elegant conference table, decorative wall mounts, premium office toys, dramatic lighting, plush carpet --ar 16:9
+
+### Whiskr Boardroom (Meeting Room) v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, large elegant conference room, oval-shaped table, executive chairs, floor-to-ceiling windows with view, blank projection screen, clean whiteboard, water pitcher set, stylized company logo on wall, presentation podium, modern lighting fixtures, few business charts on walls --ar 16:9
+
+### Whiskr Grand Pawditorium (Company Events) v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, expansive auditorium with curved stadium seating, grand stage with company logo backdrop, theatrical lighting rigs, decorative curtains, large blank presentation screen, VIP balcony areas, trophy displays along walls, decorative ceiling elements, dramatic spotlights, elegant podium, ambient mood lighting in blues and purples --ar 16:9
 
 
 
