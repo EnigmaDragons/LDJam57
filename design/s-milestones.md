@@ -6,11 +6,19 @@ Milestone 1:
 
 [] Main Game
   [] Monday
+    [] Boss
+    [] Environment
+    [] Music
+    [] Gameplay
     [] Go until end of day
   [] Most Money Wins
+
 [] Game Loss
 [] Game Won
 
-[] Unlocks
+[] Display Unlocks Screen
 [] Main Menu
+
+Milestone 2:
+
 

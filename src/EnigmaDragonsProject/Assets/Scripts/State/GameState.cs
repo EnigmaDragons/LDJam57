@@ -45,6 +45,7 @@ public class PlayerState
     public Player Player { get; }
     public int Cash { get; private set; }
     public bool PowerUsedToday { get; private set; }
+    public bool PowerUsedEver { get; private set; }
 
     public PlayerState(Player p, int currentCash)
     {
@@ -65,5 +66,6 @@ public class PlayerState
     public void RecordPowerUser()
     {
         PowerUsedToday = true;
+        PowerUsedEver = true;
     }
 }
