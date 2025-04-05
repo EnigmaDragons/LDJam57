@@ -1,7 +1,8 @@
 
 Milestone 1:
-[] Launch Game
+[x] Launch Game
 [] Start Game
+
 [] Main Game
   [] Monday
     [] Go until end of day

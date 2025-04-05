@@ -1,7 +1,7 @@
-🎮 Game Structure: Raise the Paw
+🎮 Game Title: Deep Meowgotiations
 🧶 Core Loop
 
-    7 Cats (1 player + 5 AI)
+    6 Cats (1 player + 5 AI)
 
     5 Rounds total (a work week!)
 
