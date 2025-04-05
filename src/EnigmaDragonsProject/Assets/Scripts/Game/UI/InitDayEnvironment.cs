@@ -94,7 +94,7 @@ public class InitDayEnvironment : MonoBehaviour
         }
         
         // Get the boss for the current day
-        Boss currentBoss = gameState.CurrentBoss;
+        Boss currentBoss = gameState.BossState.Boss;
         if (currentBoss == null)
         {
             Debug.LogError($"Current boss is null for day {gameState.CurrentDay}");
@@ -157,7 +157,7 @@ public class InitDayEnvironment : MonoBehaviour
     {
         CurrentGameState.UpdateState(state => 
         {
-            state.CurrentBoss = boss;
+            state.BossState = new BossState(boss, 0);
             return state;
         });
     }

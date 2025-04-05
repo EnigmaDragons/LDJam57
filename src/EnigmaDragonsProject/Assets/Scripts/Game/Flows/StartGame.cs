@@ -36,7 +36,7 @@ public class StartGame : MonoBehaviour
         gameState.IsInitialized = true;
         gameState.PlayerStates = players.ToArray();
         gameState.CurrentDay = Day.MONDAY;
-        gameState.CurrentBoss = Bosses.DayBossMap[Day.MONDAY];
+        gameState.BossState = new BossState(Bosses.DayBossMap[Day.MONDAY], 0);
         CurrentGameState.Init(gameState);
         
         Debug.Log($"Game initialized with 1 human player and 5 AI players, all using Tabby Tom. Current day is {gameState.CurrentDay}, current boss is {gameState.CurrentBoss.Name}");

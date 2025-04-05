@@ -58,4 +58,6 @@ public class Deck
     }
 
     public int Count => _cards.Count;
+    
+    public int SnapCount => _cards.Count(c => c.Type == CardType.Snap);
 }

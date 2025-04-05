@@ -13,7 +13,7 @@ public sealed class GameState
 
     public bool IsInitialized = false;
     public Day CurrentDay = Day.MONDAY;
-    public Boss CurrentBoss = Bosses.DrFelixBytepaws;
+    public BossState BossState = new BossState(Bosses.DrFelixBytepaws, 0);
     public PlayerState[] PlayerStates = Array.Empty<PlayerState>();
     public Deck CurrentDeck = BasicDeck.CreateStandardDeck();
     public bool IsGameOver = false;
