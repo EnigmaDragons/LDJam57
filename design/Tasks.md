@@ -6,6 +6,7 @@
 - [x] Create Card base class with common properties
 - [x] Implement Offer Card type with money values
 - [x] Main Menu Music
+- [x] Create turn manager to handle player/AI sequence
 
 # In-Progress
 
@@ -19,7 +20,6 @@
 - [ ] Implement deck shuffling and management
 
 ### Turn Structure
-- [ ] Create turn manager to handle player/AI sequence
 - [ ] Implement "push-your-luck" decision points
 - [ ] Add turn timer (optional feature)
 - [ ] Build end-of-turn resolution system
