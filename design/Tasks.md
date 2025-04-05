@@ -1,70 +1,80 @@
-# Office Abyss - Development Tasks
+# Raise the Paw - Implementation Tasks
 
-## Milestone 1: Core Framework (Days 1-2)
-- [x] Set up project structure and engine
-- [ ] Implement basic UI framework
-- [ ] Create simple character/enemy base classes
-- [ ] Build battle system core logic
-- [ ] Implement simplest version of auto-battler mechanics
-- [ ] Create placeholder art for testing (basic squares/shapes)
-- [ ] Basic game flow between screens
-- [ ] **DELIVERABLE:** Two placeholder characters can auto-battle with simple attacks
+## Core Game Mechanics
 
-## Milestone 2: Minimal Playable Version (Days 3-4)
-- [ ] Implement 2 player characters with complete functionality (Intern and Manager)
-- [ ] Create 2 enemy types for HR floor
-- [ ] Implement character recruitment/team building
-- [ ] Basic formation arrangement system
-- [ ] Simple HR floor environment
-- [ ] Add win/loss conditions
-- [ ] Implement turn order based on speed stat
-- [ ] **DELIVERABLE:** Players can recruit, arrange, and battle through one simplified HR floor
+# Done
 
-## Milestone 3: First Floor Complete (Days 5-6)
-- [ ] Complete all HR floor enemies
-- [ ] Implement HR Director boss with special ability
-- [ ] Add two more player characters (IT Guru and Janitor)
-- [ ] Create basic synergy system between characters
-- [ ] Implement Office Budget system for recruiting/upgrading
-- [ ] Add reward system after victory
-- [ ] Improve battle animations and feedback
-- [ ] **DELIVERABLE:** Full HR floor experience with boss battle and rewards
 
-## Milestone 4: Core Gameplay Complete (Days 7-9)
-- [ ] Implement remaining player characters (Legal Eagle and Sales Rep)
-- [ ] Add Security floor with enemies and boss
-- [ ] Create Legal floor with enemies and boss
-- [ ] Add progression between floors (elevator transitions)
-- [ ] Implement different floor environments
-- [ ] Enhance character synergies
-- [ ] Add special abilities for all characters
-- [ ] Create upgrade system for existing employees
-- [ ] **DELIVERABLE:** Complete core gameplay loop through all standard floors
+# In-Progress
+- [ ] Create Card base class with common properties
 
-## Milestone 5: Complete Game (Days 10-11)
-- [ ] Implement R&D final floor and boss
-- [ ] Add end-game reveal cutscene
-- [ ] Balance character stats and abilities
-- [ ] Refine synergy bonuses and team compositions
-- [ ] Add main menu and intro sequence
-- [ ] Implement saving/loading system
-- [ ] **DELIVERABLE:** Full game progression from start to finish
+# Todo
 
-## Milestone 6: Polish and Enhancement (Day 12+)
-- [ ] Add sound effects for all actions
-- [ ] Implement background music for each floor
-- [ ] Visual polish for all UI elements
-- [ ] Add particle effects for attacks and abilities
-- [ ] Create tutorial/help system
-- [ ] Balance final gameplay difficulty
-- [ ] Add quality-of-life features (speed controls, etc.)
-- [ ] Bug fixing and optimization
-- [ ] **DELIVERABLE:** Polished complete game
+### Card System
+- [ ] Implement Offer Card type with money values
+- [ ] Implement Perk Card type with special abilities
+- [ ] Implement CEO Snap Card type with failure conditions
+- [ ] Implement Corporate Shenanigans Card type with random events
+- [ ] Create card drawing system with animation hooks
+- [ ] Implement deck shuffling and management
 
-## Stretch Goals
-- [ ] Additional character options
-- [ ] Alternate paths through the building
-- [ ] Random events during floor progression
-- [ ] Unlockable character skins or variations
-- [ ] New Game+ mode with increased difficulty
-- [ ] Daily challenges or custom run options 
+### Turn Structure
+- [ ] Create turn manager to handle player/AI sequence
+- [ ] Implement "push-your-luck" decision points
+- [ ] Add turn timer (optional feature)
+- [ ] Build end-of-turn resolution system
+- [ ] Create round transition system
+- [ ] Implement game end conditions and winner determination
+
+### Cat Characters
+- [ ] Create Cat base class with shared properties
+- [ ] Implement each starting cat's unique abilities:
+  - [ ] Tabby Tom (Beginner Cat)
+  - [ ] Miss Meowgan (PR Specialist)
+  - [ ] Whiskers (Finance Analyst)
+  - [ ] Sir Pouncelot (Risk Taker)
+  - [ ] Neko-chan (Kawaii Distraction)
+- [ ] Design and implement unlockable cats
+- [ ] Create cat selection UI
+- [ ] Implement AI logic for each cat personality
+
+## UI Implementation
+
+### Main Game Board
+- [ ] Design and implement boardroom table layout
+- [ ] Create cat character representations at the table
+- [ ] Build card display area for active player
+- [ ] Implement money/score tracking display
+- [ ] Create round indicator
+- [ ] Design and implement game events notification system
+
+### Card Visualization
+- [ ] Create card appearance templates for each type
+- [ ] Implement card drawing animation
+- [ ] Add visual effects for special cards
+- [ ] Create card interaction UI (keep/discard decisions)
+
+### Menus and Navigation
+- [ ] Create main menu
+- [ ] Implement cat selection/unlocking screen
+- [ ] Build options/settings menu
+- [ ] Create game results screen
+- [ ] Implement save/load functionality
+
+## Audio System
+- [ ] Implement background music system
+- [ ] Create sound effects for:
+  - [ ] Card drawing
+  - [ ] Successful negotiation
+  - [ ] CEO Snap moments
+  - [ ] Round transitions
+  - [ ] Game win/lose
+- [ ] Add character-specific sounds
+
+## Testing and Polish
+- [ ] Create automated tests for game rules
+- [ ] Balance card distribution and money values
+- [ ] Test and refine AI decision making
+- [ ] Optimize performance
+- [ ] Add visual polish and animations
+- [ ] Implement tutorials and help system 

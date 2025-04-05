@@ -3,3 +3,6 @@ Unity, C#.
 Put all design docs in folder `./design`
 
 Code all lives in `./src` and subfolders
+
+When starting each task, move the item into the In-Progress section in ./design/tasks.md
+When finished, move the item to the Done section in the same.

@@ -1,80 +1,107 @@
-# Office Abyss - Assets List
+# Raise the Paw - Required Assets
 
-## Character Assets
-- **Player Characters**
-  - The Intern (sprite, portrait, animations)
-  - The IT Guru (sprite, portrait, animations)
-  - The Manager (sprite, portrait, animations)
-  - The Legal Eagle (sprite, portrait, animations)
-  - The Janitor (sprite, portrait, animations)
-  - The Sales Rep (sprite, portrait, animations)
+## Visual Assets
 
-- **Enemies**
-  - HR Floor Minions (HR Rep, Office Trainer, Recruiter)
-  - Security Floor Minions (Security Guard, Attack Drone, Surveillance Tech)
-  - Legal Floor Minions (Paralegal, Contract Lawyer, Auditor)
-  - R&D Floor Minions (Lab Tech, Test Subject, Researcher)
+### Characters
+- **Cat Characters** (front and profile views, with expressions)
+  - Tabby Tom (Beginner Cat)
+  - Miss Meowgan (PR Specialist)
+  - Whiskers (Finance Analyst)
+  - Sir Pouncelot (Risk Taker)
+  - Neko-chan (Kawaii Distraction)
+  - 3-5 Additional unlockable cats
+- **CEO Character** (angry, neutral, pleased expressions)
 
-- **Bosses**
-  - HR Director
-  - Chief Security Officer
-  - Head of Legal
-  - R&D Final Experiment/Monster
+### Environments
+- Boardroom background with table
+- Corporate office setting elements
+- Between-rounds transition environment
 
-## Environment Assets
-- HR Floor Background
-- Security Floor Background
-- Legal Floor Background
-- R&D Lab Background
-- Elevator/Transition Screen
+### Cards
+- Card back design
+- Card frames for each type:
+  - Offer Cards (money)
+  - Perk Cards (bonuses)
+  - CEO Snap Cards (failures)
+  - Corporate Shenanigans Cards (events)
+- Card decoration elements and icons
 
-## UI Elements
-- Main Menu (Office Intranet themed)
-- Character Select/Recruitment UI
-- Formation Setup Screen
-- Battle UI
-  - Health Bars
-  - Ability Icons
-  - Turn Indicators
-  - Damage Numbers
-- Victory/Defeat Screens
-- Reward Selection UI
-- Budget/Currency Display
+### UI Elements
+- Main menu background and logo
+- Button templates (normal, hover, pressed states)
+- Money counter and icons
+- Round indicator
+- Card draw counter (1-6)
+- Cat selection screen elements
+- Results screen elements
+- Notification popups
+- Progress indicators
 
-## Attack/Ability Visuals
-- Coffee Splash Effect
-- Paperwork Avalanche
-- Stapler Attack
-- System Crash Animation
-- Legal Document Throw
-- Mop Swing Animation
-- Sales Pitch Effect
-- Motivational Speech Bubble
-- Badge Denial Effect
-- Lawsuit Avalanche
+### Effects and Animations
+- Card draw animation
+- Card flip/reveal
+- Money gain particles
+- CEO snap effect
+- Round transition effect
+- Unlock celebration effect
 
 ## Audio Assets
-- **Music**
-  - Main Menu Theme
-  - HR Floor Battle Music
-  - Security Floor Battle Music
-  - Legal Floor Battle Music
-  - R&D Boss Battle Music
-  - Victory Fanfare
-  - Defeat Theme
 
-- **Sound Effects**
-  - Character Attack Sounds
-  - Boss Special Ability Sounds
-  - UI Navigation Sounds
-  - Recruit/Upgrade Sounds
-  - Battle Start/End Sounds
-  - Office Ambience (typing, phones, coffee machine)
+### Music
+- Main menu theme
+- Gameplay background music (corporate/jazz style)
+- Tense "push your luck" variant
+- CEO snap stinger
+- Victory fanfare
+- Defeat theme
+- Between-rounds jingle
 
-## Miscellaneous
-- Office Budget Currency Icon
-- Corporate Loot Icons
-- Character Upgrade Indicators
-- Synergy Visualization Elements
-- Tutorial Prompts/Arrows
-- Game Logo and Title Art 
+### Sound Effects
+- Card draw
+- Card placement
+- Money gained
+- Button clicks
+- CEO snap
+- Cat-specific sounds:
+  - Meows (happy, curious, disappointed)
+  - Purring
+  - Hissing (for snap events)
+- Turn start/end notification
+- Round transition
+- Unlock notification
+- General UI navigation sounds
+
+## Text Content
+
+### Game Text
+- Card descriptions for all cards
+- Cat ability descriptions
+- Tutorial text
+- Help/instructions
+- Menu text
+- Achievement descriptions
+
+### Narrative Elements
+- Short cat bios
+- Light story elements for between rounds
+- Corporate title descriptions
+
+## Programming/Technical Assets
+
+### Animations and Rigging
+- Cat character rigs for simple animations
+- CEO character rig
+- Card animation specifications
+
+### Data Files
+- Card database (types, values, effects)
+- Cat character stats and abilities
+- Game balance parameters
+- Unlock requirements
+
+### Miscellaneous
+- Game icon
+- Loading screen
+- Credits information
+- Logo variants (full, compact)
+- Settings icons 

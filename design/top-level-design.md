@@ -1,197 +1,88 @@
-Below is an expanded concept for Office Abyss—a comedic, minimal auto-battler set in a cartoonish corporate world, where you lead a motley crew of office workers through a series of floors to uncover R&D lab secrets. The focus is on fun, synergy, and quick battles rather than deep strategy, making it a perfect jam project.
-Elevator Pitch
+🎮 Game Structure: Raise the Paw
+🧶 Core Loop
 
-You’re the “Team Lead” of a quirky office crew determined to infiltrate the corporation’s forbidden R&D lab hidden in the depths of the building. Each floor is guarded by a themed “department boss” (HR, PR, IT Security, etc.). Recruit cartoonish office archetypes—like The Intern, The IT Guru, or The Janitor—and watch them auto-battle comedic enemies with staple guns and coffee pot buffs. Your goal: claw your way to the bottom floor and reveal the secret project R&D has been hiding!
-Core Loop
+    7 Cats (1 player + 5 AI)
 
-    Recruit/Upgrade Phase
+    5 Rounds total (a work week!)
 
-        At the start (and after each floor), you pick which new employee(s) to hire or which existing ones to upgrade.
+    Each round, cats take turns trying to negotiate the best deal (aka: make the most money).
 
-        You have a limited budget (“Office Budget,” “Payroll Points,” or “Company Credit”), which resets or gets replenished each floor.
+    At the end of 5 rounds, the cat with the most total money wins.
 
-    Prepare Formation
+    Between rounds, unlock new playable cats with unique negotiation styles (powers).
 
-        You can arrange your employees in a simple formation (like front row/back row or maybe just a linear order).
+🐾 Push-Your-Luck Mechanics
 
-        Simple synergy bonuses can be triggered by adjacency or team composition (e.g., having the Manager next to the Intern might boost the Intern’s morale, etc.).
+Each turn, a cat "enters the boardroom" and draws from the Raise Deck:
 
-    Auto-Battle Encounter
+    Offer Cards (+$ amount): Add to your offer
 
-        Each floor or department presents a short auto-battle sequence: your employees automatically attack using office-themed moves (stapler throws, coffee splashes, legal threats).
+    Perk Cards (company perks): Optional bonuses or risk mitigators
 
-        The enemy side is a handful of cartoon corporate drones/bots or another department’s staff with comedic office attacks.
+    CEO Snap Cards (cat-astrophic): Lose all money this turn and get “Reprimanded” (could be flavor or a light penalty)
 
-    Victory & Rewards
+    Corporate Shenanigans (random events): Small modifiers like “Mandatory Trust Fall – Shuffle cards with next cat”
 
-        After winning, you get “Corporate Loot” (which might be new employees, “office perks,” or raises to power up your existing staff).
+Your Choices:
 
-        Progress deeper until you reach the final R&D level.
+    Keep drawing = more money
 
-Departments & Boss Floors
+    Stop early = bank your earnings
 
-To keep scope small, you could do 3 floors + a final boss:
+You can draw up to 6 cards, but there are 3 Snap cards shuffled into the deck (more appear as game progresses). Odds get worse the longer you push.
+🐱 Starting Cats (examples)
 
-    Floor 1: HR Headache
+Each cat has a passive trait or once-per-day (round) ability:
 
-        Enemies: HR reps who use “Paperwork Overload” or “Mandatory Training” moves to stun your team.
+    Tabby Tom – Beginner Cat
 
-        Boss: HR Director with an ability to shuffle your formation or force your employees to lose a turn if they fail compliance checks.
+        Ability: None (balanced stats)
 
-    Floor 2: Security Scramble
+    Miss Meowgan – PR Specialist
 
-        Enemies: Security Guards, Attack Drones.
+        Ability: Can discard 1 Snap card per round
 
-        Boss: Chief Security Officer, who can place “Badge Check” debuffs or physically block your front line.
+    Whiskers – Finance Analyst
 
-    Floor 3: Legal Gauntlet
+        Ability: +10% bonus on all Offer Cards
 
-        Enemies: Lawyers or paralegals with “Cease & Desist” attacks that slow or hamper your team.
+    Sir Pouncelot – Risk Taker
 
-        Boss: Head of Legal—their special “Lawsuit Avalanche” drains your team’s morale.
+        Ability: Can draw 1 extra card beyond limit, but doubles Snap risk
 
-    Final Boss: R&D Revelation
+    Neko-chan – Kawaii Distraction
 
-        You discover a “Secret Experiment”—maybe a comically high-tech corporate robot or a mutated office supply beast.
+        Ability: Can steal 1 Offer Card from another cat once per round
 
-        Defeat it to claim the hidden research data.
+🏆 Between Games
 
-(If time is tight, compress this to 2 floors + 1 final boss.)
-Example Characters (Cartoonish Archetypes)
+    Win or reach certain conditions to unlock new cats
 
-    The Intern
+    Maybe even unlock Corporate Titles (like “Assistant Meownager”) for persistent cosmetic flair
 
-        Cost: Very cheap to hire.
+    Light story progression (e.g. "The CEO is getting suspicious...")
 
-        Ability: “Coffee Run”—randomly gives a small buff to an ally’s speed or damage.
+🗂️ Possible Presentation
 
-        Flaw: Low HP, easily “overworked.”
+    UI has a Boardroom Table where cats are seated
 
-    The IT Guru
+    Each cat’s hand/earnings shown in front of them
 
-        Role: Ranged DPS or debuffer.
+    When it's your turn, the camera zooms in, dramatic music as you draw cards
 
-        Ability: “System Crash”—chance to inflict a short stun or slow on an enemy.
+    Snap card = the CEO SLAMS a paw on the table
 
-        Synergy: Gains a bonus if next to The Manager or with other Tech employees.
+Would you like:
 
-    The Manager
+    a card design mockup?
 
-        Role: Support/Buff.
+    a sample turn breakdown?
 
-        Ability: “Team Meeting”—small AoE buff to allies’ attack or speed.
+    early ideas for visual UI layout or music/sfx tone?
 
-        Synergy: If placed behind any employee (like The Intern), that employee gets morale boosts.
+Or want to brainstorm cat names + powers for unlockables next?
+You said:
+Is there a name like Deep Negotiation, but that also is a cat pun?
+ChatGPT said:
 
-    The Legal Eagle
-
-        Role: Debuffer.
-
-        Ability: “Cease & Desist”—temporary ability lock on an enemy.
-
-        Synergy: Gains extra power if the enemy is in a “leadership” position (boss or manager).
-
-    The Janitor
-
-        Role: Cleanse/Healer.
-
-        Ability: “Mop It Up”—removes negative statuses from an ally or from the entire team occasionally.
-
-        Synergy: Gains defense bonus if placed in the front (hardened from tough conditions).
-
-    The Sales Rep
-
-        Role: Quick attacker or morale booster.
-
-        Ability: “Sales Pitch”—chance to bribe or temporarily convert an enemy minion for a turn.
-
-        Flaw: Lower base HP; relies on persuasion instead of raw strength.
-
-(You only need 5–6 total employees to keep scope small. Or even fewer if you prefer.)
-Synergy & Simple Stats
-
-    Keep stats minimal:
-
-        HP (Hit Points)
-
-        ATK (Attack Power)
-
-        SPD (Attack Speed or turn frequency)
-
-        Possibly a single “Ability” each.
-
-    Synergy Example:
-
-        Manager + Intern: The Intern’s Coffee Run triggers 50% more often.
-
-        IT Guru + Sales Rep: “Remote Sales Demo” synergy, letting them do a special combined attack.
-
-        Janitor + Manager: “Clean Slate”—the Janitor’s cleanses also restore a small bit of HP if Manager is on the team.
-
-Keep synergy simple and comedic—just enough to reward certain combos without heavy code complexity.
-Game Progression & Flow
-
-    Title Card + Quick Setup:
-
-        Minimal story: “Welcome to [Corp Name]. The R&D secrets lie below. Gather your team, break the bureaucracy, and unravel the truth!”
-
-    Floor Sequence (3 floors + final):
-
-        Recruit (spend office budget)
-
-        Prepare Formation
-
-        Auto-Battle
-
-        Win → Gather Rewards → Next Floor
-
-    Final Boss:
-
-        Extra comedic text or a bigger “office monster.”
-
-        If you win, show a short comedic “secret revealed!” cutscene.
-
-Visual & Thematic Style
-
-    Cartoon Office: Big-headed cartoon characters, silly idle animations.
-
-    Attacks: Over-the-top office objects (paperclip barrage, coffee splash, stapler toss).
-
-    UI: A “cubicle-like” or “office intranet” theme for menus.
-
-    Environment: Each floor can have a different background art or color scheme (HR floor: motivational posters, Security floor: metal detectors, etc.).
-
-Scope Tips
-
-    Limit the number of employees to 5–6 total. Not all of them have to appear in one run—players pick from a smaller random pool.
-
-    Limit floors to 2–3 plus a final boss to keep your content creation manageable.
-
-    Auto-Battler: You only need to code a simple turn-based or real-time “attack in order” system—no complicated AI required.
-
-    Minimal Animations: You can use simple 2D sprite “bobs” or low-poly 3D with minimal rigging. Even static images with tweened positions can work.
-
-    Short Jokes & Flavor: Let text windows or short AI-generated lines deliver comedic flair.
-
-Potential Twist: “R&D Secrets” Reveal
-
-    Let the final “secret” be something silly:
-
-        A giant coffee machine that can produce infinite coffee.
-
-        An experimental copy machine that clones office documents into real creatures.
-
-        A “Cat Division” in R&D (tying in with your cat preference from earlier) which developed super-intelligent corporate cat employees.
-
-This comedic payoff can be done in a 30-second cutscene or a text-based reveal.
-Final Thoughts
-
-Office Abyss is designed to be simple but charming:
-
-    Auto-battler ensures minimal gameplay complexity: players set up formations and watch the comedic fights.
-
-    Recruit/Upgrade phases keep engagement and replayability.
-
-    Cartoonish corporate theme stands out in a jam setting—humor and silly synergy mechanics can really shine.
-
-It’s a great sweet spot for a 72-hour jam: you focus on fun character designs, comedic writing, and a single tight gameplay loop, rather than an extensive overworld or complex story. Good luck with your Office Abyss infiltration—hope you uncover those secret corporate coffee formulas in style!
+Absolutely! Here are some cat-pun-infused names in the spirit of "Deep Negotiation", keeping that corporate + strategic + feline flavor:
