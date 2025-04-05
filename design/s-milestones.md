@@ -2,6 +2,7 @@
 Milestone 1:
 [x] Launch Game
 [] Start Game
+  [] No Cat Picking. All Cats Vanilla
 
 [] Main Game
   [] Monday
@@ -9,6 +10,7 @@ Milestone 1:
   [] Most Money Wins
 [] Game Loss
 [] Game Won
+
 [] Unlocks
 [] Main Menu
 
