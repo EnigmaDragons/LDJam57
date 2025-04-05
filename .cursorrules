@@ -1,0 +1,5 @@
+Unity, C#.
+
+Put all design docs in folder `./design`
+
+Code all lives in `./src` and subfolders
