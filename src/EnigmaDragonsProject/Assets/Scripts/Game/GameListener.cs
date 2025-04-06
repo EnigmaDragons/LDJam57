@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class GameListener : MonoBehaviour
 {
     [SerializeField] private DayNegotiation day;
+    [SerializeField] private Navigator navigator;
     [SerializeField] private float aiDecisionTimeSeconds = 0.8f;
     
     private void OnEnable()
@@ -13,6 +13,12 @@ public class GameListener : MonoBehaviour
         Message.Subscribe<NotifyPlayerSelectedAction>(OnPlayerActionSelected, this);
         Message.Subscribe<ReadyForPlayerSelection>(OnReadyForPlayerSelection, this);
         Message.Subscribe<DayFinished>(OnDayFinished, this);
+        Message.Subscribe<GameOver>(OnGameOver, this);
+    }
+
+    private void OnGameOver(GameOver obj)
+    {
+        navigator.NavigateToScene("PlacementScene");
     }
 
     private void OnDisable()

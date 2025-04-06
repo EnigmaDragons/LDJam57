@@ -14,6 +14,8 @@ public class DayResultsDisplay : MonoBehaviour
     [SerializeField] private Button continueButton;
     [SerializeField] private float panelEntranceTime = 0.5f;
     [SerializeField] private float playerPopDelay = 0.2f;
+    
+    private Day _currentDay;
 
     private void Start()
     {
@@ -45,6 +47,9 @@ public class DayResultsDisplay : MonoBehaviour
     private void OnShowDayResults(ShowDayResults msg)
     {
         Debug.Log($"OnShowDayResults called for {msg.Day}");
+        
+        // Store current day
+        _currentDay = msg.Day;
         
         // Check if results panel is already active, which might indicate a duplicate call
         if (resultsPanel.activeSelf)
@@ -134,5 +139,11 @@ public class DayResultsDisplay : MonoBehaviour
                 playerUI.gameObject.SetActive(false);
             }
         }
+        
+        // Hide the darken background
+        if (darken != null)
+            darken.SetActive(false);
+        
+        Message.Publish(new ContinueToNextDayButtonPressed());
     }
 } 

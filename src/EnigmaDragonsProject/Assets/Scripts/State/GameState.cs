@@ -27,6 +27,13 @@ public sealed class GameState
     
     public void AdvanceToNextDay()
     {
+        if (CurrentDay == Day.Friday)
+        {
+            IsGameOver = true;
+            Message.Publish(new GameOver(this));
+            return;
+        }
+        
         // Advance to the next day in the work week
         if (CurrentDay == Day.Monday)
             CurrentDay = Day.Tuesday;
@@ -43,6 +50,7 @@ public sealed class GameState
         
         // Create a new deck for the day
         CurrentDeck = BasicDeck.CreateStandardDeck();
+        BossState = new BossState(Bosses.DayBossMap[CurrentDay], 0);
         IsDayFinished = false;
     }
 

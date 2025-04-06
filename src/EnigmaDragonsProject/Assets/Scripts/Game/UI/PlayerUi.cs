@@ -99,14 +99,12 @@ public class PlayerUi : MonoBehaviour
         }
         else if (playerState.IsActiveInDay) 
         {
-            // Return to original size when not active
             transform.DOScale(_originalScale, 0.5f).SetEase(Ease.OutQuad);
             activeGroup.DOFade(1f, 0.5f);
         }
         else
         {
-            // Return to original size when not active
-            transform.DOScale(_originalScale, 0.5f).SetEase(Ease.OutQuad);
+            transform.DOScale(_originalScale * 0.9f, 0.5f).SetEase(Ease.OutQuad);
             
             // Fade out the player UI when they're not active
             if (activeGroup != null)

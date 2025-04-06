@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Final-DontTOUCH/GameScene.unity
     guid: 16396829e84b17649afa3aa77ef234d4
   - enabled: 1
+    path: Assets/Scenes/Final-DontTOUCH/PlacementScene.unity
+    guid: fa9d5ca6c47095645a61dc54859dab5c
+  - enabled: 1
     path: Assets/Scenes/Final-DontTOUCH/CreditsScene.unity
     guid: 514d334c5df4df64f87ea2cadf28e400
   m_configObjects: {}

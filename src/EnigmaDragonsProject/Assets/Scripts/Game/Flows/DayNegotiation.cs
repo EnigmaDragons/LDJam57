@@ -33,6 +33,7 @@ public class DayNegotiation : MonoBehaviour
     {
         Message.Subscribe<Finished<ShowDieRoll>>(_ => FinishSetup(), this);
         Message.Subscribe<Finished<ShowCardDrawn>>(OnCardDrawShown, this);
+        Message.Subscribe<ContinueToNextDayButtonPressed>(_ => AdvanceToNextDay(), this);
     }
     
     private void OnDisable()
