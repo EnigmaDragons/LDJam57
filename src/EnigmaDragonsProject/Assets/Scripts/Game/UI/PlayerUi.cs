@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,6 +10,7 @@ public class PlayerUi : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalCashText;
     [SerializeField] private TextMeshProUGUI todayCashText;
     [SerializeField] private Toggle powerAvailableToggle;
+    [SerializeField] private CanvasGroup activeGroup;
     
     private int _playerId;
     private PlayerState _lastKnownPlayerState;
@@ -69,6 +71,21 @@ public class PlayerUi : MonoBehaviour
     {
         if (playerState == null)
             return;
+
+        if (!playerState.IsActiveInDay)
+        {
+            // Fade out the player UI when they're not active
+            CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
+            if (canvasGroup != null)
+            {
+                // Use DoTween to animate the alpha from 1 to 0.4
+                canvasGroup.DOFade(0.4f, 0.5f);
+            }
+            else
+            {
+                Debug.LogWarning("CanvasGroup component not found on PlayerUI. Cannot fade out inactive player.");
+            }
+        }
             
         // Update character face
         if (characterFaceImage != null && playerState.Player.Character != null)
