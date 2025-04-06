@@ -25,6 +25,9 @@ public class DayNegotiation : MonoBehaviour
     private Phase _currentPhase = Phase.Setup;
     private PlayerTurnStep _currentPlayerTurnStep;
     private DayEndStep _currentDayEndStep;
+    
+    // Public accessor for the current phase
+    public Phase CurrentPhase => _currentPhase;
 
     private void OnEnable()
     {

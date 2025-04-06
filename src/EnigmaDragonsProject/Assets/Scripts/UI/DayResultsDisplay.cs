@@ -44,6 +44,17 @@ public class DayResultsDisplay : MonoBehaviour
     
     private void OnShowDayResults(ShowDayResults msg)
     {
+        Debug.Log($"OnShowDayResults called for {msg.Day}");
+        
+        // Check if results panel is already active, which might indicate a duplicate call
+        if (resultsPanel.activeSelf)
+        {
+            Debug.LogWarning("Results panel is already active. Ignoring duplicate call.");
+            return;
+        }
+        
+        dayTitle.text = $"{msg.Day} Results";
+        
         // Hide all player UIs initially
         foreach (var playerUI in playerUis)
         {
@@ -94,22 +105,18 @@ public class DayResultsDisplay : MonoBehaviour
             {
                 if (playerUis[i] != null)
                 {
-                    // Set initial scale to zero
+                    // Make player UI visible with normal scale
                     playerUis[i].gameObject.SetActive(true);
-                    playerUis[i].transform.localScale = Vector3.zero;
+                    playerUis[i].transform.localScale = Vector3.one; // Set scale to 1
                     
-                    // Animate scale to original size
-                    playerUis[i].transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
+                    // Add a pop animation
+                    playerUis[i].transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f, 2, 0.5f);
                     
                     // Wait before showing the next player UI
                     yield return new WaitForSeconds(playerPopDelay);
                 }
             }
         }
-        
-        // Update the day title
-        if (dayTitle != null)
-            dayTitle.text = $"Results";
     }
     
     private void OnContinueClicked()
