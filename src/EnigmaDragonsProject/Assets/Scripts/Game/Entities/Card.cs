@@ -42,3 +42,28 @@ public class OfferCard : Card
     public int id => _id + 1000;
 }
 
+public class SnapCard : Card
+{
+    private static int _nextId = 1;
+    private readonly int _id;
+    
+    public SnapCard()
+    {
+        _id = _nextId++;
+    }
+    
+    public CardType Type => CardType.Snap;
+    public int Id => _id;
+    public int BossMoodMod => 0;
+    public string Description => "SNAP! You lose all cash from today!";
+    
+    public void Apply(GameState gs, PlayerState actingPlayer)
+    {
+        // The player loses all cash from today and is knocked out
+        CurrentGameState.UpdateState(_ => actingPlayer.NotifySnapped());
+        
+        // Publish a message about the snap
+        Message.Publish(new PlayerSnapped(actingPlayer));
+    }
+}
+

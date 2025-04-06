@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+
+
 public class DayNegotiation : MonoBehaviour
 {
     public enum Phase
@@ -153,8 +155,41 @@ public class DayNegotiation : MonoBehaviour
     private void OnCardDrawShown(Finished<ShowCardDrawn> msg)
     {
         var currentPlayer = CurrentGameState.ReadOnly.ActivePlayer;
-        msg.Message.Card.Apply(CurrentGameState.ReadOnly, currentPlayer);
+        Card card = msg.Message.Card;
         
+        // Apply card effects to the player
+        card.Apply(CurrentGameState.ReadOnly, currentPlayer);
+        
+        // Update boss mood based on the card
+        CurrentGameState.UpdateState(gs => 
+        {
+            // Check if the card affects boss mood
+            int moodChange = card.BossMoodMod;
+            
+            // If the card affects boss mood, update it
+            if (moodChange != 0)
+            {
+                // Get the number of snaps to add based on mood change
+                int snapsToAdd = gs.BossState.UpdateMoodAndGetSnapsChanges(moodChange);
+                
+                // If snaps should be added, create and shuffle them into the deck
+                if (snapsToAdd > 0)
+                {
+                    Debug.Log($"Boss mood increased! Adding {snapsToAdd} snap(s) to the deck");
+                    
+                    // Create snap cards and add them to the deck
+                    for (int i = 0; i < snapsToAdd; i++)
+                    {
+                        gs.CurrentDeck.ShuffleCardIn(new SnapCard());
+                    }
+                    
+                    // Notify of new snaps
+                    Message.Publish(new SnapsAddedToDeck(snapsToAdd));
+                }
+            }
+        });
+        
+        // Continue with the player turn flow
         if (currentPlayer.IsActiveInDay)
         {
             _currentPlayerTurnStep = PlayerTurnStep.MoveToNextPlayer;

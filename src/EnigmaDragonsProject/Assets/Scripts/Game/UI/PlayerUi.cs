@@ -2,6 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 public class PlayerUi : MonoBehaviour
 {
@@ -11,12 +12,17 @@ public class PlayerUi : MonoBehaviour
     [SerializeField] private TextMeshProUGUI todayCashText;
     [SerializeField] private Toggle powerAvailableToggle;
     [SerializeField] private CanvasGroup activeGroup;
+    [SerializeField] private Image statusColorBg;
     
     private int _playerId;
     private PlayerState _lastKnownPlayerState;
+    private Vector3 _originalScale;
     
     private void Start()
     {
+        // Store original scale for animations
+        _originalScale = transform.localScale;
+        
         // Subscribe to game state changes
         CurrentGameState.Subscribe(OnGameStateChanged, this);
         
@@ -72,14 +78,46 @@ public class PlayerUi : MonoBehaviour
         if (playerState == null)
             return;
 
-        if (!playerState.IsActiveInDay)
+        bool isCurrentTurnPlayer = playerState.IsActiveInDay && 
+            CurrentGameState.ReadOnly != null && 
+            CurrentGameState.ReadOnly.PlayerTurnIndex == _playerId;
+
+        if (isCurrentTurnPlayer)
         {
+            // Make the panel 10% larger when it's this player's turn
+            transform.DOScale(_originalScale * 1.1f, 0.5f).SetEase(Ease.OutQuad);
+            
+            activeGroup.DOFade(1f, 0.5f);
+        }
+        else if (playerState.IsActiveInDay) 
+        {
+            // Return to original size when not active
+            transform.DOScale(_originalScale, 0.5f).SetEase(Ease.OutQuad);
+            activeGroup.DOFade(1f, 0.5f);
+        }
+        else
+        {
+            // Return to original size when not active
+            transform.DOScale(_originalScale, 0.5f).SetEase(Ease.OutQuad);
+            
             // Fade out the player UI when they're not active
-            CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
-            if (canvasGroup != null)
+            if (activeGroup != null)
             {
                 // Use DoTween to animate the alpha from 1 to 0.4
-                canvasGroup.DOFade(0.4f, 0.5f);
+                activeGroup.DOFade(0.4f, 0.5f);
+                
+                // Change status background color based on whether they banked cash
+                if (statusColorBg != null)
+                {
+                    Color targetColor = playerState.CurrentRoundCash > 0 
+                        ? Color.green 
+                        : Color.red;
+                    
+                    // Ensure full opacity
+                    targetColor.a = 1f;
+                    
+                    statusColorBg.DOColor(targetColor, 0.5f);
+                }
             }
             else
             {
