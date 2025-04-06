@@ -40,7 +40,7 @@ public class FinalResultsScreen : MonoBehaviour
       {
           gs.PlayerStates[i] = new PlayerState(new Player(i, Characters.TabbyTom, i == 0 ? PlayerType.Human : PlayerType.AI), Random.Range(5, 201), new NoAi());
       }
-
+      CurrentGameState.Init(gs);
       return gs;
     }
 

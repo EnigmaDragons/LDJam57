@@ -115,7 +115,7 @@ public class PlayerUi : MonoBehaviour
                 activeGroup.DOFade(0.4f, 0.5f);
                 
                 // Change status background color based on whether they banked cash
-                if (statusColorBg != null)
+                if (statusColorBg != null && !isFinalCashDisplay)
                 {
                     Color targetColor = playerState.CurrentRoundCash > 0 
                         ? Color.green 
@@ -237,6 +237,15 @@ public class PlayerUi : MonoBehaviour
         if (activeGroup != null)
         {
             activeGroup.alpha = 1f;
+        }
+        
+        // Set the status background to white when in final display mode
+        if (statusColorBg != null)
+        {
+            if (isFinal)
+            {
+                statusColorBg.DOColor(Color.white, 0.5f);
+            }
         }
     }
 }
