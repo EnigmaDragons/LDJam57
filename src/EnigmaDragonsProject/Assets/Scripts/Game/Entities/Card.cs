@@ -5,6 +5,7 @@ public interface Card
     CardType Type { get; }
     int Id { get; }
     int BossMoodMod { get; }
+    string Description { get; }
 
     void Apply(GameState gs, PlayerState actingPlayer);
 }
@@ -30,7 +31,8 @@ public class OfferCard : Card
 
     public CardType Type => CardType.Offer;
     public int Id => _id;
-    public int BossMoodMod { get; private set;  }
+    public int BossMoodMod { get; }
+    public string Description => $"+${_value}";
 
     public void Apply(GameState gs, PlayerState actingPlayer)
     {

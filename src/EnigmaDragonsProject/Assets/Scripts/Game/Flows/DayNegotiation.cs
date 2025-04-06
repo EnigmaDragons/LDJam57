@@ -29,8 +29,9 @@ public class DayNegotiation : MonoBehaviour
     private void OnEnable()
     {
         Message.Subscribe<Finished<ShowDieRoll>>(_ => FinishSetup(), this);
+        Message.Subscribe<Finished<ShowCardDrawn>>(OnCardDrawShown, this);
     }
-
+    
     private void OnDisable()
     {
         Message.Unsubscribe(this);
@@ -144,9 +145,15 @@ public class DayNegotiation : MonoBehaviour
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         
-        // ATTN: Need to implement proper card drawing from deck and card effects
+        var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
+        CurrentGameState.UpdateState(gs => gs);
+        Message.Publish(new ShowCardDrawn(card));
+    }
+    
+    private void OnCardDrawShown(Finished<ShowCardDrawn> msg)
+    {
         var currentPlayer = CurrentGameState.ReadOnly.ActivePlayer;
-        ProcessDrawnCard(currentPlayer);
+        msg.Message.Card.Apply(CurrentGameState.ReadOnly, currentPlayer);
         
         if (currentPlayer.IsActiveInDay)
         {
@@ -165,13 +172,6 @@ public class DayNegotiation : MonoBehaviour
         }
         
         ProcessCurrentStep();
-    }
-    
-    private void ProcessDrawnCard(PlayerState currentPlayer)
-    {
-        var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
-        CurrentGameState.UpdateState(gs => gs);
-        card.Apply(CurrentGameState.ReadOnly, currentPlayer);
     }
     
     public void AcceptOffer()

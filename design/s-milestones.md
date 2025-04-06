@@ -12,7 +12,7 @@ Milestone 1:
     [x] Environment
     [x] Music
     [] Gameplay
-      [] Inactive Players become Dimmed
+      [x] Inactive Players become Dimmed
       [x] Roll to see who Goes first
       [] On Player Turn, Let Player Pick 
         [] Negotiate for More
