@@ -213,6 +213,7 @@ public class DayNegotiation : MonoBehaviour
     
     private void TransitionToDayEnd()
     {
+        CurrentGameState.UpdateState(gs => gs.PlayerTurnIndex = -1);
         _currentPhase = Phase.DayEnd;
         _currentDayEndStep = DayEndStep.ShowResults;
         
