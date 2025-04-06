@@ -9,10 +9,15 @@ public class PlayerUi : MonoBehaviour
     [SerializeField] private Image characterFaceImage;
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI totalCashText;
+    [SerializeField] private TextMeshProUGUI totalFinalCashText;
     [SerializeField] private TextMeshProUGUI todayCashText;
+    [SerializeField] private TextMeshProUGUI placeLabelText;
     [SerializeField] private Toggle powerAvailableToggle;
     [SerializeField] private CanvasGroup activeGroup;
     [SerializeField] private Image statusColorBg;
+    [SerializeField] private GameObject finalCashPanel;
+    [SerializeField] private GameObject dayCashPanel;
+    [SerializeField] private bool isFinalCashDisplay = false;
     
     private int _playerId;
     private PlayerState _lastKnownPlayerState;
@@ -31,6 +36,9 @@ public class PlayerUi : MonoBehaviour
         {
             UpdateFromGameState(CurrentGameState.ReadOnly);
         }
+        
+        dayCashPanel.SetActive(!isFinalCashDisplay);
+        finalCashPanel.SetActive(isFinalCashDisplay);
     }
     
     private void OnDestroy()
@@ -48,7 +56,7 @@ public class PlayerUi : MonoBehaviour
         _lastKnownPlayerState = playerState;
         UpdateUi(playerState);
     }
-    
+
     private void OnGameStateChanged(GameStateChanged evt)
     {
         if (evt == null || evt.State == null)
@@ -137,11 +145,8 @@ public class PlayerUi : MonoBehaviour
             characterNameText.text = playerState.Player.Character.Name;
         }
         
-        // Update total cash
-        if (totalCashText != null)
-        {
-            totalCashText.text = $"Total: ${playerState.BankedCash + playerState.CurrentRoundCash}";
-        }
+        totalCashText.text = $"Total: ${playerState.BankedCash + playerState.CurrentRoundCash}";
+        totalFinalCashText.text = $"${playerState.BankedCash + playerState.CurrentRoundCash}";
         
         // Update today's cash
         if (todayCashText != null)
@@ -149,11 +154,65 @@ public class PlayerUi : MonoBehaviour
             todayCashText.text = $"Today: ${playerState.CurrentRoundCash}";
         }
         
+        // Update player place
+        if (placeLabelText != null && CurrentGameState.ReadOnly != null)
+        {
+            int place = GetPlayerPlace(playerState);
+            placeLabelText.text = GetOrdinalPlaceString(place);
+        }
+        
         // Update power available toggle
         if (powerAvailableToggle != null)
         {
             powerAvailableToggle.isOn = !playerState.PowerUsedToday;
             powerAvailableToggle.interactable = false; // Just for display, not interactive
+        }
+    }
+    
+    private int GetPlayerPlace(PlayerState playerState)
+    {
+        if (CurrentGameState.ReadOnly == null || CurrentGameState.ReadOnly.PlayerStates == null)
+            return 1;
+            
+        int place = 1;
+        int currentPlayerTotalCash = playerState.BankedCash + playerState.CurrentRoundCash;
+        int currentPlayerBankedCash = playerState.BankedCash;
+        
+        foreach (var otherPlayer in CurrentGameState.ReadOnly.PlayerStates)
+        {
+            // Skip comparing against self
+            if (otherPlayer.Player.Index == playerState.Player.Index)
+                continue;
+                
+            int otherTotalCash = otherPlayer.BankedCash + otherPlayer.CurrentRoundCash;
+            
+            // If other player has more cash, increase place
+            if (otherTotalCash > currentPlayerTotalCash)
+            {
+                place++;
+            }
+            // If tied on total cash, break tie using banked cash
+            else if (otherTotalCash == currentPlayerTotalCash && 
+                     otherPlayer.BankedCash > currentPlayerBankedCash)
+            {
+                place++;
+            }
+        }
+        
+        return place;
+    }
+    
+    private string GetOrdinalPlaceString(int place)
+    {
+        switch (place)
+        {
+            case 1: return "1st";
+            case 2: return "2nd";
+            case 3: return "3rd";
+            case 4: return "4th";
+            case 5: return "5th";
+            case 6: return "6th";
+            default: return place.ToString() + "th";
         }
     }
     
