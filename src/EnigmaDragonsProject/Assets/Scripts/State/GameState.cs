@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 [Serializable]
 public sealed class GameState
@@ -19,6 +21,9 @@ public sealed class GameState
     public bool IsGameOver = false;
     public int PlayerTurnIndex = 0;
 
+    public PlayerState ActivePlayer => PlayerStates[PlayerTurnIndex];
+    public int ActivePlayerCount => PlayerStates.Count(x => x.IsActiveInDay);
+    
     public void AdvanceToNextDay()
     {
         // Advance to the next day in the work week
@@ -33,12 +38,33 @@ public sealed class GameState
             
         // Notify all players of the day change
         foreach (var player in PlayerStates)
-        {
             player.NotifyDayChanged();
-        }
         
         // Create a new deck for the day
         CurrentDeck = BasicDeck.CreateStandardDeck();
+    }
+
+    public void MoveToNextActivePlayer()
+    {
+        if (PlayerStates.Length == 0)
+            return;
+            
+        if (ActivePlayerCount == 1 || ActivePlayerCount == 0)
+            return;
+            
+        int startingIndex = PlayerTurnIndex;
+        int nextIndex = (PlayerTurnIndex + 1) % PlayerStates.Length;
+        
+        // Keep looking for the next active player
+        while (nextIndex != startingIndex)
+        {
+            if (PlayerStates[nextIndex].IsActiveInDay)
+            {
+                PlayerTurnIndex = nextIndex;
+                return;
+            }
+            nextIndex = (nextIndex + 1) % PlayerStates.Length;
+        }
     }
 }
 
@@ -68,6 +94,7 @@ public class PlayerState
         PowerUsedToday = false;
         BankedCash += CurrentRoundCash;
         CurrentRoundCash = 0;
+        IsActiveInDay = true;
     }
 
     public void RecordPowerUser()
@@ -85,11 +112,6 @@ public class PlayerState
     {
         CurrentRoundCash = 0;
         IsActiveInDay = false;
-    }
-    
-    public void ResetActiveStatus()
-    {
-        IsActiveInDay = true;
     }
 }
 

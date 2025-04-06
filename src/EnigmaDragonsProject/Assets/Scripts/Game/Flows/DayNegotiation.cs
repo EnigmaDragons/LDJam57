@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DayNegotiation
+public class DayNegotiation : MonoBehaviour
 {
     public enum Phase
     {
@@ -10,13 +8,7 @@ public class DayNegotiation
         PlayerTurns,
         DayEnd
     }
-
-    private enum SetupStep
-    {
-        InitDeck,
-        DetermineFirstPlayer
-    }
-
+    
     private enum PlayerTurnStep
     {
         AwaitPlayerSelection,
@@ -30,30 +22,25 @@ public class DayNegotiation
         ProcessToNextDay
     }
 
-    private Phase _currentPhase;
-    private SetupStep _currentSetupStep;
+    private Phase _currentPhase = Phase.Setup;
     private PlayerTurnStep _currentPlayerTurnStep;
     private DayEndStep _currentDayEndStep;
-    
-    private readonly GameState _gameState;
-    
-    public DayNegotiation(GameState gameState)
+
+    private void OnEnable()
     {
-        _gameState = gameState;
-        _currentPhase = Phase.Setup;
-        _currentSetupStep = SetupStep.InitDeck;
+        Message.Subscribe<Finished<ShowDieRoll>>(_ => FinishSetup(), this);
     }
-    
+
+    private void OnDisable()
+    {
+        Message.Unsubscribe(this);
+    }
+
     public void Start()
     {
-        // Reset day-specific player states
-        foreach (var player in _gameState.PlayerStates)
-        {
+        foreach (var player in CurrentGameState.ReadOnly.PlayerStates) 
             player.NotifyDayChanged();
-            // Set players as active for the new day
-            player.ResetActiveStatus();
-        }
-        
+
         ProcessCurrentStep();
     }
     
@@ -78,34 +65,28 @@ public class DayNegotiation
     
     private void ProcessSetupStep()
     {
-        switch (_currentSetupStep)
+        var dieRollResult = UnityEngine.Random.Range(1, 7);
+        Debug.Log($"Rolling a D6 to determine first player. Result: {dieRollResult}");
+        CurrentGameState.UpdateState(gs =>
         {
-            case SetupStep.InitDeck:
-                _gameState.CurrentDeck = BasicDeck.CreateStandardDeck();
-                _gameState.CurrentDeck.Shuffle();
-                _currentSetupStep = SetupStep.DetermineFirstPlayer;
-                ProcessCurrentStep();
-                break;
-                
-            case SetupStep.DetermineFirstPlayer:
-                // Store the turn index in game state
-                _gameState.PlayerTurnIndex = UnityEngine.Random.Range(0, GetActivePlayersList().Count);
-                
-                _currentPhase = Phase.PlayerTurns;
-                _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
-                ProcessCurrentStep();
-                break;
-                
-            default:
-                Debug.LogError("Unknown setup step: " + _currentSetupStep);
-                break;
-        }
+            gs.CurrentDeck = BasicDeck.CreateStandardDeck().Shuffled();
+            gs.PlayerTurnIndex = (dieRollResult - 1) % gs.PlayerStates.Length;
+        });
+        
+        Message.Publish(new ShowDieRoll(dieRollResult, 6));
+    }
+
+    private void FinishSetup()
+    {
+        _currentPhase = Phase.PlayerTurns;
+        _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
+        ProcessCurrentStep();
     }
         
     private void ProcessPlayerTurnStep()
     {
         // If no active players, go to day end
-        if (GetActivePlayersList().Count == 0)
+        if (CurrentGameState.ReadOnly.ActivePlayerCount == 0)
         {
             _currentPhase = Phase.DayEnd;
             _currentDayEndStep = DayEndStep.ShowResults;
@@ -116,8 +97,7 @@ public class DayNegotiation
         switch (_currentPlayerTurnStep)
         {
             case PlayerTurnStep.AwaitPlayerSelection:
-                // ATTN: Need to implement UI hooks to notify when it's a player's turn
-                // The UI will call DrawCard or AcceptOffer based on player input
+                Message.Publish(new ReadyForPlayerSelection(CurrentGameState.ReadOnly.ActivePlayer));
                 break;
                 
             case PlayerTurnStep.ProcessPlayerSelection:
@@ -125,14 +105,7 @@ public class DayNegotiation
                 break;
                 
             case PlayerTurnStep.MoveToNextPlayer:
-                // Move to the next player in the turn order who is still active
-                List<PlayerState> activePlayers = GetActivePlayersList();
-                if (activePlayers.Count > 0)
-                {
-                    _gameState.PlayerTurnIndex = (_gameState.PlayerTurnIndex + 1) % activePlayers.Count;
-                }
-                
-                // Reset to await player selection
+                CurrentGameState.UpdateState(gs => gs.MoveToNextActivePlayer());
                 _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
                 ProcessCurrentStep();
                 break;
@@ -153,8 +126,7 @@ public class DayNegotiation
                 break;
                 
             case DayEndStep.ProcessToNextDay:
-                // Move to the next day in the game
-                _gameState.AdvanceToNextDay();
+                CurrentGameState.UpdateState(gs => gs.AdvanceToNextDay());
                 // ATTN: Need to implement day completion event/callback to notify game flow
                 break;
                 
@@ -172,25 +144,18 @@ public class DayNegotiation
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         
-        // Get the current player
-        PlayerState currentPlayer = GetActivePlayer();
-        if (currentPlayer == null)
-            return;
-            
         // ATTN: Need to implement proper card drawing from deck and card effects
+        var currentPlayer = CurrentGameState.ReadOnly.ActivePlayer;
         ProcessDrawnCard(currentPlayer);
         
-        // Check if we need to move to the next player
-        List<PlayerState> activePlayers = GetActivePlayersList();
-        if (activePlayers.Contains(currentPlayer))
+        if (currentPlayer.IsActiveInDay)
         {
             _currentPlayerTurnStep = PlayerTurnStep.MoveToNextPlayer;
         }
-        else if (activePlayers.Count > 0)
+        else if (CurrentGameState.ReadOnly.ActivePlayerCount > 0)
         {
-            // If current player was removed but others remain
-            _gameState.PlayerTurnIndex = _gameState.PlayerTurnIndex % activePlayers.Count;
             _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
+            CurrentGameState.UpdateState(gs => gs.MoveToNextActivePlayer());
         }
         else
         {
@@ -204,38 +169,28 @@ public class DayNegotiation
     
     private void ProcessDrawnCard(PlayerState currentPlayer)
     {
-        var card = _gameState.CurrentDeck.DrawOne();
-        card.Apply(_gameState, currentPlayer);
+        var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
+        CurrentGameState.UpdateState(gs => gs);
+        card.Apply(CurrentGameState.ReadOnly, currentPlayer);
     }
     
-    // Called by UI when player chooses to accept current offer
     public void AcceptOffer()
     {
         if (_currentPhase != Phase.PlayerTurns || _currentPlayerTurnStep != PlayerTurnStep.AwaitPlayerSelection)
             return;
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
-        
-        // Get the current player
-        PlayerState currentPlayer = GetActivePlayer();
-        if (currentPlayer == null)
-            return;
-            
-        // Player banks their current money and is removed from the turn order
-        currentPlayer.BankCash();
+        CurrentGameState.ReadOnly.ActivePlayer.BankCash();
         
         // ATTN: Need to implement UI notification for player accepting offer
-        
-        // Check if we need to end the day or move to next player
-        List<PlayerState> activePlayers = GetActivePlayersList();
-        if (activePlayers.Count > 0)
+
+        if (CurrentGameState.ReadOnly.ActivePlayerCount > 0)
         {
-            _gameState.PlayerTurnIndex = _gameState.PlayerTurnIndex % activePlayers.Count;
+            CurrentGameState.UpdateState(gs => gs.MoveToNextActivePlayer());
             _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
         }
         else
         {
-            // No players left, end the day
             _currentPhase = Phase.DayEnd;
             _currentDayEndStep = DayEndStep.ShowResults;
         }
@@ -243,7 +198,6 @@ public class DayNegotiation
         ProcessCurrentStep();
     }
     
-    // Called by UI when ready to advance to next day
     public void AdvanceToNextDay()
     {
         if (_currentPhase != Phase.DayEnd || _currentDayEndStep != DayEndStep.ShowResults)
@@ -252,44 +206,4 @@ public class DayNegotiation
         _currentDayEndStep = DayEndStep.ProcessToNextDay;
         ProcessCurrentStep();
     }
-    
-    // Helper methods to access game state
-    private List<PlayerState> GetActivePlayersList()
-    {
-        List<PlayerState> activePlayers = new List<PlayerState>();
-        foreach (var player in _gameState.PlayerStates)
-        {
-            if (player.IsActiveInDay)
-            {
-                activePlayers.Add(player);
-            }
-        }
-        return activePlayers;
-    }
-    
-    private PlayerState GetActivePlayer()
-    {
-        List<PlayerState> activePlayers = GetActivePlayersList();
-        if (activePlayers.Count == 0)
-            return null;
-            
-        if (_gameState.PlayerTurnIndex >= activePlayers.Count)
-            _gameState.PlayerTurnIndex = 0;
-            
-        return activePlayers[_gameState.PlayerTurnIndex];
-    }
-    
-    // Public getters for UI to check game state
-    public PlayerState GetCurrentPlayer() => GetActivePlayer();
-    public Phase GetCurrentPhase() => _currentPhase;
-    public bool IsAwaitingPlayerInput() => 
-        _currentPhase == Phase.PlayerTurns && _currentPlayerTurnStep == PlayerTurnStep.AwaitPlayerSelection;
-    public bool IsDayComplete() => 
-        _currentPhase == Phase.DayEnd && _currentDayEndStep == DayEndStep.ProcessToNextDay;
-    
-    // ATTN: Need to implement the following additional features:
-    // - Cat special abilities/powers (once per day)
-    // - Turn counter to track 6-card draw limit
-    // - Visual feedback for player turns and state changes
-    // - AI decision making for non-player cats
 }

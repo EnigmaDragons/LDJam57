@@ -20,10 +20,14 @@ public class Deck
         {
             n--;
             int k = _rng.Next(n + 1);
-            Card temp = _cards[k];
-            _cards[k] = _cards[n];
-            _cards[n] = temp;
+            (_cards[k], _cards[n]) = (_cards[n], _cards[k]);
         }
+    }
+
+    public Deck Shuffled()
+    {
+        Shuffle();
+        return this;
     }
 
     public Card DrawOne()

@@ -12,7 +12,17 @@ Milestone 1:
     [x] Environment
     [x] Music
     [] Gameplay
+      [] Roll to see who Goes first
+      [] On Player Turn, Let Player Pick 
+        [] Negotiate for More
+          (Must at least once)
+          [] Draw Card and Show Outcome
+        [] Accept Current Funding
+          [] Bank Money and Become Dimmed
     [] Random AI
+      [] Wait 1.5 seconds
+        [] Make a Pick
+          [] Show Outcome
     [x] Show Current Turn Player
     [x] Show Player Characters
       [x] Name
@@ -35,3 +45,8 @@ Milestone 2:
       [] Num Cards
       [] Num Snaps
     [] Color for Player Character
+
+Milestone 3:
+
+    [] Nice to have Boss Speech Bubbles for Each Interaction
+
