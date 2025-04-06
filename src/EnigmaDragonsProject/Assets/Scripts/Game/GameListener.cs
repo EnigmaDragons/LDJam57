@@ -4,6 +4,7 @@ using System.Collections;
 public class GameListener : MonoBehaviour
 {
     [SerializeField] private DayNegotiation day;
+    [SerializeField] private float aiDecisionTimeSeconds = 0.8f;
     
     private void OnEnable()
     {
@@ -41,7 +42,7 @@ public class GameListener : MonoBehaviour
 
     private IEnumerator MakeAIDecisionAfterDelay(PlayerState aiPlayer)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(aiDecisionTimeSeconds);
         
         var aiAction = aiPlayer.Ai.SelectAction(CurrentGameState.ReadOnly, aiPlayer);
         Message.Publish(new NotifyPlayerSelectedAction(aiPlayer, aiAction));

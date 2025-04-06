@@ -55,7 +55,7 @@ public class SnapCard : Card
     public CardType Type => CardType.Snap;
     public int Id => _id;
     public int BossMoodMod => 0;
-    public string Description => "SNAP! You lose all cash from today!";
+    public string Description => "SNAP! Lose today's cash!";
     
     public void Apply(GameState gs, PlayerState actingPlayer)
     {

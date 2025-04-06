@@ -1710,9 +1710,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardContainer: {fileID: 2136460450}
   slideInDuration: 0.4
-  flipDuration: 0.8
-  showDuration: 2
-  fadeOutDuration: 0.4
+  flipDuration: 0.4
+  showDuration: 1.6
+  fadeOutDuration: 0.3
   cardFront: {fileID: 2017547005}
   cardBack: {fileID: 423864318}
   cardDescription: {fileID: 1193830684}
