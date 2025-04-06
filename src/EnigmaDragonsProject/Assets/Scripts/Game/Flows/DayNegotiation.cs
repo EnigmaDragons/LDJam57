@@ -36,9 +36,6 @@ public class DayNegotiation
     private DayEndStep _currentDayEndStep;
     
     private readonly GameState _gameState;
-    private readonly List<PlayerState> _activePlayers = new List<PlayerState>();
-    private int _currentPlayerIndex;
-    private PlayerState _currentPlayer;
     
     public DayNegotiation(GameState gameState)
     {
@@ -49,14 +46,12 @@ public class DayNegotiation
     
     public void Start()
     {
-        // Initialize active players list with all players
-        _activePlayers.Clear();
-        _activePlayers.AddRange(_gameState.PlayerStates);
-        
         // Reset day-specific player states
         foreach (var player in _gameState.PlayerStates)
         {
             player.NotifyDayChanged();
+            // Set players as active for the new day
+            player.ResetActiveStatus();
         }
         
         ProcessCurrentStep();
@@ -93,8 +88,8 @@ public class DayNegotiation
                 break;
                 
             case SetupStep.DetermineFirstPlayer:
-                _currentPlayerIndex = UnityEngine.Random.Range(0, _activePlayers.Count);
-                _currentPlayer = _activePlayers[_currentPlayerIndex];
+                // Store the turn index in game state
+                _gameState.PlayerTurnIndex = UnityEngine.Random.Range(0, GetActivePlayersList().Count);
                 
                 _currentPhase = Phase.PlayerTurns;
                 _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
@@ -110,7 +105,7 @@ public class DayNegotiation
     private void ProcessPlayerTurnStep()
     {
         // If no active players, go to day end
-        if (_activePlayers.Count == 0)
+        if (GetActivePlayersList().Count == 0)
         {
             _currentPhase = Phase.DayEnd;
             _currentDayEndStep = DayEndStep.ShowResults;
@@ -130,9 +125,12 @@ public class DayNegotiation
                 break;
                 
             case PlayerTurnStep.MoveToNextPlayer:
-                // Move to the next player in the turn order
-                _currentPlayerIndex = (_currentPlayerIndex + 1) % _activePlayers.Count;
-                _currentPlayer = _activePlayers[_currentPlayerIndex];
+                // Move to the next player in the turn order who is still active
+                List<PlayerState> activePlayers = GetActivePlayersList();
+                if (activePlayers.Count > 0)
+                {
+                    _gameState.PlayerTurnIndex = (_gameState.PlayerTurnIndex + 1) % activePlayers.Count;
+                }
                 
                 // Reset to await player selection
                 _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
@@ -174,19 +172,24 @@ public class DayNegotiation
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         
+        // Get the current player
+        PlayerState currentPlayer = GetActivePlayer();
+        if (currentPlayer == null)
+            return;
+            
         // ATTN: Need to implement proper card drawing from deck and card effects
-        ProcessDrawnCard();
+        ProcessDrawnCard(currentPlayer);
         
         // Check if we need to move to the next player
-        if (_activePlayers.Contains(_currentPlayer))
+        List<PlayerState> activePlayers = GetActivePlayersList();
+        if (activePlayers.Contains(currentPlayer))
         {
             _currentPlayerTurnStep = PlayerTurnStep.MoveToNextPlayer;
         }
-        else if (_activePlayers.Count > 0)
+        else if (activePlayers.Count > 0)
         {
             // If current player was removed but others remain
-            _currentPlayerIndex = _currentPlayerIndex % _activePlayers.Count;
-            _currentPlayer = _activePlayers[_currentPlayerIndex];
+            _gameState.PlayerTurnIndex = _gameState.PlayerTurnIndex % activePlayers.Count;
             _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
         }
         else
@@ -199,10 +202,10 @@ public class DayNegotiation
         ProcessCurrentStep();
     }
     
-    private void ProcessDrawnCard()
+    private void ProcessDrawnCard(PlayerState currentPlayer)
     {
         var card = _gameState.CurrentDeck.DrawOne();
-        card.Apply(_gameState, _currentPlayer);
+        card.Apply(_gameState, currentPlayer);
     }
     
     // Called by UI when player chooses to accept current offer
@@ -213,16 +216,21 @@ public class DayNegotiation
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         
+        // Get the current player
+        PlayerState currentPlayer = GetActivePlayer();
+        if (currentPlayer == null)
+            return;
+            
         // Player banks their current money and is removed from the turn order
-        _activePlayers.Remove(_currentPlayer);
+        currentPlayer.BankCash();
         
         // ATTN: Need to implement UI notification for player accepting offer
         
         // Check if we need to end the day or move to next player
-        if (_activePlayers.Count > 0)
+        List<PlayerState> activePlayers = GetActivePlayersList();
+        if (activePlayers.Count > 0)
         {
-            _currentPlayerIndex = _currentPlayerIndex % _activePlayers.Count;
-            _currentPlayer = _activePlayers[_currentPlayerIndex];
+            _gameState.PlayerTurnIndex = _gameState.PlayerTurnIndex % activePlayers.Count;
             _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
         }
         else
@@ -245,8 +253,34 @@ public class DayNegotiation
         ProcessCurrentStep();
     }
     
+    // Helper methods to access game state
+    private List<PlayerState> GetActivePlayersList()
+    {
+        List<PlayerState> activePlayers = new List<PlayerState>();
+        foreach (var player in _gameState.PlayerStates)
+        {
+            if (player.IsActiveInDay)
+            {
+                activePlayers.Add(player);
+            }
+        }
+        return activePlayers;
+    }
+    
+    private PlayerState GetActivePlayer()
+    {
+        List<PlayerState> activePlayers = GetActivePlayersList();
+        if (activePlayers.Count == 0)
+            return null;
+            
+        if (_gameState.PlayerTurnIndex >= activePlayers.Count)
+            _gameState.PlayerTurnIndex = 0;
+            
+        return activePlayers[_gameState.PlayerTurnIndex];
+    }
+    
     // Public getters for UI to check game state
-    public PlayerState GetCurrentPlayer() => _currentPlayer;
+    public PlayerState GetCurrentPlayer() => GetActivePlayer();
     public Phase GetCurrentPhase() => _currentPhase;
     public bool IsAwaitingPlayerInput() => 
         _currentPhase == Phase.PlayerTurns && _currentPlayerTurnStep == PlayerTurnStep.AwaitPlayerSelection;

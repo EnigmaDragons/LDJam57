@@ -17,7 +17,8 @@ public sealed class GameState
     public PlayerState[] PlayerStates = Array.Empty<PlayerState>();
     public Deck CurrentDeck = BasicDeck.CreateStandardDeck();
     public bool IsGameOver = false;
-    
+    public int PlayerTurnIndex = 0;
+
     public void AdvanceToNextDay()
     {
         // Advance to the next day in the work week
@@ -49,6 +50,7 @@ public class PlayerState
     public int CurrentRoundCash { get; private set; }
     public bool PowerUsedToday { get; private set; }
     public bool PowerUsedEver { get; private set; }
+    public bool IsActiveInDay { get; private set; }
 
     public PlayerState(Player p, int currentCash)
     {
@@ -72,6 +74,22 @@ public class PlayerState
     {
         PowerUsedToday = true;
         PowerUsedEver = true;
+    }
+
+    public void BankCash()
+    {
+        IsActiveInDay = false;
+    }
+
+    public void NotifySnapped()
+    {
+        CurrentRoundCash = 0;
+        IsActiveInDay = false;
+    }
+    
+    public void ResetActiveStatus()
+    {
+        IsActiveInDay = true;
     }
 }
 

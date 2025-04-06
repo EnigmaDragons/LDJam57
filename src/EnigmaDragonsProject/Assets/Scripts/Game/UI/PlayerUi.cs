@@ -85,7 +85,7 @@ public class PlayerUi : MonoBehaviour
         // Update total cash
         if (totalCashText != null)
         {
-            totalCashText.text = $"${playerState.BankedCash}";
+            totalCashText.text = $"Total: ${playerState.BankedCash + playerState.CurrentRoundCash}";
         }
         
         // Update today's cash

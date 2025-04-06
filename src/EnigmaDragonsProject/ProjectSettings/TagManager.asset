@@ -8,6 +8,7 @@ TagManager:
   - UiSounds
   - Loader
   - AppManagers
+  - ActivePlayerTarget
   layers:
   - Default
   - TransparentFX

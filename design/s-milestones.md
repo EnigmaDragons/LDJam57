@@ -13,7 +13,7 @@ Milestone 1:
     [x] Music
     [] Gameplay
     [] Random AI
-    [] Show Current Turn Player
+    [x] Show Current Turn Player
     [x] Show Player Characters
       [x] Name
       [x] Face
