@@ -70,3 +70,8 @@ Modern jazz fusion, saxophone, piano, monosynth/ep, steady drums, bass foundatio
 
 ## 🎬 V3 - CREDITS THEME
 Modern jazz fusion, saxophone, piano, monosynth/ep, steady drums, bass foundation, light synth accents, triumphant celebratory melodies, playful runs, nostalgic motifs, satisfying optimistic conclusion.
+
+### 🎬 V3 - GAME OVER CREDITS - DEFEAT
+Modern jazz fusion, saxophone, piano, monosynth/ep, steady drums, bass foundation, light synth accents, melancholic minor key, reflective phrases, subtle dissonance, wistful motifs, tempo decrease, bittersweet
+
+  
