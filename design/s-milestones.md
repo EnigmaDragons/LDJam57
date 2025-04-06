@@ -11,17 +11,14 @@ Milestone 1:
     [x] Boss Name
     [x] Environment
     [x] Music
-    [] Boss Mood Bar
-    [] Deck 
-      [] Num Cards
-      [] Num Snaps
     [] Gameplay
-    [] Show Player Characters
-      [] Name
-      [] Face
-      [] Color for Player Character
-      [] Total Cash
-      [] Today Cash
+    [] Random AI
+    [] Show Current Turn Player
+    [x] Show Player Characters
+      [x] Name
+      [x] Face
+      [x] Total Cash
+      [x] Today Cash
     [] Go until end of day
   [] Most Money Wins
 
@@ -33,4 +30,8 @@ Milestone 1:
 
 Milestone 2:
 
-
+    [] Boss Mood Bar
+    [] Deck 
+      [] Num Cards
+      [] Num Snaps
+    [] Color for Player Character
