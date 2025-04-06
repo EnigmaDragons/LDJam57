@@ -46,16 +46,22 @@ public class GameListener : MonoBehaviour
     {
         yield return new WaitForSeconds(aiDecisionTimeSeconds);
         
+        if (CurrentGameState.ReadOnly.IsDayFinished) {
+          Debug.Log("Day finished, skipping AI decision");
+          yield break;
+        }
+
         var aiAction = aiPlayer.Ai.SelectAction(CurrentGameState.ReadOnly, aiPlayer);
         Message.Publish(new NotifyPlayerSelectedAction(aiPlayer, aiAction));
     }
 
     private void OnDayFinished(DayFinished msg)
     {
+        if (!CurrentGameState.ReadOnly.IsDayFinished)
+          CurrentGameState.UpdateState(gs => gs.IsDayFinished = true);
+
         Debug.Log($"Day {msg.Day} Finished with {msg.PlayerStates.Length} players!");
         
-        // Display day results
-        // This can trigger UI elements to show the day's results
         Message.Publish(new ShowDayResults(msg.Day, msg.PlayerStates));
         
         // Player must click a button that calls day.AdvanceToNextDay() to continue

@@ -20,6 +20,7 @@ public sealed class GameState
     public Deck CurrentDeck = BasicDeck.CreateStandardDeck();
     public bool IsGameOver = false;
     public int PlayerTurnIndex = 0;
+    public bool IsDayFinished = false;
 
     public PlayerState ActivePlayer => PlayerStates[PlayerTurnIndex];
     public int ActivePlayerCount => PlayerStates.Count(x => x.IsActiveInDay);
@@ -42,6 +43,7 @@ public sealed class GameState
         
         // Create a new deck for the day
         CurrentDeck = BasicDeck.CreateStandardDeck();
+        IsDayFinished = false;
     }
 
     public void MoveToNextActivePlayer()
@@ -67,7 +69,6 @@ public sealed class GameState
         }
     }
 }
-
 
 public class PlayerState
 {
