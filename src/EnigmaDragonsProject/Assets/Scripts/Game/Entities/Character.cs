@@ -9,7 +9,6 @@ public interface Character
     public string PowerName { get; }
     public string PowerDescription { get; }
 
-    public Sprite Profile { get; }
     public Sprite Face { get; }
 }
 
@@ -21,9 +20,7 @@ public class StaticCharacter : Character
     public string PowerName { get; set; }
     public string PowerDescription { get; set; }
 
-    public string SpritePathProfile { get; set; }
     public string SpritePathFace { get; set; }
     
-    public Sprite Profile => ResourceUtils.LoadOrThrow<Sprite>(SpritePathProfile);
     public Sprite Face => ResourceUtils.LoadOrThrow<Sprite>(SpritePathFace);
 }

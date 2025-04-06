@@ -91,4 +91,41 @@ cartoon corporate cat, semi-polished linework, defined edges, newspaper comic st
 ### Duchess Fluffington (Executive Relations)
 cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, waist-up portrait, vibrant colors, simple shapes, expressive personality, white background, female cat, luxurious persian cat, long flowing fur, elegant outfit, pearl necklace, snobbish expression, champagne glass --ar 9:16
 
+---
+
+## Player Character Face Shot Prompts (1:1 Aspect Ratio)
+
+### Face Shot Base Prompt
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, {{character_specific_traits}} --ar 1:1
+
+### Tabby Tom (Customer Service) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, orange tabby, slightly-too-large collar of suit visible, crooked clip-on tie, eager enthusiastic expression, customer service headset, youthful appearance --ar 1:1
+
+### Miss Meowgan (PR) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, female cat, calico cat, perfectly groomed fur, stylish collar visible, bluetooth earpiece, camera-ready smile, professional appearance --ar 1:1
+
+### Whiskers McNumbers (Finance) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, siamese cat, reading glasses, green accountant visor, detail-oriented nervous expression, necktie visible at bottom --ar 1:1
+
+### Sir Pouncelot (Marketing) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, tuxedo cat, flamboyant silk scarf, designer sunglasses, dramatic facial expression, overconfident grin --ar 1:1
+
+### Neko-chan (UX) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, female cat, japanese bobtail, cute pink glasses, kawaii-style accessories, deceptively sweet smile with calculating eyes --ar 1:1
+
+### Rocky Clawboa (Product Development) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, muscular bengal cat, tiger stripes, fitness tracker visible, determined intense expression --ar 1:1
+
+### Dr. Purrington (R&D) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, scottish fold cat, folded ears, safety goggles on forehead, absentminded genius expression --ar 1:1
+
+### DJ Scratchy (Social Media) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, hairless sphynx cat, colorful tattoos, oversized headphones, fashionable appearance, smartphone glimpse --ar 1:1
+
+### Professor Whiskerton (Analytics) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, british shorthair, tweed collar visible, bow tie, tiny round spectacles, academic expression --ar 1:1
+
+### Duchess Fluffington (Executive Relations) Face
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, face-focused portrait, vibrant colors, simple shapes, expressive personality, white background, female cat, luxurious persian cat, long flowing fur, elegant jewelry, snobbish expression --ar 1:1
+
 

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 21872d5b06bd3224482985b30948b9e0
+timeCreated: 1625803134
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199517
+  packageName: Confetti effect GUI
+  packageVersion: 1.0
+  assetPath: Assets/ConfettiEffectGUI/Prefabs/HighConfettiEffect.prefab
+  uploadId: 452451

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2133d9a327e47454689680e10f853a45
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199517
+  packageName: Confetti effect GUI
+  packageVersion: 1.0
+  assetPath: Assets/ConfettiEffectGUI/demoEjectionSettings.lighting
+  uploadId: 452451

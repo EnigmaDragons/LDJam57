@@ -4,14 +4,14 @@ Milestone 1:
 [x] Start Game
   [x] No Cat Picking. All Cats Vanilla
 
-[] Main Game
+[x] Main Game
   [x] Monday
     [x] Day Label
     [x] Boss Profile
     [x] Boss Name
     [x] Environment
     [x] Music
-    [] Gameplay
+    [x] Gameplay
       [x] Inactive Players become Dimmed
       [x] Roll to see who Goes first
       [x] On Player Turn, Let Player Pick 
@@ -20,32 +20,34 @@ Milestone 1:
           [x] Draw Card and Show Outcome
         [x] Accept Current Funding
           [x] Bank Money and Become Dimmed
-    [] Random AI
-      [] Wait 1.5 seconds
-        [] Make a Pick
-          [] Show Outcome
+    [x] Random AI
+      [x] Wait 1.5 seconds
+        [x] Make a Pick
+          [x] Show Outcome
     [x] Show Current Turn Player
     [x] Show Player Characters
       [x] Name
       [x] Face
       [x] Total Cash
       [x] Today Cash
-    [] Go until end of day
-  [] Most Money Wins
+    [x] Go until end of day
+  [x] Most Money Wins
 
-[] Game Loss
-[] Game Won
-
-[] Display Unlocks Screen
-[] Main Menu
+[x] Game Loss
+[x] Game Won
 
 Milestone 2:
+  [] Sounds
+  [] Five Days
+  [] More Player Cat Arts
+  [] Boss Mood Bar
+  [] Deck 
+    [] Num Cards
+    [] Num Snaps
+  [] Color for Player Character
 
-    [] Boss Mood Bar
-    [] Deck 
-      [] Num Cards
-      [] Num Snaps
-    [] Color for Player Character
+  [] Display Unlocks Screen
+  [] Back to Main Menu
 
 Milestone 3:
 

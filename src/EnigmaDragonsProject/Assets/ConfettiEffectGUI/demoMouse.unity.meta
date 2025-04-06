@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 36a45dbb1aaae834a8fd9376755202db
+timeCreated: 1625802943
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199517
+  packageName: Confetti effect GUI
+  packageVersion: 1.0
+  assetPath: Assets/ConfettiEffectGUI/demoMouse.unity
+  uploadId: 452451

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 368c90c18d69ca34a833f07e9fe26f4a
+timeCreated: 1625797515
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199517
+  packageName: Confetti effect GUI
+  packageVersion: 1.0
+  assetPath: Assets/ConfettiEffectGUI/demoEjection.unity
+  uploadId: 452451

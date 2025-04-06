@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8284d213d9f1fd44bbcaaf591825a0e9
+timeCreated: 1625803121
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 199517
+  packageName: Confetti effect GUI
+  packageVersion: 1.0
+  assetPath: Assets/ConfettiEffectGUI/Prefabs/MouseConfettiEffect.prefab
+  uploadId: 452451
