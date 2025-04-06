@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-
-
 public class DayNegotiation : MonoBehaviour
 {
     public enum Phase
@@ -91,9 +89,7 @@ public class DayNegotiation : MonoBehaviour
         // If no active players, go to day end
         if (CurrentGameState.ReadOnly.ActivePlayerCount == 0)
         {
-            _currentPhase = Phase.DayEnd;
-            _currentDayEndStep = DayEndStep.ShowResults;
-            ProcessCurrentStep();
+            TransitionToDayEnd();
             return;
         }
         
@@ -102,11 +98,7 @@ public class DayNegotiation : MonoBehaviour
             case PlayerTurnStep.AwaitPlayerSelection:
                 Message.Publish(new ReadyForPlayerSelection(CurrentGameState.ReadOnly.ActivePlayer));
                 break;
-                
-            case PlayerTurnStep.ProcessPlayerSelection:
-                // This step is handled by external inputs calling DrawCard() or AcceptOffer()
-                break;
-                
+            
             case PlayerTurnStep.MoveToNextPlayer:
                 CurrentGameState.UpdateState(gs => gs.MoveToNextActivePlayer());
                 _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
@@ -139,7 +131,6 @@ public class DayNegotiation : MonoBehaviour
         }
     }
     
-    // Called by UI when player chooses to draw a card
     public void DrawCard()
     {
         if (_currentPhase != Phase.PlayerTurns || _currentPlayerTurnStep != PlayerTurnStep.AwaitPlayerSelection)
@@ -189,24 +180,7 @@ public class DayNegotiation : MonoBehaviour
             }
         });
         
-        // Continue with the player turn flow
-        if (currentPlayer.IsActiveInDay)
-        {
-            _currentPlayerTurnStep = PlayerTurnStep.MoveToNextPlayer;
-        }
-        else if (CurrentGameState.ReadOnly.ActivePlayerCount > 0)
-        {
-            _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
-            CurrentGameState.UpdateState(gs => gs.MoveToNextActivePlayer());
-        }
-        else
-        {
-            // No players left, end the day
-            _currentPhase = Phase.DayEnd;
-            _currentDayEndStep = DayEndStep.ShowResults;
-        }
-        
-        ProcessCurrentStep();
+        ContinuePlayerTurnFlow(currentPlayer);
     }
     
     public void AcceptOffer()
@@ -219,18 +193,37 @@ public class DayNegotiation : MonoBehaviour
         
         // ATTN: Need to implement UI notification for player accepting offer
 
-        if (CurrentGameState.ReadOnly.ActivePlayerCount > 0)
+        ContinuePlayerTurnFlow(CurrentGameState.ReadOnly.ActivePlayer);
+    }
+    
+    private void ContinuePlayerTurnFlow(PlayerState currentPlayer)
+    {
+        if (currentPlayer.IsActiveInDay)
         {
-            CurrentGameState.UpdateState(gs => gs.MoveToNextActivePlayer());
+            _currentPlayerTurnStep = PlayerTurnStep.MoveToNextPlayer;
+        }
+        else if (CurrentGameState.ReadOnly.ActivePlayerCount > 0)
+        {
             _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
+            CurrentGameState.UpdateState(gs => gs.MoveToNextActivePlayer());
         }
         else
         {
-            _currentPhase = Phase.DayEnd;
-            _currentDayEndStep = DayEndStep.ShowResults;
+            TransitionToDayEnd();
         }
         
         ProcessCurrentStep();
+    }
+    
+    private void TransitionToDayEnd()
+    {
+        _currentPhase = Phase.DayEnd;
+        _currentDayEndStep = DayEndStep.ShowResults;
+        
+        // Publish day finished message
+        GameState state = CurrentGameState.ReadOnly;
+        Message.Publish(new DayFinished(state.CurrentDay, state.PlayerStates));
+        Debug.Log($"Day {state.CurrentDay} has finished with {state.PlayerStates.Length} players");
     }
     
     public void AdvanceToNextDay()

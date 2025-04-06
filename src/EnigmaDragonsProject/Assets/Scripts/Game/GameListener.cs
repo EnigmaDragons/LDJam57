@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class GameListener : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameListener : MonoBehaviour
         Message.Subscribe<ShowDieRoll>(OnShowDieRoll, this);
         Message.Subscribe<NotifyPlayerSelectedAction>(OnPlayerActionSelected, this);
         Message.Subscribe<ReadyForPlayerSelection>(OnReadyForPlayerSelection, this);
+        Message.Subscribe<DayFinished>(OnDayFinished, this);
     }
 
     private void OnDisable()
@@ -46,5 +48,17 @@ public class GameListener : MonoBehaviour
         
         var aiAction = aiPlayer.Ai.SelectAction(CurrentGameState.ReadOnly, aiPlayer);
         Message.Publish(new NotifyPlayerSelectedAction(aiPlayer, aiAction));
+    }
+
+    private void OnDayFinished(DayFinished msg)
+    {
+        Debug.Log($"Day {msg.Day} Finished with {msg.PlayerStates.Length} players!");
+        
+        // Display day results
+        // This can trigger UI elements to show the day's results
+        Message.Publish(new ShowDayResults(msg.Day, msg.PlayerStates));
+        
+        // Player must click a button that calls day.AdvanceToNextDay() to continue
+        // This is already set up in DayNegotiation.ProcessDayEndStep() > DayEndStep.ShowResults
     }
 }
