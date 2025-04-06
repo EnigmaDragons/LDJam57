@@ -12,7 +12,7 @@ Milestone 1:
     [x] Environment
     [x] Music
     [] Gameplay
-      [] Roll to see who Goes first
+      [x] Roll to see who Goes first
       [] On Player Turn, Let Player Pick 
         [] Negotiate for More
           (Must at least once)

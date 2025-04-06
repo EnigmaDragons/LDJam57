@@ -39,7 +39,7 @@ public class StartGame : MonoBehaviour
         gameState.BossState = new BossState(Bosses.DayBossMap[Day.Monday], 0);
         CurrentGameState.Init(gameState);
         
-        Debug.Log($"Game initialized with 1 human player and 5 AI players, all using Tabby Tom. Current day is {gameState.CurrentDay}, current boss is {gameState.BossState.Boss.Name}");
+        Debug.Log($"Start Game: Game initialized with 1 human player and 5 AI players, all using Tabby Tom. Current day is {gameState.CurrentDay}, current boss is {gameState.BossState.Boss.Name}");
     }
     
     private PlayerState CreatePlayer(int index, bool isHuman)
@@ -47,7 +47,7 @@ public class StartGame : MonoBehaviour
         var player = new Player(index, Characters.TabbyTom, isHuman ? PlayerType.Human : PlayerType.AI);
         var playerState = new PlayerState(player, startingCash);
         
-        Debug.Log($"Created player {index}: {(isHuman ? "Human" : "AI")} player using {Characters.TabbyTom.Name}");
+        Debug.Log($"Start Game: Created player {index}: {(isHuman ? "Human" : "AI")} player using {Characters.TabbyTom.Name}");
         
         return playerState;
     }
