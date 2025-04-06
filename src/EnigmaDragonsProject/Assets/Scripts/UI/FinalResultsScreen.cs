@@ -14,6 +14,7 @@ public class FinalResultsScreen : MonoBehaviour
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject confettiEffect;
     [SerializeField] private GameObject creditsPanel;
+    [SerializeField] private CreditsScroller creditsScroller;
     
     [Header("Winner Display")]
     [SerializeField] private Image winnerFaceImage;
@@ -33,7 +34,7 @@ public class FinalResultsScreen : MonoBehaviour
     [SerializeField] private float rankingDelay = 0.2f;
     [SerializeField] private float creditsDelay = 1.5f;
     
-    private static GameState CreateSampleRandomGameState() {
+    private static GameState CreateSampleRandomGameState() {  
       var gs = new GameState();
       gs.PlayerStates = new PlayerState[6];
       for (int i = 0; i < 6; i++)
@@ -213,6 +214,12 @@ public class FinalResultsScreen : MonoBehaviour
                 Vector2 originalPosition = creditsRect.anchoredPosition;
                 creditsRect.anchoredPosition = new Vector2(Screen.width, originalPosition.y);
                 yield return creditsRect.DOAnchorPosX(originalPosition.x, panelAnimationTime).SetEase(Ease.OutQuad).WaitForCompletion();
+                
+                // Start scrolling credits
+                if (creditsScroller != null)
+                {
+                    creditsScroller.StartScrolling();
+                }
             }
         }
     }
