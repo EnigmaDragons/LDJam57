@@ -1,10 +1,10 @@
 ﻿
 public class ReadyForPlayerSelection
 {
-    public PlayerState PlayerState { get; }
+    public PlayerState Player { get; }
     
     public ReadyForPlayerSelection(PlayerState ps)
     {
-        PlayerState = ps;
+        Player = ps;
     }
 }

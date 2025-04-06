@@ -14,12 +14,12 @@ Milestone 1:
     [] Gameplay
       [x] Inactive Players become Dimmed
       [x] Roll to see who Goes first
-      [] On Player Turn, Let Player Pick 
-        [] Negotiate for More
+      [x] On Player Turn, Let Player Pick 
+        [x] Negotiate for More
           (Must at least once)
-          [] Draw Card and Show Outcome
-        [] Accept Current Funding
-          [] Bank Money and Become Dimmed
+          [x] Draw Card and Show Outcome
+        [x] Accept Current Funding
+          [x] Bank Money and Become Dimmed
     [] Random AI
       [] Wait 1.5 seconds
         [] Make a Pick

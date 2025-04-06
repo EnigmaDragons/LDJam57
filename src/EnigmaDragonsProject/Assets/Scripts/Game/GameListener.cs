@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class GameListener : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameListener : MonoBehaviour
     {
         Message.Subscribe<ShowDieRoll>(OnShowDieRoll, this);
         Message.Subscribe<NotifyPlayerSelectedAction>(OnPlayerActionSelected, this);
+        Message.Subscribe<ReadyForPlayerSelection>(OnReadyForPlayerSelection, this);
     }
 
     private void OnDisable()
@@ -27,5 +29,21 @@ public class GameListener : MonoBehaviour
           day.DrawCard();
         else 
           day.AcceptOffer();
+    }
+
+    private void OnReadyForPlayerSelection(ReadyForPlayerSelection msg)
+    {
+        if (msg.Player.Player.PlayerType == PlayerType.AI)
+        {
+            StartCoroutine(MakeAIDecisionAfterDelay(msg.Player));
+        }
+    }
+
+    private IEnumerator MakeAIDecisionAfterDelay(PlayerState aiPlayer)
+    {
+        yield return new WaitForSeconds(1.5f);
+        
+        var aiAction = aiPlayer.Ai.SelectAction(CurrentGameState.ReadOnly, aiPlayer);
+        Message.Publish(new NotifyPlayerSelectedAction(aiPlayer, aiAction));
     }
 }

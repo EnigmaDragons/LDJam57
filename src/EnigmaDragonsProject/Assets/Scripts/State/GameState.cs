@@ -72,16 +72,18 @@ public sealed class GameState
 public class PlayerState
 {
     public Player Player { get; }
+    public Ai Ai { get; }
     public int BankedCash { get; private set; }
     public int CurrentRoundCash { get; private set; }
     public bool PowerUsedToday { get; private set; }
     public bool PowerUsedEver { get; private set; }
     public bool IsActiveInDay { get; private set; }
 
-    public PlayerState(Player p, int currentCash)
+    public PlayerState(Player p, int currentCash, Ai ai)
     {
         Player = p;
         BankedCash = currentCash;
+        Ai = ai;
     }
 
     public void ChangeCurrentDayCash(int byAmount)

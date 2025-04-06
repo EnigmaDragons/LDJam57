@@ -41,9 +41,10 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
         cardContainer.anchoredPosition = startPosition;
         cardContainer.gameObject.SetActive(false);
         
-        // Make sure back is visible at start
+        // Make sure back is visible at start and text is hidden
         if (cardFront != null) cardFront.gameObject.SetActive(false);
         if (cardBack != null) cardBack.gameObject.SetActive(true);
+        if (cardDescription != null) cardDescription.gameObject.SetActive(false);
     }
 
     protected override void Execute(ShowCardDrawn msg)
@@ -68,8 +69,12 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
     {
         _isAnimating = true;
         
-        // Set up the card visuals (front side)
-        if (cardDescription != null) cardDescription.text = card.Description;
+        // Set up the card visuals (front side) but keep text hidden until flip
+        if (cardDescription != null) 
+        {
+            cardDescription.text = card.Description;
+            cardDescription.gameObject.SetActive(false);
+        }
         
         // Make sure card is visible but showing the back
         cardContainer.gameObject.SetActive(true);
@@ -107,6 +112,7 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
         {
             if (cardFront != null) cardFront.gameObject.SetActive(true);
             if (cardBack != null) cardBack.gameObject.SetActive(false);
+            if (cardDescription != null) cardDescription.gameObject.SetActive(true);
         });
         
         // Second half of the flip (scale X back to normal)
@@ -134,4 +140,3 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
         _isAnimating = false;
     }
 }
-

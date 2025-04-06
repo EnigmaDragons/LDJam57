@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerChoicePresenter : OnMessage<GetPlayerActionRequested>
+public class PlayerChoicePresenter : OnMessage<ReadyForPlayerSelection>
 {
     [SerializeField] private GameObject uiParent;
     [SerializeField] private Button bankButton;
@@ -18,13 +18,13 @@ public class PlayerChoicePresenter : OnMessage<GetPlayerActionRequested>
         drawButton.onClick.AddListener(OnDrawCardButtonPressed);
     }
     
-    protected override void Execute(GetPlayerActionRequested msg)
+    protected override void Execute(ReadyForPlayerSelection msg)
     {
         if (msg.Player.Player.PlayerType != PlayerType.Human)
             return;
 
         _currentPlayer = msg.Player;
-        dayCashLabel.text = $"Current Cash Value: ${_currentPlayer.CurrentRoundCash}";
+        dayCashLabel.text = $"${_currentPlayer.CurrentRoundCash}";
         uiParent.SetActive(true);
     }
 
