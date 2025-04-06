@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class ActivePlayerTokenController : MonoBehaviour
 {
     [SerializeField] private GameObject targetObj;
-    [SerializeField] private float animationDuration = 0.5f;
-    [SerializeField] private Ease animationEase = Ease.OutQuint;
     
     private List<Transform> _playerTargets = new List<Transform>();
     private int _currentPlayerIndex = -1;
+    private RectTransform _rectTransform;
     
     private void Awake()
     {
@@ -19,22 +17,34 @@ public class ActivePlayerTokenController : MonoBehaviour
             return;
         }
         
-        // Find all children with the ActivePlayerTarget tag
-        foreach (Transform child in targetObj.transform)
-        {
-            if (child.CompareTag("ActivePlayerTarget"))
-            {
-                _playerTargets.Add(child);
-            }
-        }
+        _rectTransform = GetComponent<RectTransform>();
+        
+        // Find all children with the ActivePlayerTarget tag recursively
+        FindTargetsRecursively(targetObj.transform);
         
         if (_playerTargets.Count == 0)
         {
-            Debug.LogWarning("No ActivePlayerTarget objects found in the target object's children");
+            Debug.LogError("No ActivePlayerTarget objects found in the target object's hierarchy");
+            return;
         }
         
         // Subscribe to game state changes
         CurrentGameState.Subscribe(HandleGameStateChanged, this);
+    }
+    
+    private void FindTargetsRecursively(Transform parent)
+    {
+        // Check the current transform
+        if (parent.CompareTag("ActivePlayerTarget"))
+        {
+            _playerTargets.Add(parent);
+        }
+        
+        // Check all children recursively
+        foreach (Transform child in parent)
+        {
+            FindTargetsRecursively(child);
+        }
     }
     
     private void OnDestroy()
@@ -50,18 +60,25 @@ public class ActivePlayerTokenController : MonoBehaviour
             
         int newPlayerIndex = CurrentGameState.ReadOnly.PlayerTurnIndex;
         
-        // Only animate if the player index has changed
+        // Only move if the player index has changed
         if (newPlayerIndex != _currentPlayerIndex && newPlayerIndex < _playerTargets.Count)
         {
             _currentPlayerIndex = newPlayerIndex;
-            AnimateToTarget(_playerTargets[_currentPlayerIndex]);
+            MoveToTarget(_playerTargets[_currentPlayerIndex]);
         }
     }
     
-    private void AnimateToTarget(Transform target)
+    private void MoveToTarget(Transform target)
     {
-        // Animate this object to the target position
-        transform.DOMove(target.position, animationDuration)
-            .SetEase(animationEase);
+        // Parent this object under the target and reset position
+        transform.SetParent(target);
+        if (_rectTransform != null)
+        {
+            _rectTransform.anchoredPosition = Vector2.zero;
+        }
+        else
+        {
+            transform.localPosition = Vector3.zero;
+        }
     }
 }
