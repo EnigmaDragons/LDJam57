@@ -180,7 +180,7 @@ public class DayNegotiation : MonoBehaviour
             }
         });
         
-        ContinuePlayerTurnFlow(currentPlayer);
+        ContinuePlayerTurnFlow();
     }
     
     public void AcceptOffer()
@@ -193,16 +193,12 @@ public class DayNegotiation : MonoBehaviour
         
         // ATTN: Need to implement UI notification for player accepting offer
 
-        ContinuePlayerTurnFlow(CurrentGameState.ReadOnly.ActivePlayer);
+        ContinuePlayerTurnFlow();
     }
     
-    private void ContinuePlayerTurnFlow(PlayerState currentPlayer)
+    private void ContinuePlayerTurnFlow()
     {
-        if (currentPlayer.IsActiveInDay)
-        {
-            _currentPlayerTurnStep = PlayerTurnStep.MoveToNextPlayer;
-        }
-        else if (CurrentGameState.ReadOnly.ActivePlayerCount > 0)
+        if (CurrentGameState.ReadOnly.ActivePlayerCount > 0)
         {
             _currentPlayerTurnStep = PlayerTurnStep.AwaitPlayerSelection;
             CurrentGameState.UpdateState(gs => gs.MoveToNextActivePlayer());

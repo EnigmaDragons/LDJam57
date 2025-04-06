@@ -49,7 +49,7 @@ public sealed class GameState
         if (PlayerStates.Length == 0)
             return;
             
-        if (ActivePlayerCount == 1 || ActivePlayerCount == 0)
+        if (ActivePlayerCount == 0)
             return;
             
         int startingIndex = PlayerTurnIndex;
