@@ -4,7 +4,7 @@ public static class CreditsContent
 {
     public static string GetCreditsText()
     {
-        return @"<align=center><size=48>CORPORATE CATS</size>
+        return @"<align=center><size=48>DEEP MEOWGOTIATION</size>
 
 <size=36>A Game by Enigma Dragons</size>
 <size=24>Built in 72 hours for Ludum Dare 57</size>
@@ -26,16 +26,12 @@ Silas Reinagel
 
 <size=36>ART DIRECTION</size>
 Silas Reinagel
-AI Midjourney
 
 <size=36>CHARACTER DESIGN</size>
 Silas Reinagel
-Stable Diffusion
-Prompt Engineering by Silas Reinagel
 
 <size=36>SOUND DESIGN</size>
 Silas Reinagel
-Noah's Cat - Meowing
 
 <size=36>GAME TESTERS</size>
 Silas Reinagel
@@ -45,7 +41,6 @@ Silas Reinagel's Right Hand
 Silas Reinagel's Computer
 
 <size=36>SPECIAL THANKS</size>
-Claude AI - For being so helpful
 Mr. Mittens - For being the inspiration
 Coffee - For being there when needed
 The 3rd energy drink that made it all possible
@@ -105,7 +100,7 @@ Energy Drink Advisory Board
 <size=36>VP OF LOOKING OUT THE WINDOW WHEN STUCK</size>
 Silas Reinagel
 That Interesting Bird
-The Neighbor Who Wondered Why Silas Was Staring
+The Chickens Who Wondered Why Silas Was Staring
 
 <size=36>DIRECTOR OF TALKING TO CATS</size>
 Silas Reinagel
@@ -153,7 +148,7 @@ and frankly a little too real for comfort.</size>
 <size=24>No corporate executives were harmed in the making of this game,
 though several were satirized mercilessly.</size>
 
-<size=24>© 2023 Enigma Dragons</size>
+<size=24>© 2025 Enigma Dragons</size>
 <size=24>All Rights Reserved</size>
 <size=24>Except for the rights reserved for cats, who do what they want anyway.</size>
 

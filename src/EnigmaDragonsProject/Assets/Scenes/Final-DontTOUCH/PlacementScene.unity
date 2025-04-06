@@ -125,7 +125,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 381975379}
+    m_TransformParent: {fileID: 404224415}
     m_Modifications:
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 145
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
@@ -205,12 +205,12 @@ PrefabInstance:
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -427
+      value: -202
       objectReference: {fileID: 0}
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -277
+      value: -297
       objectReference: {fileID: 0}
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
@@ -583,7 +583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -426, y: 434}
+  m_AnchoredPosition: {x: -171, y: 263}
   m_SizeDelta: {x: 800, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &312688444
@@ -643,8 +643,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 96
-  m_fontSizeBase: 96
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -723,9 +723,6 @@ RectTransform:
   m_Children:
   - {fileID: 1722333373}
   - {fileID: 312688443}
-  - {fileID: 392985436}
-  - {fileID: 28228137}
-  - {fileID: 1757215137}
   m_Father: {fileID: 404224415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -959,11 +956,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 381975379}
+  m_Father: {fileID: 404224415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -426, y: -106}
+  m_AnchoredPosition: {x: -202, y: -128}
   m_SizeDelta: {x: 800, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &392985437
@@ -1023,8 +1020,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68
-  m_fontSizeBase: 68
+  m_fontSize: 56
+  m_fontSizeBase: 56
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1164,10 +1161,14 @@ RectTransform:
   m_Children:
   - {fileID: 1867639012}
   - {fileID: 1082826249}
+  - {fileID: 1775748600}
+  - {fileID: 1919076330}
   - {fileID: 496360758}
   - {fileID: 866616382}
   - {fileID: 833671746}
-  - {fileID: 1775748600}
+  - {fileID: 392985436}
+  - {fileID: 28228137}
+  - {fileID: 1757215137}
   - {fileID: 381975379}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1192,7 +1193,6 @@ MonoBehaviour:
   mainPanel: {fileID: 381975378}
   confettiEffect: {fileID: 496360757}
   creditsPanel: {fileID: 1775748599}
-  creditsScroller: {fileID: 0}
   winnerFaceImage: {fileID: 1722333375}
   winnerNameText: {fileID: 312688445}
   playerResultText: {fileID: 392985438}
@@ -1208,7 +1208,7 @@ MonoBehaviour:
   panelAnimationTime: 0.6
   elementAnimationDelay: 0.3
   rankingDelay: 0.2
-  creditsDelay: 1.5
+  creditsDelay: 0.2
 --- !u!1 &496360757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,14 +1559,14 @@ RectTransform:
   m_GameObject: {fileID: 833671745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 404224415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46, y: -47}
+  m_AnchoredPosition: {x: -33, y: -37}
   m_SizeDelta: {x: 816, y: 1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &833671747
@@ -1713,7 +1713,63 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credits
+  m_text: "<align=center><size=48>DEEP MEOWGOTIATIONS</size>\r\n\r\n<size=36>A Game
+    by Enigma Dragons</size>\r\n<size=24>Built in 72 hours for Ludum Dare 57</size>\r\n\r\n<size=36>EXECUTIVE
+    PRODUCER</size>\r\nSilas Reinagel\r\n\r\n<size=36>CREATIVE DIRECTOR</size>\r\nSilas
+    Reinagel\r\n\r\n<size=36>LEAD PROGRAMMER</size>\r\nSilas Reinagel\r\n\r\n<size=36>GAMEPLAY
+    DESIGNER</size>\r\nSilas Reinagel\r\n\r\n<size=36>UI DESIGNER</size>\r\nSilas
+    Reinagel\r\n\r\n<size=36>ART DIRECTION</size>\r\nSilas Reinagel\r\n\r\n<size=36>CHARACTER
+    DESIGN</size>\r\nSilas Reinagel\r\n\r\n<size=36>SOUND DESIGN</size>\r\nSilas
+    Reinagel\r\n\r\n<size=36>GAME TESTERS</size>\r\nSilas Reinagel\r\nSilas Reinagel's
+    Cat\r\nSilas Reinagel's Left Hand\r\nSilas Reinagel's Right Hand\r\nSilas Reinagel's
+    Computer\r\n\r\n<size=36>SPECIAL THANKS</size>\r\nMr. Mittens - For being the
+    inspiration\r\nCoffee - For being there when needed\r\nThe 3rd energy drink that
+    made it all possible\r\nKeyboard - For putting up with the rapid typing\r\nMouse
+    - For countless heroic clicks\r\nChair - For supporting Silas in his time of
+    need\r\n\r\n<size=36>CATERING SERVICES</size>\r\nSilas Reinagel's Refrigerator\r\nPizza
+    Joint Around the Corner\r\nThe Microwave That Kept Things Warm\r\nEmergency Snack
+    Drawer\r\n\r\n<size=36>HEAD OF NAPS AND PRODUCTIVITY BREAKS</size>\r\nSilas Reinagel's
+    Couch\r\nChief Pillow Officer\r\nThe Blanket of Extreme Coziness\r\n\r\n<size=36>TECHNICAL
+    SUPPORT</size>\r\nSilas Reinagel\r\nStack Overflow\r\nThat One Forum Post From
+    2013\r\nRandom YouTube Tutorial Guy\r\nThe Documentation Nobody Reads\r\nGoogle
+    Search: \"\"how to fix weird Unity bug\"\"\r\n\r\n<size=36>EMOTIONAL SUPPORT</size>\r\nSilas
+    Reinagel's Rubber Duck\r\nThe Wall That Silas Talks To\r\nThe Plant That Doesn't
+    Judge\r\nPlaylist of Motivational Songs\r\nThat One Motivational Poster\r\n\r\n<size=36>MIDDLE-OF-THE-NIGHT
+    IDEAS DEPARTMENT</size>\r\nSilas Reinagel's Insomnia\r\nThe Notepad By The Bed\r\n2:37
+    AM Brain Committee\r\nDreams About Cats In Business Suits\r\n\r\n<size=36>BUG
+    CREATION DEPARTMENT</size>\r\nSilas Reinagel's Typos\r\nMissing Semicolons Anonymous\r\nThe
+    Phantom Variable Initiative\r\nScope Creep Society\r\n\r\n<size=36>BUG FIXING
+    DEPARTMENT</size>\r\nSilas Reinagel\r\nSilas Reinagel's Patience\r\nSilas Reinagel's
+    Debugging Skills\r\nSilas Reinagel's \"\"I'll Just Restart Unity\"\" Technique\r\n\r\n<size=36>CHIEF
+    CAFFEINATION OFFICER</size>\r\nSilas Reinagel\r\nThe Coffee Machine That Never
+    Quits\r\nEnergy Drink Advisory Board\r\n\r\n<size=36>VP OF LOOKING OUT THE WINDOW
+    WHEN STUCK</size>\r\nSilas Reinagel\r\nThat Interesting Bird\r\nThe Chickens
+    Who Wondered Why Silas Was Staring\r\n\r\n<size=36>DIRECTOR OF TALKING TO CATS</size>\r\nSilas
+    Reinagel\r\n\r\n<size=36>MASTER OF KEYBOARD SHORTCUTS</size>\r\nSilas Reinagel's
+    Muscle Memory\r\n\r\n<size=36>GUARDIAN OF THE LAST BRAIN CELL</size>\r\nSilas
+    Reinagel\r\nHour 68 of Game Jam\r\n\r\n<size=36>NO CATS WERE HARMED</size>\r\nDuring
+    the Making of This Game\r\n(But Several Were Mildly Inconvenienced)\r\n\r\n<size=36>INSPIRATION
+    FOR MR. MITTENS CHARACTER</size>\r\nEvery Boss Ever\r\nThat One Manager Everyone
+    Has Had\r\nCorporate America\r\nThe Cat Who Thinks He's In Charge\r\n\r\n<size=36>CORPORATE
+    BUZZWORD CONSULTANT</size>\r\nSilas Reinagel\r\nThe Synergy Enhancement Team\r\nParadigm
+    Shift Advisory Board\r\nCross-Functional Integration Task Force\r\n\r\n<size=36>TIMEKEEPER
+    OF DOOM</size>\r\nLudum Dare Countdown Clock\r\nSilas Reinagel's Internal Panic\r\nThe
+    \"\"We Still Have Time\"\" Optimism Committee\r\n\r\n<size=36>FINAL EMERGENCY
+    FIXES</size>\r\nDuct Tape Code Solutions Inc.\r\n\"\"It Works Don't Touch It\"\"
+    Brigade\r\nLast Minute Fix That Broke Something Else\r\n\r\n<size=36>PHYSICS
+    CONSULTANT</size>\r\nSilas Reinagel's Cat Knocking Things Off Desk\r\n\r\n<size=24>This
+    game is a work of fiction. Any resemblance to actual corporate cultures,\r\nliving
+    or dead cats, or workplace dysfunction is purely coincidental\r\nand frankly
+    a little too real for comfort.</size>\r\n\r\n<size=24>No corporate executives
+    were harmed in the making of this game,\r\nthough several were satirized mercilessly.</size>\r\n\r\n<size=24>\xA9
+    2025 Enigma Dragons</size>\r\n<size=24>All Rights Reserved</size>\r\n<size=24>Except
+    for the rights reserved for cats, who do what they want anyway.</size>\r\n\r\n<size=24>Made
+    with \u2665 and an excessive amount of caffeine</size>\r\n\r\n<size=36>THE END</size>\r\n\r\n<size=24>Still
+    reading? Wow, you're dedicated!</size>\r\n\r\n<size=24>Here's a secret code:
+    CATNIP123</size>\r\n<size=24>(It doesn't do anything, but it feels special, doesn't
+    it?)</size>\r\n\r\n<size=24>Seriously, you can stop scrolling now...</size>\r\n\r\n<size=24>Fine,
+    have another second of content</size>\r\n\r\n<size=24>The real treasure was the
+    credits you read along the way</size>\r\n\r\n<size=20>Credits credit: Silas Reinagel</size></align>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fa85e8f554433c4c8159fc0c3eca1d8, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2fa85e8f554433c4c8159fc0c3eca1d8, type: 2}
@@ -1740,15 +1796,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1808,7 +1864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 320}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &999545754
@@ -2064,7 +2120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7358a9cc2ca08a54d8822937561f41ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5df414d77747be4480fdde010df5f61, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2116,8 +2172,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -426, y: 185}
-  m_SizeDelta: {x: 360, y: 360}
+  m_AnchoredPosition: {x: -356, y: 99.1}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1722333374
 CanvasRenderer:
@@ -2163,7 +2219,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 381975379}
+    m_TransformParent: {fileID: 404224415}
     m_Modifications:
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
@@ -2203,7 +2259,7 @@ PrefabInstance:
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 145
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
@@ -2243,12 +2299,12 @@ PrefabInstance:
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -427
+      value: -202
       objectReference: {fileID: 0}
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -277
+      value: -297
       objectReference: {fileID: 0}
     - target: {fileID: 776979154425011542, guid: 62cad46b3d162490783e0965dba3e0a4,
         type: 3}
@@ -2379,8 +2435,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 544, y: 95}
-  m_SizeDelta: {x: 640, y: 800}
+  m_AnchoredPosition: {x: 544, y: -984}
+  m_SizeDelta: {x: 760, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775748601
 MonoBehaviour:
@@ -2391,19 +2447,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1775748599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47b756d983059d41a9be79e78feddfe, type: 3}
+  m_Script: {fileID: 11500000, guid: 769d1998296693b468c57fd897e42a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creditsText: {fileID: 996901723}
-  scrollSpeed: 50
-  startDelay: 1
-  endPauseDelay: 3
-  initialOffscreenPosition: 1200
-  finalOffscreenPosition: -3000
-  autoStartScrolling: 0
-  loopCredits: 0
-  useDefaultCredits: 1
-  customCreditsContent: 
+  scrollSpeed: 85
 --- !u!1 &1867639011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,6 +2594,81 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 154c6384377241242a599da99374cbba, type: 3}
+--- !u!1 &1919076329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919076330}
+  - component: {fileID: 1919076332}
+  - component: {fileID: 1919076331}
+  m_Layer: 5
+  m_Name: EnvironmentFg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1919076330
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919076329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 404224415}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1919076331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919076329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ae6a2cb9ff61c7b40a6df531e492b7ef, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1919076332
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919076329}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1983290079
 PrefabInstance:
   m_ObjectHideFlags: 0
