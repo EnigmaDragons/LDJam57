@@ -224,4 +224,19 @@ public class PlayerUi : MonoBehaviour
             UpdateUi(_lastKnownPlayerState);
         }
     }
+    
+    // Method to set the display mode to final results
+    public void SetFinalDisplayMode(bool isFinal)
+    {
+        isFinalCashDisplay = isFinal;
+        dayCashPanel.SetActive(!isFinalCashDisplay);
+        finalCashPanel.SetActive(isFinalCashDisplay);
+        
+        // Reset scale and fade for results display
+        transform.localScale = _originalScale;
+        if (activeGroup != null)
+        {
+            activeGroup.alpha = 1f;
+        }
+    }
 }

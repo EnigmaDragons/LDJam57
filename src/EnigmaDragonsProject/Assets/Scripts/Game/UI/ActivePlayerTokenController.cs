@@ -64,7 +64,19 @@ public class ActivePlayerTokenController : MonoBehaviour
         if (newPlayerIndex != _currentPlayerIndex && newPlayerIndex < _playerTargets.Count)
         {
             _currentPlayerIndex = newPlayerIndex;
-            MoveToTarget(_playerTargets[_currentPlayerIndex]);
+            
+            if (_currentPlayerIndex == -1)
+            {
+                // Unparent and hide the token
+                transform.SetParent(null);
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                // Move to target, then make visible
+                MoveToTarget(_playerTargets[_currentPlayerIndex]);
+                gameObject.SetActive(true);
+            }
         }
     }
     
