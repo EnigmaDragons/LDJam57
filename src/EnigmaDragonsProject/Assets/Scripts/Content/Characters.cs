@@ -37,7 +37,7 @@ public class Characters
     {
         Name = "Duchess Fluffington",
         PowerName = "Executive Connection",
-        PowerDescription = "Passive: You negotiating for more money never escalates the chief's mood.",
+        PowerDescription = "Passive: Asking for money never escalates the chief's mood.",
         Department = "Executive Relations",
         SpritePathFace = "Sprites/PlayerCharacters/Face-DuchessFluffington",
         Power = new NoMoodEscalationPower()
@@ -52,7 +52,17 @@ public class Characters
         SpritePathFace = "Sprites/PlayerCharacters/Face-ProfessorWhiskerton",
         Power = new SeeSnapOddsPower()
     };
-    
+
+    public static Character NekoChan = new StaticCharacter
+    {
+        Name = "Neko-chan",
+        PowerName = "Empathy Ally",
+        PowerDescription = "When you Accept Offer, if you don't have the most banked, bank +$10.",
+        Department = "User Experience",
+        SpritePathFace = "Sprites/PlayerCharacters/Face-NekoChan",
+        Power = new SympathyBuddyPower()
+    };
+
     public static Character SirPouncelot = new StaticCharacter
     {
         Name = "Sir Pouncelot",
@@ -61,16 +71,7 @@ public class Characters
         Department = "Marketing",
         SpritePathFace = "Sprites/PlayerCharacters/Face-SirPouncelot",
     };
-    
-    public static Character NekoChan = new StaticCharacter
-    {
-        Name = "Neko-chan",
-        PowerName = "Kawaii Distraction",
-        PowerDescription = "Can steal 1 Offer Card from another cat once per round by being adorable.",
-        Department = "User Experience",
-        SpritePathFace = "Sprites/PlayerCharacters/Face-NekoChan",
-    };
-    
+   
     public static Character RockyClawboa = new StaticCharacter
     {
         Name = "Rocky Clawboa",

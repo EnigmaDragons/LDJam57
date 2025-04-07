@@ -241,7 +241,7 @@ public class DayNegotiation : MonoBehaviour
                 Debug.Log($"Card has a mood mod of {cardBossMoodMod}, but {character.PowerName} is active. Setting mood mod to 0.");
                 cardBossMoodMod = 0;
             }
-            
+
             if (cardBossMoodMod != 0) {
                 CurrentGameState.UpdateState(gs =>
                 {
@@ -281,12 +281,16 @@ public class DayNegotiation : MonoBehaviour
         if (_currentPhase != Phase.PlayerTurns || _currentPlayerTurnStep != PlayerTurnStep.AwaitPlayerSelection)
             return;
             
-        _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
-        CurrentGameState.ReadOnly.ActivePlayer.BankCash();
-        
+        var currentPlayer = CurrentGameState.ReadOnly.ActivePlayer;
         // Play happy card sound when accepting an offer
+
         Message.Publish(new PlayUiSound(SoundType.AcceptOffer));
-        
+        currentPlayer.BankCash();
+        if (currentPlayer.Player.Character.Power.PowerType == PowerType.AfterBankPower){
+            currentPlayer.Player.Character.Power.Apply(new PowerContext(CurrentGameState.ReadOnly, currentPlayer));
+        }
+            
+        _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         // ATTN: Need to implement UI notification for player accepting offer
 
         ContinuePlayerTurnFlow();

@@ -6,6 +6,7 @@ public enum PowerType
   DiscardSnapAfterDrawn = 2,
   NoMoodEscalation = 3,
   SeeSnapOdds = 4,
+  AfterBankPower = 5,
 }
 
 public interface CharacterPower 

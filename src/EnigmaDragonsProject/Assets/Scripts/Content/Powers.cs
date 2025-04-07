@@ -112,3 +112,57 @@ public class SeeSnapOddsPower : PassivePower
 {
     public SeeSnapOddsPower() : base(PowerType.SeeSnapOdds) { }
 }
+
+public class SympathyBuddyPower : CharacterPower
+{
+    public bool IsImplemented => true;
+    public bool IsAvailable => true;
+    public PowerType PowerType => PowerType.AfterBankPower;
+    
+    public void NotifyNewDayStarted() { }
+    public void NotifyNewGameStarted() {}
+    
+    public void Apply(PowerContext context) 
+    { 
+        // Check if player is not in first place and find the richest player in one pass
+        bool isNotInFirstPlace = false;
+        PlayerState richestPlayer = null;
+        int currentPlayerBankedCash = context.UsingPlayer.BankedCash;
+        int highestBankedCash = currentPlayerBankedCash;
+        
+        foreach (var playerState in context.GameState.PlayerStates)
+        {
+            // Skip comparing with self
+            if (playerState == context.UsingPlayer)
+                continue;
+                
+            // Track if we're not in first place
+            if (playerState.BankedCash > currentPlayerBankedCash)
+                isNotInFirstPlace = true;
+                
+            // Track the richest player
+            if (playerState.BankedCash > highestBankedCash)
+            {
+                highestBankedCash = playerState.BankedCash;
+                richestPlayer = playerState;
+            }
+        }
+        
+        if (isNotInFirstPlace)
+        {
+            string richestPlayerName = richestPlayer != null 
+                ? richestPlayer.Player.Character.Name 
+                : "another player";
+                
+            Message.Publish(new ShowCharacterPowerExplanation($"{context.UsingPlayer.Player.Character.Name} gained $10 by buddying up to {richestPlayerName}.", context.UsingPlayer));
+            CurrentGameState.UpdateState(gs =>
+            {
+                context.UsingPlayer.AddDirectlyToBank(10);
+                context.UsingPlayer.RecordPowerUsed();
+            });
+        }
+    }
+}
+
+
+
