@@ -63,6 +63,12 @@ brilliant scattered expression, tech gadgets --ar 9:16
 ### Cathy Whiskertail (Receptionist)
 cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, full-body portrait, muted colors, simple shapes, friendly personality, white background, female cat, young tortoiseshell cat, neat professional appearance, warm welcoming smile, subtle headset with microphone, simple white blouse with small company logo, clipboard in paw, kind eyes, standing in professional pose, visible legs and feet in modest black shoes, complete body visible from head to toe --ar 9:16
 
+## Photographer Cat Character Prompt v6
+
+### Pawparazzi (Company Photographer)
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, waist-up portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, black and white spotted cat, professional camera hanging from neck, photographer's vest with many pockets, casual button-up shirt, artistic beret, keen observant eyes, one ear slightly bent, confident smile, photography ID badge, lens cleaning cloth in pocket --ar 9:16
+
+
 
 ## Player Cat Character Prompts v6
 

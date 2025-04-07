@@ -43,10 +43,10 @@ Milestone 2:
   [x] Sounds
   [x] Boss Mood Bar
   [x] Show when More Snaps Are Added
+  [x] Color for Player Character
   [] Deck 
     [] Num Cards
     [] Num Snaps
-  [] Color for Player Character
 
   [] Display Unlocks Screen
   [] Back to Main Menu
@@ -93,3 +93,11 @@ Keys to Today:
 - Cool Intro
 - Submit
 
+
+-----
+
+Minor Polish:
+
+- Draw card to above the player characters?
+- Scale Punch the Money Bag when Banked 
+  - And display Comic Lines as a quick fade out

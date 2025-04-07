@@ -168,5 +168,7 @@ Corporate office setting, semi-polished linework, defined edges, newspaper comic
 ### Whiskr Grand Pawditorium (Company Events) v6
 Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no characters, no readable text, expansive auditorium with curved stadium seating, grand stage with company logo backdrop, theatrical lighting rigs, decorative curtains, large blank presentation screen, VIP balcony areas, trophy displays along walls, decorative ceiling elements, dramatic spotlights, elegant podium, ambient mood lighting in blues and purples --ar 16:9
 
+### HR Photo Booth Room with Camera v6
+Corporate office setting, semi-polished linework, defined edges, newspaper comic style, vibrant colors, simple shapes, satirical corporate feel, spacious layout, minimalist design, cat-themed decor, no readable text, HR photo booth area viewed from doorway, professional camera facing away from viewer, backdrop with company logo watermark, studio lighting equipment casting shadows, reflective umbrellas positioned around unseen subject, occupied height-adjustable stool visible only from behind, ID card printing station with fresh card ejecting, small makeup vanity with mirror showing vague reflection, company dress code poster with cat illustrations, photography props scattered as if recently used, light switches with dimmer controls set to "portrait mode", "occupied" sign illuminated outside booth --ar 16:9
 
 
