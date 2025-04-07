@@ -43,6 +43,16 @@ public class Characters
         Power = new NoMoodEscalationPower()
     };
     
+    public static Character ProfessorWhiskerton = new StaticCharacter
+    {
+        Name = "Professor Whiskerton",
+        PowerName = "Data-Driven Analyst",
+        PowerDescription = "Passive: You can always see the EXACT Snap Odds.",
+        Department = "Analytics",
+        SpritePathFace = "Sprites/PlayerCharacters/Face-ProfessorWhiskerton",
+        Power = new SeeSnapOddsPower()
+    };
+    
     public static Character SirPouncelot = new StaticCharacter
     {
         Name = "Sir Pouncelot",
@@ -74,7 +84,7 @@ public class Characters
     {
         Name = "Dr. Purrington",
         PowerName = "Eureka Moment",
-        PowerDescription = "Once per game, after seeing a Snap Card, can declare \"EUREKA!\" and shuffle it back into the deck.",
+        PowerDescription = "TBD",
         Department = "Research & Development",
         SpritePathFace = "Sprites/PlayerCharacters/Face-DrPurrington",
     };
@@ -86,15 +96,6 @@ public class Characters
         PowerDescription = "Can peek at the next three cards in the deck to see what's coming.",
         Department = "Social Media",
         SpritePathFace = "Sprites/PlayerCharacters/Face-DJScratchy",
-    };
-    
-    public static Character ProfessorWhiskerton = new StaticCharacter
-    {
-        Name = "Professor Whiskerton",
-        PowerName = "Data-Driven",
-        PowerDescription = "After seeing 3 cards, can accurately predict the probability of drawing a Snap card.",
-        Department = "Analytics",
-        SpritePathFace = "Sprites/PlayerCharacters/Face-ProfessorWhiskerton",
     };
     
     public static List<Character> AllCharacters { get; } = new List<Character>

@@ -75,6 +75,9 @@ public class BankInterestPower : CharacterPower
     {
         IsAvailable = false;
         var interestAmount = Mathf.CeilToInt(context.UsingPlayer.BankedCash * 0.10f);
+        if (interestAmount == 0)
+            return;
+        
         Message.Publish(new ShowCharacterPowerExplanation($"{context.UsingPlayer.Player.Character.Name} gained ${interestAmount} interest.", context.UsingPlayer));
         CurrentGameState.UpdateState(gs =>
         {
@@ -103,4 +106,9 @@ public abstract class PassivePower : CharacterPower
 public class NoMoodEscalationPower : PassivePower
 {
     public NoMoodEscalationPower() : base(PowerType.NoMoodEscalation) { }
+}
+
+public class SeeSnapOddsPower : PassivePower
+{
+    public SeeSnapOddsPower() : base(PowerType.SeeSnapOdds) { }
 }

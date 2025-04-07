@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class SnapChanceDisplay : MonoBehaviour
 {
@@ -13,13 +14,23 @@ public class SnapChanceDisplay : MonoBehaviour
     [SerializeField] private Color highRiskColor = new Color(0.9f, 0.3f, 0.2f);   // Red
     
     [Header("Risk Thresholds")]
-    [SerializeField] private float mediumRiskThreshold = 15f;  // 15% and above is medium risk
+    [SerializeField] private float mediumRiskThreshold = 10f;  // 10% and above is medium risk
     [SerializeField] private float highRiskThreshold = 30f;    // 30% and above is high risk
     
     private GameState _lastKnownState;
-    
+
     private void Start()
     {
+        var isEnabledThisGame = CurrentGameState.ReadOnly.PlayerStates.Any(ps => 
+            ps.Player.Character.Power.PowerType == PowerType.SeeSnapOdds && 
+            ps.Player.PlayerType == PlayerType.Human);
+
+        if (!isEnabledThisGame)
+        {
+            SetDisplayVisible(false);
+            return;
+        }
+
         // Subscribe to game state changes
         CurrentGameState.Subscribe(OnGameStateChanged, this);
         
@@ -72,9 +83,7 @@ public class SnapChanceDisplay : MonoBehaviour
         int totalCards = currentDeck.Count;
         int snapCards = currentDeck.SnapCount;
         
-        // ATTN: We're lying here. We're going to OVERrepresent the snap chance to increase the luck feelings
-        float snapChance = ((float)snapCards / totalCards * 100f) * 2;
-        
+        float snapChance = ((float)snapCards / totalCards * 100f);
         // Format text
         snapChanceText.text = string.Format(format, snapChance.ToString("F1"));
         
