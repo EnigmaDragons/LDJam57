@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 using System.Linq;
 using System.Collections;
@@ -50,10 +49,6 @@ public class FinalResultsScreen : MonoBehaviour
         mainPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
         HideAllPlayerRankings();
-        
-        // Set up button listeners
-        if (tryAgainButton != null) tryAgainButton.onClick.AddListener(RestartGame);
-        if (playAgainButton != null) playAgainButton.onClick.AddListener(RestartGame);
         
         // Hide buttons initially
         if (tryAgainButton != null) tryAgainButton.gameObject.SetActive(false);
@@ -230,12 +225,5 @@ public class FinalResultsScreen : MonoBehaviour
             case 6: return "6th";
             default: return number + "th";
         }
-    }
-    
-    private void RestartGame()
-    {
-        // Reload the current scene to restart the game
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
     }
 } 

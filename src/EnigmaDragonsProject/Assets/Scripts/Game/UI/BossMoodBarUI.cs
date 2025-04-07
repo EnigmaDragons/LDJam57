@@ -11,24 +11,7 @@ public class BossMoodBarUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moodLabelText;
     [SerializeField] private GameObject moodChangeFeedback;
     [SerializeField] private TextMeshProUGUI feedbackText;
-    
-    [Header("Mood Tiers")]
-    [SerializeField] private List<MoodTierConfig> moodTiers = new List<MoodTierConfig>
-    {
-        new MoodTierConfig(0, "DELIGHTED", new Color(0.0f, 0.7f, 0.0f)),       // Dark Green
-        new MoodTierConfig(3, "CONTENT", new Color(0.2f, 0.8f, 0.2f)),          // Green
-        new MoodTierConfig(6, "SATISFIED", new Color(0.4f, 0.8f, 0.4f)),       // Light Green
-        new MoodTierConfig(9, "ATTENTIVE", new Color(0.6f, 0.8f, 0.4f)),       // Yellow-Green
-        new MoodTierConfig(12, "CURIOUS", new Color(0.8f, 0.8f, 0.2f)),         // Yellow
-        new MoodTierConfig(15, "NEUTRAL", new Color(0.9f, 0.8f, 0.2f)),         // Dark Yellow
-        new MoodTierConfig(18, "CONCERNED", new Color(0.9f, 0.7f, 0.1f)),       // Orange-Yellow
-        new MoodTierConfig(21, "SKEPTICAL", new Color(0.9f, 0.6f, 0.1f)),       // Orange
-        new MoodTierConfig(24, "WARY", new Color(0.9f, 0.5f, 0.1f)),            // Dark Orange
-        new MoodTierConfig(27, "IRRITATED", new Color(0.9f, 0.3f, 0.1f)),       // Red-Orange
-        new MoodTierConfig(30, "AGITATED", new Color(0.9f, 0.2f, 0.1f)),        // Light Red
-        new MoodTierConfig(33, "BUDGET-CONSCIOUS", new Color(0.9f, 0.1f, 0.1f)) // Deep Red
-    };
-    
+        
     [Header("Gradient Animation")]
     [SerializeField] private float gradientAnimSpeed = 0.5f;
     [SerializeField] private float gradientTiling = 2f;
@@ -46,6 +29,22 @@ public class BossMoodBarUI : MonoBehaviour
     private float _gradientOffset = 0f;
     private static readonly int MainTexOffset = Shader.PropertyToID("_MainTex_ST");
     
+    private List<MoodTierConfig> _moodTiers = new List<MoodTierConfig>
+    {
+        new MoodTierConfig(0, "DELIGHTED", new Color(0.0f, 0.7f, 0.0f)),       // Dark Green
+        new MoodTierConfig(3, "CONTENT", new Color(0.2f, 0.8f, 0.2f)),          // Green
+        new MoodTierConfig(6, "SATISFIED", new Color(0.4f, 0.8f, 0.4f)),       // Light Green
+        new MoodTierConfig(9, "ATTENTIVE", new Color(0.6f, 0.8f, 0.4f)),       // Yellow-Green
+        new MoodTierConfig(12, "CURIOUS", new Color(0.8f, 0.8f, 0.2f)),         // Yellow
+        new MoodTierConfig(15, "NEUTRAL", new Color(0.9f, 0.8f, 0.2f)),         // Dark Yellow
+        new MoodTierConfig(18, "CONCERNED", new Color(0.9f, 0.7f, 0.1f)),       // Orange-Yellow
+        new MoodTierConfig(21, "SKEPTICAL", new Color(0.9f, 0.6f, 0.1f)),       // Orange
+        new MoodTierConfig(24, "WARY", new Color(0.9f, 0.5f, 0.1f)),            // Dark Orange
+        new MoodTierConfig(27, "IRRITATED", new Color(0.9f, 0.3f, 0.1f)),       // Red-Orange
+        new MoodTierConfig(30, "AGITATED", new Color(0.9f, 0.2f, 0.1f)),        // Light Red
+        new MoodTierConfig(33, "BUDGET-CONSCIOUS", new Color(0.9f, 0.1f, 0.1f)) // Deep Red
+    };
+
     private void Start()
     {
         // Setup the animated gradient material
@@ -73,7 +72,7 @@ public class BossMoodBarUI : MonoBehaviour
             moodChangeFeedback.SetActive(false);
             
         // Sort tiers by threshold to ensure they're in order
-        moodTiers.Sort((a, b) => a.Threshold.CompareTo(b.Threshold));
+        _moodTiers.Sort((a, b) => a.Threshold.CompareTo(b.Threshold));
     }
 
     private void Update()
@@ -144,9 +143,9 @@ public class BossMoodBarUI : MonoBehaviour
     // Find the mood tier for a given mood value
     private MoodTierConfig GetMoodTierForValue(int moodValue)
     {
-        MoodTierConfig result = moodTiers[0]; // Default to lowest tier
+        MoodTierConfig result = _moodTiers[0]; // Default to lowest tier
         
-        foreach (var tier in moodTiers)
+        foreach (var tier in _moodTiers)
         {
             if (moodValue >= tier.Threshold && tier.Threshold >= result.Threshold)
             {
@@ -160,13 +159,13 @@ public class BossMoodBarUI : MonoBehaviour
     // Find the next higher tier (for interpolation)
     private MoodTierConfig GetNextMoodTier(MoodTierConfig currentTier)
     {
-        int currentIndex = moodTiers.IndexOf(currentTier);
+        int currentIndex = _moodTiers.IndexOf(currentTier);
         
         // If at last tier, return the same tier
-        if (currentIndex >= moodTiers.Count - 1)
+        if (currentIndex >= _moodTiers.Count - 1)
             return currentTier;
             
-        return moodTiers[currentIndex + 1];
+        return _moodTiers[currentIndex + 1];
     }
     
     public void UpdateMoodBar(GameState gameState)

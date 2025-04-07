@@ -89,6 +89,6 @@ public class CharacterSelectionUI : MonoBehaviour
         PlayerPrefs.Save();
         
         // Load the game scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        Message.Publish(new NavigateToSceneRequested("GameScene"));
     }
 } 
