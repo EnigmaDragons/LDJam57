@@ -23,7 +23,7 @@ GOOD LUCK, BUSINESS CAT! Make your department purr-oud!
 ---
 ## Marketing Page Version:
 
-# 🐱 RAISE THE PAW 🐱
+# 🐱 DEEP MEOWGOTIATIONS 🐱
 ## The Purr-fectly Silly Corporate Cat-Venture!
 
 Ever wondered what your cat does when you're not home? They're probably climbing the CORPORATE LADDER!
@@ -50,7 +50,7 @@ Draw cards to collect cash for your department, but watch out - if the CEO catch
 
 It's the purr-fect game for cat lovers, risk-takers, and anyone who's ever wanted to slam their paw on a boardroom table and yell "THAT'S NOT IN THE BUDGET!"
 
-### "RAISE THE PAW is utterly cat-tastic! I laughed so hard I coughed up a hairball!" - CatGamer Magazine
+### "DEEP MEOWGOTIATIONS is utterly cat-tastic! I laughed so hard I coughed up a hairball!" - CatGamer Magazine
 
 ---
 ## World-Building Elements:

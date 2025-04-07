@@ -75,8 +75,8 @@ Final Day Timeline
 
 Deadline: 
 08am - Intro Video
-10am - Powers
-12pm - Unlocks & Cat Pickers
+10am - Unlocks & Cat Pickers
+12pm - Powers
 02pm - First WebGL test
 04pm - Art Polish
 06pm - Marketing Pages
