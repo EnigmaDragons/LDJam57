@@ -1307,7 +1307,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 359b6c5f6c58a1542b73294f6ba3a468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossEnvironments: []
+  bossEnvironments:
+  - {fileID: 2139403916}
+  - {fileID: 1869323431}
+  - {fileID: 1479410002}
+  - {fileID: 557280438}
+  - {fileID: 1473492473}
   musicPlayer: {fileID: 11400000, guid: a3cf9e11ff3254e45b2fb2c614ba44bd, type: 2}
   bossNameText: {fileID: 249450353}
   locationText: {fileID: 400268501}
@@ -1360,14 +1365,14 @@ RectTransform:
   m_GameObject: {fileID: 435123941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.38, y: 0.38, z: 0.38}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2139403917}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 97, y: -43}
+  m_AnchoredPosition: {x: 11, y: -86}
   m_SizeDelta: {x: 816, y: 1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435123943
@@ -2547,7 +2552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 521598ec8abf5924ca6837963ad93605, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 043a8745691d1724ab0a175bf800bc4f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
