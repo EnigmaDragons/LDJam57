@@ -176,11 +176,14 @@ public class DayNegotiation : MonoBehaviour
         
         // Check if this is the player's first card in this round
         var currentPlayer = CurrentGameState.ReadOnly.ActivePlayer;
-        bool isFirstCard = currentPlayer.CurrentRoundCash == 0;
+        if (currentPlayer.Player.Character.Power.PowerType == PowerType.AfterDrawCardSelectedBeforeDraw && currentPlayer.Player.Character.Power.IsAvailable)
+        {
+            currentPlayer.Player.Character.Power.Apply(new PowerContext(CurrentGameState.ReadOnly, currentPlayer));
+        }
         
         // Draw a card from the deck
         var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
-        
+        var isFirstCard = currentPlayer.CurrentRoundCash == 0;
         // CHEAT: If it's the player's first card and it's a Snap card, put it back and draw a non-snap card
         if (isFirstCard && card is SnapCard)
         {

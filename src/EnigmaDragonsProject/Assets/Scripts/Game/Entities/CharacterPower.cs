@@ -7,6 +7,7 @@ public enum PowerType
   NoMoodEscalation = 3,
   SeeSnapOdds = 4,
   AfterBankPower = 5,
+  AfterDrawCardSelectedBeforeDraw = 6,
 }
 
 public interface CharacterPower 

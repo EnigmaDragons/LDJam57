@@ -191,3 +191,33 @@ public class SabotageNegotiationPower : CharacterPower
         Message.Publish(new ShowCharacterPowerExplanation($"After {ctx.UsingPlayer.Player.Character.Name} left, {ctx.GameState.BossState.Boss.Name} added {SnapsToAdd} Snap cards to the deck!", ctx.UsingPlayer));
     }
 }     
+
+public class BrilliantIdeaPower : CharacterPower
+{
+    public bool IsImplemented => true;
+    public bool IsAvailable => true;
+    public PowerType PowerType => PowerType.AfterDrawCardSelectedBeforeDraw;
+
+    public void NotifyNewDayStarted() { }
+    public void NotifyNewGameStarted() { }
+    
+    public void Apply(PowerContext ctx)
+    {
+      Debug.Log("Brilliant Idea power activated! Adding a +$20 card to the deck");
+      
+      // Create a high value card (+$20)
+      var bonusCard = new OfferCard(20, 0);
+      
+      // Shuffle it into the deck
+      CurrentGameState.UpdateState(gs =>
+      {
+          gs.CurrentDeck.ShuffleCardIn(bonusCard);
+      });
+      
+      // Play deck shuffled sound
+      Message.Publish(new PlayUiSound(SoundType.DeckShuffledShort));
+
+      Message.Publish(new ShowCharacterPowerExplanation($"{ctx.UsingPlayer.Player.Character.Name} had a brilliant idea! A +$20 card was added to the deck.", ctx.UsingPlayer));
+    }
+}
+

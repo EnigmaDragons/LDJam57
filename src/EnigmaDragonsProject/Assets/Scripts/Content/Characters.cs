@@ -77,27 +77,28 @@ public class Characters
     {
         Name = "Rocky Clawboa",
         PowerName = "Hustle & Grind",
-        PowerDescription = "Always draws two cards at once, instead of one.",
+        PowerDescription = "Always draws two cards per ask, instead of one.",
         Department = "Product Development",
         SpritePathFace = "Sprites/PlayerCharacters/Face-RockyClawboa",
+    };
+
+    public static Character DJScratchy = new StaticCharacter
+    {
+        Name = "DJ Scratchy",
+        PowerName = "Spin It Around",
+        PowerDescription = "Gain more money for low value cards, and less for high value cards.",
+        Department = "Social Media",
+        SpritePathFace = "Sprites/PlayerCharacters/Face-DJScratchy",
     };
     
     public static Character DrPurrington = new StaticCharacter
     {
         Name = "Dr. Purrington",
-        PowerName = "Eureka Moment",
-        PowerDescription = "TBD",
+        PowerName = "Brilliant Idea",
+        PowerDescription = "Whenver you choose to draw a card, first shuffle a +$20 card into the deck.",
         Department = "Research & Development",
         SpritePathFace = "Sprites/PlayerCharacters/Face-DrPurrington",
-    };
-    
-    public static Character DJScratchy = new StaticCharacter
-    {
-        Name = "DJ Scratchy",
-        PowerName = "Trending Topic",
-        PowerDescription = "Can peek at the next three cards in the deck to see what's coming.",
-        Department = "Social Media",
-        SpritePathFace = "Sprites/PlayerCharacters/Face-DJScratchy",
+        Power = new BrilliantIdeaPower()
     };
     
     public static List<Character> AllCharacters { get; } = new List<Character>
