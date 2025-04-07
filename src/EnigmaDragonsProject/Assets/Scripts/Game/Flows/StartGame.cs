@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class StartGame : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class StartGame : MonoBehaviour
     // Fisher-Yates shuffle algorithm
     private void ShuffleList<T>(List<T> list)
     {
-        System.Random rng = new System.Random();
+        System.Random rng = new System.Random(Guid.NewGuid().GetHashCode());
         int n = list.Count;
         while (n > 1)
         {
