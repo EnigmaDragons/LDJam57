@@ -36,7 +36,7 @@ public class Characters
     public static Character DuchessFluffington = new StaticCharacter
     {
         Name = "Duchess Fluffington",
-        PowerName = "Executive Connection",
+        PowerName = "Executive Ear",
         PowerDescription = "Passive: Asking for money never escalates the chief's mood.",
         Department = "Executive Relations",
         SpritePathFace = "Sprites/PlayerCharacters/Face-DuchessFluffington",
