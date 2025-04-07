@@ -24,13 +24,18 @@ public class StartGame : MonoBehaviour
         var gameState = new GameState();
         var players = new List<PlayerState>();
         
-        // Create a list of random characters (excluding TabbyTom)
+        // Create a list of random characters (excluding the selected character)
         var availableCharacters = new List<Character>(Characters.AllCharacters);
-        availableCharacters.Remove(Characters.TabbyTom);
+        string selectedCharacterName = PlayerPrefs.GetString("SelectedCharacter", "Tabby Tom");
+        var selectedCharacter = Characters.AllCharacters.FirstOrDefault(c => c.Name == selectedCharacterName);
+        if (selectedCharacter == null)
+            selectedCharacter = Characters.TabbyTom;
+            
+        availableCharacters.Remove(selectedCharacter);
         ShuffleList(availableCharacters);
         
-        // Create 1 human player with Tabby Tom
-        var humanPlayer = CreatePlayer(0, true, Characters.TabbyTom);
+        // Create 1 human player with the selected character
+        var humanPlayer = CreatePlayer(0, true, selectedCharacter);
         players.Add(humanPlayer);
         
         // Create 5 AI players, each with a unique random character
@@ -50,7 +55,7 @@ public class StartGame : MonoBehaviour
         // Play deck shuffled sound when game initializes
         Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
         
-        Debug.Log($"Start Game: Game initialized with 1 human player using Tabby Tom and 5 AI players with unique characters. Current day is {gameState.CurrentDay}, current boss is {gameState.BossState.Boss.Name}");
+        Debug.Log($"Start Game: Game initialized with 1 human player using {selectedCharacter.Name} and 5 AI players with unique characters. Current day is {gameState.CurrentDay}, current boss is {gameState.BossState.Boss.Name}");
     }
     
     private PlayerState CreatePlayer(int index, bool isHuman, Character character)
