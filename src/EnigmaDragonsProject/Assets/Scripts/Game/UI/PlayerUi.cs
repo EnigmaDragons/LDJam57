@@ -115,7 +115,7 @@ public class PlayerUi : MonoBehaviour
                 // Change status background color based on whether they banked cash
                 if (statusColorBg != null && !isFinalCashDisplay)
                 {
-                    Color targetColor = playerState.CurrentRoundCash > 0 
+                    Color targetColor = playerState.CashBankedToday > 0 
                         ? Color.green 
                         : Color.red;
                     

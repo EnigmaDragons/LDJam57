@@ -109,6 +109,7 @@ public class PlayerState
     public bool PowerUsedEver { get; private set; }
     public bool IsActiveInDay { get; private set; }
     public bool HasDrawnCardToday { get; private set; }
+    public int CashBankedToday { get; private set; }
 
     public PlayerState(Player p, int currentCash, Ai ai)
     {
@@ -130,6 +131,7 @@ public class PlayerState
         CurrentRoundCash = 0;
         IsActiveInDay = true;
         HasDrawnCardToday = false;
+        CashBankedToday = 0;
     }
 
     public void RecordPowerUser()
@@ -141,10 +143,11 @@ public class PlayerState
     public void BankCash()
     {
         // Add current round cash to banked cash
+        CashBankedToday += CurrentRoundCash;
         BankedCash += CurrentRoundCash;
         Debug.Log($"Player {Player.Index} banked ${CurrentRoundCash}, new total: ${BankedCash}");
         CurrentRoundCash = 0;
-        IsActiveInDay = false;
+        IsActiveInDay = false;    
     }
 
     public void NotifySnapped()
