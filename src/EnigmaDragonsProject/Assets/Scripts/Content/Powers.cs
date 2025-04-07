@@ -39,7 +39,6 @@ public class GainMoneyAtStartOfDayPower : CharacterPower
         CurrentGameState.UpdateState(gs =>
         {
             context.UsingPlayer.ChangeCashFromEffect(_amount);
-            context.UsingPlayer.RecordPowerUsed();
         });
     }
 }
@@ -56,10 +55,7 @@ public class IgnoreOneSnapCardEver : CharacterPower
     {
         IsAvailable = false;
         Message.Publish(new ShowCharacterPowerExplanation($"{context.UsingPlayer.Player.Character.Name} used their power to ignore the snap.", context.UsingPlayer));
-        CurrentGameState.UpdateState(gs =>
-        {
-            context.UsingPlayer.RecordPowerUsed();
-        });
+        CurrentGameState.UpdateState(gs => gs);
     }
 }
 
@@ -82,7 +78,6 @@ public class BankInterestPower : CharacterPower
         CurrentGameState.UpdateState(gs =>
         {
             context.UsingPlayer.AddDirectlyToBank(interestAmount);
-            context.UsingPlayer.RecordPowerUsed();
         });
     }
 }
@@ -158,7 +153,6 @@ public class SympathyBuddyPower : CharacterPower
             CurrentGameState.UpdateState(gs =>
             {
                 context.UsingPlayer.AddDirectlyToBank(10);
-                context.UsingPlayer.RecordPowerUsed();
             });
         }
     }

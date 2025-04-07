@@ -105,8 +105,6 @@ public class PlayerState
     public Ai Ai { get; }
     public int BankedCash { get; private set; }
     public int CurrentRoundCash { get; private set; }
-    public bool PowerUsedToday { get; private set; }
-    public bool PowerUsedEver { get; private set; }
     public bool IsActiveInDay { get; private set; }
     public bool HasDrawnCardToday { get; private set; }
     public int CashBankedToday { get; private set; }
@@ -131,19 +129,12 @@ public class PlayerState
 
     public void NotifyDayChanged()
     {
-        PowerUsedToday = false;
         BankedCash += CurrentRoundCash;
         CurrentRoundCash = 0;
         IsActiveInDay = true;
         HasDrawnCardToday = false;
         CashBankedToday = 0;
         Player.Character.Power.NotifyNewDayStarted();
-    }
-
-    public void RecordPowerUsed()
-    {
-        PowerUsedToday = true;
-        PowerUsedEver = true;
     }
 
     public void BankCash()

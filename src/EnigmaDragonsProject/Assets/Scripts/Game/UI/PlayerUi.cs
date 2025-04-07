@@ -174,7 +174,7 @@ public class PlayerUi : MonoBehaviour
         // Update power available toggle
         if (powerAvailableToggle != null)
         {
-            powerAvailableToggle.isOn = !playerState.PowerUsedToday;
+            powerAvailableToggle.isOn = !playerState.Player.Character.Power.IsAvailable;
             powerAvailableToggle.interactable = false; // Just for display, not interactive
         }
     }

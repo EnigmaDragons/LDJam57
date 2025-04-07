@@ -57,7 +57,7 @@ public class Characters
     {
         Name = "Neko-chan",
         PowerName = "Empathy Ally",
-        PowerDescription = "When you Accept Offer, if you don't have the most banked, bank +$10.",
+        PowerDescription = "When you accept an offer, if you don't have the most banked, bank +$10.",
         Department = "User Experience",
         SpritePathFace = "Sprites/PlayerCharacters/Face-NekoChan",
         Power = new SympathyBuddyPower()
