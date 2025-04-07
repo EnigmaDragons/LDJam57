@@ -183,6 +183,9 @@ MonoBehaviour:
   deckShuffled:
     clip: {fileID: 8300000, guid: ca35ca2f5feea9a4f8b4926e832f31e9, type: 3}
     volume: 1
+  deckShuffledShort:
+    clip: {fileID: 8300000, guid: 746892062adda7f4a82d3be4ea24542a, type: 3}
+    volume: 1
   cardDraw:
     clip: {fileID: 8300000, guid: e9d80c907449a5e48acfc194684c2304, type: 3}
     volume: 1
@@ -200,4 +203,10 @@ MonoBehaviour:
     volume: 1
   itsYourTurn:
     clip: {fileID: 8300000, guid: 36d2f91271c89f14a9be079825860dff, type: 3}
+    volume: 1
+  characterCashPower:
+    clip: {fileID: 0}
+    volume: 1
+  characterDodgePower:
+    clip: {fileID: 0}
     volume: 1

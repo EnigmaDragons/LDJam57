@@ -261,7 +261,7 @@ public class DayNegotiation : MonoBehaviour
                         Message.Publish(new SnapsAddedToDeck(snapsToAdd));
 
                         // Play deck shuffled sound when we add snaps to the deck
-                        Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
+                        Message.Publish(new PlayUiSound(SoundType.DeckShuffledShort));
                     }
                 }
             });
