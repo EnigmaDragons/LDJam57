@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 209208069}
   - component: {fileID: 209208070}
   m_Layer: 0
-  m_Name: BackgroundMusic
+  m_Name: Music
   m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2356,5 +2356,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 320044457283170472}
   - {fileID: 606691428}
-  - {fileID: 209208068}
   - {fileID: 258585297}
+  - {fileID: 209208068}
