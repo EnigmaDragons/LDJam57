@@ -35,6 +35,17 @@ public sealed class GameState
             return;
         }
         
+        // Make sure all CurrentRoundCash gets added to BankedCash before advancing
+        foreach (var player in PlayerStates)
+        {
+            // Ensure any outstanding CurrentRoundCash gets banked
+            if (player.CurrentRoundCash > 0)
+            {
+                Debug.Log($"Banking {player.CurrentRoundCash} cash for player {player.Player.Index} before advancing day");
+                player.BankCash();
+            }
+        }
+        
         // Advance to the next day in the work week
         if (CurrentDay == Day.Monday)
             CurrentDay = Day.Tuesday;
@@ -47,7 +58,16 @@ public sealed class GameState
             
         // Notify all players of the day change
         foreach (var player in PlayerStates)
+        {
+            // Log for debugging
+            int beforeBankedCash = player.BankedCash;
+            int beforeRoundCash = player.CurrentRoundCash;
+            
             player.NotifyDayChanged();
+            
+            // Verify banked cash is preserved
+            Debug.Log($"Player {player.Player.Index} - Before: Banked=${beforeBankedCash}, Round=${beforeRoundCash} | After: Banked=${player.BankedCash}");
+        }
         
         // Create a new deck for the day
         CurrentDeck = BasicDeck.CreateStandardDeck();
@@ -120,6 +140,10 @@ public class PlayerState
 
     public void BankCash()
     {
+        // Add current round cash to banked cash
+        BankedCash += CurrentRoundCash;
+        Debug.Log($"Player {Player.Index} banked ${CurrentRoundCash}, new total: ${BankedCash}");
+        CurrentRoundCash = 0;
         IsActiveInDay = false;
     }
 
