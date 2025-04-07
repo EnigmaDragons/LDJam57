@@ -6,8 +6,8 @@ public class Characters
     public static Character TabbyTom = new StaticCharacter
     {
         Name = "Tabby Tom",
-        PowerName = "Eager Bird",
-        PowerDescription = "Start each day with $5",
+        PowerName = "Early Bird",
+        PowerDescription = "Each day, gain $5 before the negotiations start",
         Department = "Customer Service",
         SpritePathFace = "Sprites/PlayerCharacters/Face-TabbyTom",
         Power = new GainMoneyAtStartOfDayPower(5)
@@ -17,7 +17,7 @@ public class Characters
     {
         Name = "Miss Meowgan",
         PowerName = "Spin Doctor",  
-        PowerDescription = "First time you draw a snap card this week, ignore it.",
+        PowerDescription = "Once per game, the first time you draw a snap card, ignore it.",
         Department = "Public Relations",
         SpritePathFace = "Sprites/PlayerCharacters/Face-MissMeowgan",
         Power = new IgnoreOneSnapCardEver()
