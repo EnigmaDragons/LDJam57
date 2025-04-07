@@ -66,17 +66,18 @@ public class Characters
     public static Character SirPouncelot = new StaticCharacter
     {
         Name = "Sir Pouncelot",
-        PowerName = "Risk Taker",
-        PowerDescription = "Can draw 1 extra card beyond the limit, but doubles Snap risk.",
+        PowerName = "Party's Over",
+        PowerDescription = "After you accept an offer, shuffle 7 snaps into the deck immediately.",
         Department = "Marketing",
         SpritePathFace = "Sprites/PlayerCharacters/Face-SirPouncelot",
+        Power = new SabotageNegotiationPower()
     };
    
     public static Character RockyClawboa = new StaticCharacter
     {
         Name = "Rocky Clawboa",
         PowerName = "Hustle & Grind",
-        PowerDescription = "Draws two cards at once.",
+        PowerDescription = "Always draws two cards at once, instead of one.",
         Department = "Product Development",
         SpritePathFace = "Sprites/PlayerCharacters/Face-RockyClawboa",
     };

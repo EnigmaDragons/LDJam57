@@ -158,5 +158,36 @@ public class SympathyBuddyPower : CharacterPower
     }
 }
 
+public class SabotageNegotiationPower : CharacterPower
+{
+    public bool IsImplemented => true;
+    public bool IsAvailable => true;
+    public PowerType PowerType => PowerType.AfterBankPower;
 
+    public void NotifyNewDayStarted() { }
+    public void NotifyNewGameStarted() { }
+        
+    public int SnapsToAdd = 7;
 
+    public void Apply(PowerContext ctx)
+    {
+        Debug.Log($"Sabotage Negotiations power activated! Adding {SnapsToAdd} snap(s) to the deck");
+        CurrentGameState.UpdateState(gs =>
+        {
+            // Create and add snap cards to the deck
+            for (int i = 0; i < SnapsToAdd; i++)
+            {
+                gs.CurrentDeck.ShuffleCardIn(new SnapCard());
+            }
+        });
+
+        // Notify of new snaps
+        Message.Publish(new SnapsAddedToDeck(SnapsToAdd));
+        
+        // Play deck shuffled sound
+        Message.Publish(new PlayUiSound(SoundType.DeckShuffledShort));
+        
+        // Show power usage message
+        Message.Publish(new ShowCharacterPowerExplanation($"After {ctx.UsingPlayer.Player.Character.Name} left, {ctx.GameState.BossState.Boss.Name} added {SnapsToAdd} Snap cards to the deck!", ctx.UsingPlayer));
+    }
+}     
