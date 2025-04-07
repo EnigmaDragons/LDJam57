@@ -8,6 +8,7 @@
 - [x] Main Menu Music
 - [x] Create turn manager to handle player/AI sequence
 - [x] Implement card drawing from deck
+- [x] Implement Boss Mood Bar UI that changes color based on boss mood level
 
 # In-Progress
 - [ ] Create card drawing system with animation hooks

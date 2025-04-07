@@ -39,9 +39,10 @@ Milestone 1:
 Milestone 2:
   [x] More Player Cat Arts
   [x] Five Days
+  [x] Position Bosses Correctly in their Environments
   [] Sounds
-  [] Position Bosses Correctly in their Environments
   [] Boss Mood Bar
+  [] Show when More Snaps Are Added
   [] Deck 
     [] Num Cards
     [] Num Snaps

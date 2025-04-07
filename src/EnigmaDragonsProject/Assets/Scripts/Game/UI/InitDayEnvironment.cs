@@ -10,6 +10,7 @@ public class InitDayEnvironment : MonoBehaviour
     [SerializeField] private TextMeshProUGUI locationText;
     [SerializeField] private TextMeshProUGUI dayText;
     [SerializeField] private PlayerUi[] playerUis;
+    [SerializeField] private BossMoodBarUI bossMoodBar;
     
     private GameState _lastKnownState;
     private bool _isInitialized = false;
@@ -105,6 +106,12 @@ public class InitDayEnvironment : MonoBehaviour
         for (int i = 0; i < playerUis.Length && i < gameState.PlayerStates.Length; i++)
         {
             playerUis[i].InitWithPlayerState(gameState.PlayerStates[i]);
+        }
+        
+        // Update the boss mood bar if it's assigned
+        if (bossMoodBar != null)
+        {
+            bossMoodBar.UpdateMoodBar(gameState);
         }
     }
     
