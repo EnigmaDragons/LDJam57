@@ -17,18 +17,30 @@ public sealed class GameMusicPlayer : ScriptableObject
             Init(source);
     }
 
+    public void InitWithDefaultSource()
+    {
+        if (musicSource != null)
+            return;
+
+        var camera = Camera.main;
+        var position = camera != null ? camera.transform.position : Vector3.zero;
+        
+        var go = new GameObject("DefaultMusicSource");
+        go.transform.position = position;
+        musicSource = go.AddComponent<AudioSource>();
+    }
+
     public void FadeOutMusic(MonoBehaviour script, float duration)
     {
+        if (musicSource == null)
+            InitWithDefaultSource();
         script.StartCoroutine(musicSource.FadeOutAsync(duration));
     }
     
     public void PlaySelectedMusicOnce(AudioClip clipToPlay)
     {
         if (musicSource == null)
-        {
-            Debug.LogError($"nameof(musicSource) has not been initialized");
-            return;
-        }
+            InitWithDefaultSource();
         
         if (musicSource.isPlaying && musicSource.clip.name.Equals(clipToPlay.name))
             return;
@@ -42,10 +54,7 @@ public sealed class GameMusicPlayer : ScriptableObject
     public void PlaySelectedMusicLooping(AudioClip clipToPlay)
     {
         if (musicSource == null)
-        {
-            Debug.LogError($"nameof(musicSource) has not been initialized");
-            return;
-        }
+            InitWithDefaultSource();
         
         if (musicSource.isPlaying && musicSource.clip.name.Equals(clipToPlay.name))
             return;

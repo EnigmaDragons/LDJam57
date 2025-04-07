@@ -91,6 +91,12 @@ public class PlayerUi : MonoBehaviour
             CurrentGameState.ReadOnly != null && 
             CurrentGameState.ReadOnly.PlayerTurnIndex == _playerId;
 
+        if (playerState.IsActiveInDay)
+        {
+            dayCashPanel.gameObject.SetActive(true);
+            finalCashPanel.gameObject.SetActive(false);
+        }
+        
         if (isCurrentTurnPlayer)
         {
             // Make the panel 10% larger when it's this player's turn
