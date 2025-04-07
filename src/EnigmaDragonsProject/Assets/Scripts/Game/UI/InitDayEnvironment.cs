@@ -128,6 +128,8 @@ public class InitDayEnvironment : MonoBehaviour
     {
         // Wait for a few frames before playing music
         yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         
         musicPlayer.PlaySelectedMusicLooping(music);
     }

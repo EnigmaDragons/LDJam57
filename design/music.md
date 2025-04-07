@@ -74,4 +74,6 @@ Modern jazz fusion, saxophone, piano, monosynth/ep, steady drums, bass foundatio
 ### 🎬 V3 - GAME OVER CREDITS - DEFEAT
 Modern jazz fusion, saxophone, piano, monosynth/ep, steady drums, bass foundation, light synth accents, melancholic minor key, reflective phrases, subtle dissonance, wistful motifs, tempo decrease, bittersweet
 
-  
+### 📸 V3 - PHOTO STUDIO - EMPLOYEE BADGE PICTURE
+Modern jazz fusion, saxophone, piano, monosynth/ep, steady drums, bass foundation, light synth accents, bright upbeat melody, slightly nervous energy, professional lighthearted atmosphere, brief playful motifs.
+
