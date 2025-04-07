@@ -92,7 +92,7 @@ public class IntroCutsceneManager : MonoBehaviour
     [SerializeField] private float textFadeDuration = 0.3f;
     [SerializeField] private float textTypeSpeed = 0.02f;
     [SerializeField] private float sceneTransitionDuration = 0.5f;
-    [SerializeField] private float lineSpacing = 1.2f;
+    [SerializeField] private float textDisplayDelay = 1.5f; // Time to display text before fading out
     
     [Header("Audio")]
     [SerializeField] private AudioClip typeSound;
@@ -215,6 +215,24 @@ public class IntroCutsceneManager : MonoBehaviour
             var line = currentScene.textLines[i];
             Debug.Log($"[IntroCutscene] Queueing text line {i + 1}: {line}");
             
+            // Type out the text with sound
+            float typeDuration = line.Length * textTypeSpeed;
+            _currentSequence.Append(DOTween.To(
+                () => 0,
+                (progress) => {
+                    // Use linear interpolation for consistent speed
+                    int charsToShow = Mathf.Min(line.Length, Mathf.FloorToInt(progress * line.Length));
+                    textDisplay.text = line.Substring(0, charsToShow);
+                    if (typeSound != null && charsToShow > 0 && charsToShow <= line.Length)
+                        _audioSource.PlayOneShot(typeSound);
+                },
+                1f,
+                typeDuration
+            ).SetEase(Ease.Linear)); // Force linear easing for consistent speed
+
+            // Add the configurable delay after typing
+            _currentSequence.AppendInterval(textDisplayDelay);
+
             // Fade out previous text (if not first line)
             if (i > 0)
             {
@@ -237,35 +255,17 @@ public class IntroCutsceneManager : MonoBehaviour
 
             // Fade in before typing starts
             _currentSequence.Append(textCanvasGroup.DOFade(1, textFadeDuration));
-            
-            // Type out the text with sound
-            float typeDuration = line.Length * textTypeSpeed;
-            _currentSequence.Append(DOTween.To(
-                () => 0,
-                (progress) => {
-                    // Use linear interpolation for consistent speed
-                    int charsToShow = Mathf.Min(line.Length, Mathf.FloorToInt(progress * line.Length));
-                    textDisplay.text = line.Substring(0, charsToShow);
-                    if (typeSound != null && charsToShow > 0 && charsToShow <= line.Length)
-                        _audioSource.PlayOneShot(typeSound);
-                },
-                1f,
-                typeDuration
-            ).SetEase(Ease.Linear)); // Force linear easing for consistent speed
-
-            // Add a small pause after typing
-            _currentSequence.AppendInterval(0.2f);
         }
 
         // Wait for scene duration (minus time already spent on text)
-        float textTime = currentScene.textLines.Count * (textFadeDuration * 2 + 0.2f) + 
+        float textTime = currentScene.textLines.Count * (textFadeDuration * 2 + textDisplayDelay) + 
                         currentScene.textLines.Sum(line => line.Length) * textTypeSpeed;
         float remainingDuration = Mathf.Max(0.5f, currentScene.duration - textTime);
         Debug.Log($"[IntroCutscene] Waiting for remaining duration: {remainingDuration}s");
         _currentSequence.AppendInterval(remainingDuration);
 
-        // Add a pause before final fadeout
-        _currentSequence.AppendInterval(0.5f);
+        // Add the configurable delay before final fadeout
+        _currentSequence.AppendInterval(textDisplayDelay);
 
         // Fade out text
         _currentSequence.Append(textCanvasGroup.DOFade(0, textFadeDuration));
