@@ -7,6 +7,7 @@ public sealed class Navigator : ScriptableObject
     
     public void NavigateToMainMenu() => NavigateTo("MainMenu");
     public void NavigateToScene(string sceneName) => NavigateTo(sceneName);
+    public void NavigateToCatPickerScene() => NavigateTo("CatPickerScene");
 
     private void NavigateTo(string sceneName)
     {
