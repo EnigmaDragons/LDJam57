@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BossMoodBarUI : MonoBehaviour
 {
@@ -11,14 +12,22 @@ public class BossMoodBarUI : MonoBehaviour
     [SerializeField] private GameObject moodChangeFeedback;
     [SerializeField] private TextMeshProUGUI feedbackText;
     
-    [Header("Mood Color Settings")]
-    [SerializeField] private Color calmColor = new Color(0.3f, 0.8f, 0.3f); // Green
-    [SerializeField] private Color waryColor = new Color(0.9f, 0.9f, 0.2f); // Yellow
-    [SerializeField] private Color budgetConsciousColor = new Color(0.9f, 0.3f, 0.2f); // Red
-    
-    [Header("Mood Thresholds")]
-    [SerializeField] private int waryThreshold = 20;
-    [SerializeField] private int budgetConsciousThreshold = 40;
+    [Header("Mood Tiers")]
+    [SerializeField] private List<MoodTierConfig> moodTiers = new List<MoodTierConfig>
+    {
+        new MoodTierConfig(0, "DELIGHTED", new Color(0.0f, 0.7f, 0.0f)),       // Dark Green
+        new MoodTierConfig(5, "CONTENT", new Color(0.2f, 0.8f, 0.2f)),          // Green
+        new MoodTierConfig(10, "SATISFIED", new Color(0.4f, 0.8f, 0.4f)),       // Light Green
+        new MoodTierConfig(15, "ATTENTIVE", new Color(0.6f, 0.8f, 0.4f)),       // Yellow-Green
+        new MoodTierConfig(20, "CURIOUS", new Color(0.8f, 0.8f, 0.2f)),         // Yellow
+        new MoodTierConfig(25, "NEUTRAL", new Color(0.9f, 0.8f, 0.2f)),         // Dark Yellow
+        new MoodTierConfig(30, "CONCERNED", new Color(0.9f, 0.7f, 0.1f)),       // Orange-Yellow
+        new MoodTierConfig(35, "SKEPTICAL", new Color(0.9f, 0.6f, 0.1f)),       // Orange
+        new MoodTierConfig(40, "WARY", new Color(0.9f, 0.5f, 0.1f)),            // Dark Orange
+        new MoodTierConfig(45, "IRRITATED", new Color(0.9f, 0.3f, 0.1f)),       // Red-Orange
+        new MoodTierConfig(50, "AGITATED", new Color(0.9f, 0.2f, 0.1f)),        // Light Red
+        new MoodTierConfig(55, "BUDGET-CONSCIOUS", new Color(0.9f, 0.1f, 0.1f)) // Deep Red
+    };
     
     [Header("Gradient Animation")]
     [SerializeField] private float gradientAnimSpeed = 0.5f;
@@ -28,8 +37,7 @@ public class BossMoodBarUI : MonoBehaviour
     [Header("Feedback Settings")]
     [SerializeField] private float feedbackDisplayTime = 3f;
     
-    // The maximum mood value to consider for the fill bar (this is somewhat arbitrary)
-    // We can consider 60 as the max since all bosses have keys up to 60 in their mood tables
+    // The maximum mood value to consider for the fill bar (this should be aligned with highest tier)
     [SerializeField] private int maxMoodValue = 60;
     
     private GameState _lastKnownState;
@@ -63,6 +71,9 @@ public class BossMoodBarUI : MonoBehaviour
         // Hide feedback initially
         if (moodChangeFeedback != null)
             moodChangeFeedback.SetActive(false);
+            
+        // Sort tiers by threshold to ensure they're in order
+        moodTiers.Sort((a, b) => a.Threshold.CompareTo(b.Threshold));
     }
 
     private void Update()
@@ -130,6 +141,34 @@ public class BossMoodBarUI : MonoBehaviour
         ShowMoodChangeFeedback($"{msg.SnapCount} SNAP{(msg.SnapCount > 1 ? "S" : "")} ADDED TO DECK!");
     }
     
+    // Find the mood tier for a given mood value
+    private MoodTierConfig GetMoodTierForValue(int moodValue)
+    {
+        MoodTierConfig result = moodTiers[0]; // Default to lowest tier
+        
+        foreach (var tier in moodTiers)
+        {
+            if (moodValue >= tier.Threshold && tier.Threshold >= result.Threshold)
+            {
+                result = tier;
+            }
+        }
+        
+        return result;
+    }
+    
+    // Find the next higher tier (for interpolation)
+    private MoodTierConfig GetNextMoodTier(MoodTierConfig currentTier)
+    {
+        int currentIndex = moodTiers.IndexOf(currentTier);
+        
+        // If at last tier, return the same tier
+        if (currentIndex >= moodTiers.Count - 1)
+            return currentTier;
+            
+        return moodTiers[currentIndex + 1];
+    }
+    
     public void UpdateMoodBar(GameState gameState)
     {
         if (gameState == null || gameState.BossState == null)
@@ -157,43 +196,30 @@ public class BossMoodBarUI : MonoBehaviour
         float fillAmount = Mathf.Clamp01((float)currentMood / maxMoodValue);
         moodFillBar.fillAmount = fillAmount;
         
-        // Smoothly interpolate between colors based on mood level
-        float t1 = Mathf.InverseLerp(0, waryThreshold, currentMood);
-        float t2 = Mathf.InverseLerp(waryThreshold, budgetConsciousThreshold, currentMood);
+        // Get the appropriate tier config for the current mood
+        MoodTierConfig currentTierConfig = GetMoodTierForValue(currentMood);
+        MoodTierConfig nextTierConfig = GetNextMoodTier(currentTierConfig);
         
+        // Interpolate color between current tier and next tier
         Color barColor;
-        string moodLabel;
-        
-        if (currentMood >= budgetConsciousThreshold)
+        if (currentTierConfig != nextTierConfig)
         {
-            // Interpolate between wary and budget-conscious
-            float t = Mathf.InverseLerp(budgetConsciousThreshold, maxMoodValue, currentMood);
-            barColor = Color.Lerp(waryColor, budgetConsciousColor, t);
-            moodLabel = "BUDGET-CONSCIOUS";
-        }
-        else if (currentMood >= waryThreshold)
-        {
-            // Interpolate between calm and wary
-            float t = Mathf.InverseLerp(waryThreshold, budgetConsciousThreshold, currentMood);
-            barColor = Color.Lerp(calmColor, waryColor, t);
-            moodLabel = "WARY";
+            float t = Mathf.InverseLerp(currentTierConfig.Threshold, nextTierConfig.Threshold, currentMood);
+            barColor = Color.Lerp(currentTierConfig.Color, nextTierConfig.Color, t);
         }
         else
         {
-            // Interpolate from happy to almost-wary based on how close to wary threshold
-            float t = Mathf.InverseLerp(0, waryThreshold, currentMood);
-            barColor = Color.Lerp(calmColor, Color.Lerp(calmColor, waryColor, 0.5f), t);
-            moodLabel = "HAPPY";
+            barColor = currentTierConfig.Color;
         }
         
         // Apply the base color to the material
         moodFillBar.color = barColor;
         
         // Apply mood label
-        moodLabelText.text = moodLabel;
+        moodLabelText.text = currentTierConfig.Label;
         
         // Log for debugging
-        Debug.Log($"Boss Mood Updated: {bossState.Boss.Name}, Mood: {currentMood}, MoodTier: {currentMoodTier}");
+        Debug.Log($"Boss Mood Updated: {bossState.Boss.Name}, Mood: {currentMood}, MoodTier: {currentMoodTier}, Label: {currentTierConfig.Label}");
     }
     
     private void ShowMoodChangeFeedback(string message)
@@ -234,5 +260,20 @@ public class BossMoodBarUI : MonoBehaviour
         {
             UpdateMoodBar(_lastKnownState);
         }
+    }
+}
+
+[System.Serializable]
+public class MoodTierConfig
+{
+    public int Threshold;
+    public string Label;
+    public Color Color;
+    
+    public MoodTierConfig(int threshold, string label, Color color)
+    {
+        Threshold = threshold;
+        Label = label;
+        Color = color;
     }
 } 

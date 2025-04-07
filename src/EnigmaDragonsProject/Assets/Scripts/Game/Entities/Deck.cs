@@ -1,16 +1,42 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 public class Deck
 {
     private List<Card> _cards;
-    private System.Random _rng;
+    private RNGCryptoServiceProvider _cryptoRng;
 
     public Deck(List<Card> initialCards)
     {
         _cards = initialCards.ToList();
-        _rng = new System.Random(Guid.NewGuid().GetHashCode());
+        _cryptoRng = new RNGCryptoServiceProvider();
+    }
+
+    // Get a cryptographically secure random integer between min (inclusive) and max (exclusive)
+    private int GetSecureRandomNumber(int min, int max)
+    {
+        if (min >= max)
+            throw new ArgumentOutOfRangeException("Min must be less than max.");
+
+        // Create a span to receive the random bytes
+        Span<byte> randomBytes = stackalloc byte[sizeof(uint)];
+        uint scale = uint.MaxValue;
+        uint range = (uint)(max - min);
+        
+        uint result;
+        do
+        {
+            // Fill the buffer with random bytes
+            _cryptoRng.GetBytes(randomBytes.ToArray());
+            
+            // Convert bytes to uint
+            result = BitConverter.ToUInt32(randomBytes);
+            
+        } while (result >= scale - (scale % range)); // Reject results that would create bias
+        
+        return min + (int)(result % range);
     }
 
     public void Shuffle()
@@ -19,7 +45,7 @@ public class Deck
         while (n > 1)
         {
             n--;
-            int k = _rng.Next(n + 1);
+            int k = GetSecureRandomNumber(0, n + 1);
             (_cards[k], _cards[n]) = (_cards[n], _cards[k]);
         }
     }
