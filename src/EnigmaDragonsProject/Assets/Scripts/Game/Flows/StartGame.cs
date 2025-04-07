@@ -46,6 +46,9 @@ public class StartGame : MonoBehaviour
         gameState.BossState = new BossState(Bosses.DayBossMap[Day.Monday], 0);
         CurrentGameState.Init(gameState);
         
+        // Play deck shuffled sound when game initializes
+        Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
+        
         Debug.Log($"Start Game: Game initialized with 1 human player using Tabby Tom and 5 AI players with unique characters. Current day is {gameState.CurrentDay}, current boss is {gameState.BossState.Boss.Name}");
     }
     

@@ -78,6 +78,9 @@ public class DayNegotiation : MonoBehaviour
             gs.PlayerTurnIndex = (dieRollResult - 1) % gs.PlayerStates.Length;
         });
         
+        // Play deck shuffled sound when we create a new deck
+        Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
+        
         Message.Publish(new ShowDieRoll(dieRollResult, 6));
     }
 
@@ -129,6 +132,9 @@ public class DayNegotiation : MonoBehaviour
                 _currentPhase = Phase.Setup;
                 Debug.Log($"Day transition complete. Starting new day: {CurrentGameState.ReadOnly.CurrentDay}");
                 
+                // Play deck shuffled sound when we start a new day
+                Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
+                
                 // Publish day transition completed message
                 Message.Publish(new DayTransitionCompleted(CurrentGameState.ReadOnly.CurrentDay));
                 
@@ -149,6 +155,9 @@ public class DayNegotiation : MonoBehaviour
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         
+        // Play card draw sound effect
+        Message.Publish(new PlayUiSound(SoundType.CardDraw));
+        
         var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
         CurrentGameState.UpdateState(gs => gs);
         Message.Publish(new ShowCardDrawn(card));
@@ -163,6 +172,19 @@ public class DayNegotiation : MonoBehaviour
         }
         
         Card card = msg.Message.Card;
+        
+        // Play card flip sound effect
+        Message.Publish(new PlayUiSound(SoundType.CardFlip));
+        
+        // Play appropriate sound based on card type
+        if (card is SnapCard)
+        {
+            Message.Publish(new PlayUiSound(SoundType.SnapCard));
+        }
+        else if (card is OfferCard)
+        {
+            Message.Publish(new PlayUiSound(SoundType.HappyCard));
+        }
         
         // Apply card effects to the player
         card.Apply(CurrentGameState.ReadOnly, currentPlayer);
@@ -192,6 +214,9 @@ public class DayNegotiation : MonoBehaviour
                     
                     // Notify of new snaps
                     Message.Publish(new SnapsAddedToDeck(snapsToAdd));
+                    
+                    // Play deck shuffled sound when we add snaps to the deck
+                    Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
                 }
             }
         });
@@ -206,6 +231,9 @@ public class DayNegotiation : MonoBehaviour
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         CurrentGameState.ReadOnly.ActivePlayer.BankCash();
+        
+        // Play happy card sound when accepting an offer
+        Message.Publish(new PlayUiSound(SoundType.HappyCard));
         
         // ATTN: Need to implement UI notification for player accepting offer
 
