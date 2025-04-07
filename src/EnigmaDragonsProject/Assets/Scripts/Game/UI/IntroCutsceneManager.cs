@@ -21,15 +21,8 @@ public class IntroCutsceneManager : MonoBehaviour
     {
         new CutsceneScene
         {
-            sceneName = "Title Screen",
+            sceneName = "Welcome to WHISKR",
             setupInstructions = "WHISKR logo centered, dark background, subtle glow effect",
-            textLines = new List<string> { "DEEP MEOWGOTIATIONS" },
-            duration = 2f
-        },
-        new CutsceneScene
-        {
-            sceneName = "Company Introduction",
-            setupInstructions = "WHISKR office building exterior, daytime, corporate setting",
             textLines = new List<string> 
             { 
                 "Welcome to WHISKR",
@@ -39,19 +32,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
-            sceneName = "Product Showcase",
-            setupInstructions = "Cat using smartphone, app interface visible, happy cat expression",
-            textLines = new List<string> 
-            { 
-                "Every cat with a smartphone uses Whiskr",
-                "to share their napping spots and cute selfies!"
-            },
-            duration = 3f
-        },
-        new CutsceneScene
-        {
-            sceneName = "Project Announcement",
-            setupInstructions = "SnapCat app mockup, floating UI elements, modern design",
+            sceneName = "The Project",
+            setupInstructions = "Innovation lab with SnapCat mockups, modern tech environment",
             textLines = new List<string> 
             { 
                 "Your team's MEOW-velous new project",
@@ -61,30 +43,19 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
-            sceneName = "Conflict Setup",
-            setupInstructions = "Money pile with cat paws reaching, dramatic lighting",
+            sceneName = "The Challenge",
+            setupInstructions = "Boardroom with money pile, dramatic lighting",
             textLines = new List<string> 
             { 
                 "But there's a cat-astrophe brewing!",
-                "Six department teams are all fighting over the budget!"
+                "Six department teams are fighting over the budget!"
             },
             duration = 3f
         },
         new CutsceneScene
         {
-            sceneName = "CEO Introduction",
-            setupInstructions = "Serious cat in business suit, imposing pose, office background",
-            textLines = new List<string> 
-            { 
-                "The CEO has approved your project...",
-                "But he's watching your every move!"
-            },
-            duration = 3f
-        },
-        new CutsceneScene
-        {
-            sceneName = "Game Rules",
-            setupInstructions = "Card being drawn, Snap card visible, dramatic angle",
+            sceneName = "The Game",
+            setupInstructions = "Conference room with cards and money, dramatic angle",
             textLines = new List<string> 
             { 
                 "Draw cards to collect cash for your department",
@@ -95,37 +66,16 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
-            sceneName = "Risk vs Reward",
-            setupInstructions = "Split screen: safe small pile vs risky large pile of money",
+            sceneName = "The Call to Action",
+            setupInstructions = "Grand auditorium with dramatic lighting",
             textLines = new List<string> 
             { 
                 "Will you play it safe with a small pile of coins?",
-                "Or risk it all for a kitty bank that overflows?"
-            },
-            duration = 4f
-        },
-        new CutsceneScene
-        {
-            sceneName = "Final Warning",
-            setupInstructions = "Your character looking determined, office background",
-            textLines = new List<string> 
-            { 
-                "Remember: In the corporate cat world...",
-                "Fortune favors the BOLD...",
-                "But curiosity killed the quarterly bonus!"
-            },
-            duration = 4f
-        },
-        new CutsceneScene
-        {
-            sceneName = "Call to Action",
-            setupInstructions = "WHISKR logo with dramatic lighting, motivational angle",
-            textLines = new List<string> 
-            { 
+                "Or risk it all for a kitty bank that overflows?",
                 "GOOD LUCK, BUSINESS CAT!",
                 "Make your department purr-oud!"
             },
-            duration = 3f
+            duration = 4f
         }
     };
 
@@ -293,14 +243,15 @@ public class IntroCutsceneManager : MonoBehaviour
             _currentSequence.Append(DOTween.To(
                 () => 0,
                 (progress) => {
-                    int charsToShow = Mathf.FloorToInt(progress * line.Length);
+                    // Use linear interpolation for consistent speed
+                    int charsToShow = Mathf.Min(line.Length, Mathf.FloorToInt(progress * line.Length));
                     textDisplay.text = line.Substring(0, charsToShow);
                     if (typeSound != null && charsToShow > 0 && charsToShow <= line.Length)
                         _audioSource.PlayOneShot(typeSound);
                 },
                 1f,
                 typeDuration
-            ));
+            ).SetEase(Ease.Linear)); // Force linear easing for consistent speed
 
             // Add a small pause after typing
             _currentSequence.AppendInterval(0.2f);
@@ -312,6 +263,9 @@ public class IntroCutsceneManager : MonoBehaviour
         float remainingDuration = Mathf.Max(0.5f, currentScene.duration - textTime);
         Debug.Log($"[IntroCutscene] Waiting for remaining duration: {remainingDuration}s");
         _currentSequence.AppendInterval(remainingDuration);
+
+        // Add a pause before final fadeout
+        _currentSequence.AppendInterval(0.5f);
 
         // Fade out text
         _currentSequence.Append(textCanvasGroup.DOFade(0, textFadeDuration));

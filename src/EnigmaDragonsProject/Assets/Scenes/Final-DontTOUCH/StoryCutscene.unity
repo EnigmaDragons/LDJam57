@@ -367,6 +367,7 @@ MonoBehaviour:
   textDisplay: {fileID: 467006825}
   textCanvasGroup: {fileID: 741370317}
   textContainer: {fileID: 741370318}
+  textYOffset: 100
   textFadeDuration: 0.5
   textTypeSpeed: 0.05
   sceneTransitionDuration: 0.5
@@ -460,7 +461,7 @@ GameObject:
   - component: {fileID: 438172140}
   - component: {fileID: 438172139}
   m_Layer: 0
-  m_Name: 03_MrMittensOffice
+  m_Name: 03_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,7 +1071,7 @@ GameObject:
   - component: {fileID: 1476447423}
   - component: {fileID: 1476447422}
   m_Layer: 0
-  m_Name: 04_Boardroom
+  m_Name: 04_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1220,7 +1221,7 @@ GameObject:
   - component: {fileID: 1580535218}
   - component: {fileID: 1580535217}
   m_Layer: 0
-  m_Name: 01_Whiskr
+  m_Name: 01_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1296,7 +1297,7 @@ GameObject:
   - component: {fileID: 1681300373}
   - component: {fileID: 1681300372}
   m_Layer: 0
-  m_Name: 02_Lobby
+  m_Name: 02_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1341,7 +1342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2077d52c6e059634dbe82075c1db1636, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cb42645b20763548a5d3bcb49920fec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
