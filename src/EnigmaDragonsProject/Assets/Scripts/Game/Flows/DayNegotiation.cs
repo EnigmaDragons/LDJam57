@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class DayNegotiation : MonoBehaviour
 {
@@ -155,7 +157,40 @@ public class DayNegotiation : MonoBehaviour
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         
+        // Check if this is the player's first card in this round
+        var currentPlayer = CurrentGameState.ReadOnly.ActivePlayer;
+        bool isFirstCard = currentPlayer.CurrentRoundCash == 0;
+        
+        // Draw a card from the deck
         var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
+        
+        // CHEAT: If it's the player's first card and it's a Snap card, put it back and draw a non-snap card
+        if (isFirstCard && card is SnapCard)
+        {
+            Debug.Log("CHEAT ACTIVATED: Player would have drawn a Snap as their first card. Drawing a different card instead.");
+            
+            // Put the Snap card back (at a random position)
+            CurrentGameState.UpdateState(gs => {
+                gs.CurrentDeck.ShuffleCardIn(card);
+            });
+            
+            // Keep drawing until we get a non-Snap card
+            bool foundNonSnapCard = false;
+            while (!foundNonSnapCard)
+            {
+                card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
+                foundNonSnapCard = !(card is SnapCard);
+                
+                if (!foundNonSnapCard)
+                {
+                    // Put the Snap card back again
+                    CurrentGameState.UpdateState(gs => {
+                        gs.CurrentDeck.ShuffleCardIn(card);
+                    });
+                }
+            }
+        }
+        
         CurrentGameState.UpdateState(gs => gs);
         Message.Publish(new ShowCardDrawn(card));
     }
