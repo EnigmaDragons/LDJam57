@@ -123,6 +123,10 @@ public class PlayerUi : MonoBehaviour
                     targetColor.a = 1f;
                     
                     statusColorBg.DOColor(targetColor, 0.5f);
+
+                    totalFinalCashText.text = $"${playerState.BankedCash + playerState.CurrentRoundCash}";
+                    dayCashPanel.gameObject.SetActive(false);
+                    finalCashPanel.gameObject.SetActive(true);
                 }
             }
             else
