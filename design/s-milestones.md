@@ -61,6 +61,8 @@ Must Haves:
 x - All 5 Bosses
 x - Sounds
 x - Tutorial/Explanation
+- Play all the way through
+- Start with all characters unlocked
 
 Stretch:
 x - Intro Video
@@ -74,12 +76,12 @@ x - Intro Video
 Final Day Timeline
 
 Deadline: 
-08am - Intro Video
-10am - Unlocks & Cat Pickers
+X - 08am - Intro Video
+X - 10am - Unlocks & Cat Pickers
 12pm - Powers
 02pm - First WebGL test
 04pm - Art Polish
-06pm - Marketing Pages
+06pm - Marketing Page
 07pm - Submission - Final Build
 08pm - Submitted
 
@@ -87,7 +89,7 @@ Deadline:
 -----
 
 Keys to Today:
-- LOTS of Coffee
+X - LOTS of Coffee
 - Add Powers
 - Cool Intro
 - Submit
