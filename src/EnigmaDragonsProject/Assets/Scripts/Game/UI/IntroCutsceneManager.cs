@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq; // Add this for Sum extension method
 
 public class IntroCutsceneManager : MonoBehaviour
 {
@@ -135,6 +136,7 @@ public class IntroCutsceneManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textDisplay;
     [SerializeField] private CanvasGroup textCanvasGroup;
     [SerializeField] private RectTransform textContainer;
+    [SerializeField] private float textYOffset = 100f; // Distance from bottom of screen
     
     [Header("Animation Settings")]
     [SerializeField] private float textFadeDuration = 0.3f;
@@ -180,6 +182,17 @@ public class IntroCutsceneManager : MonoBehaviour
             }
         }
         Debug.Log($"[IntroCutscene] Initialized {_sceneObjects.Count} scene objects");
+        
+        // Initialize text display
+        if (textCanvasGroup != null)
+        {
+            textCanvasGroup.alpha = 0f; // Start invisible
+            Debug.Log("[IntroCutscene] Initialized text canvas group alpha to 0");
+        }
+        else
+        {
+            Debug.LogError("[IntroCutscene] Text Canvas Group is not assigned!");
+        }
         
         // Start the cutscene
         PlayCutscene();
@@ -252,39 +265,53 @@ public class IntroCutsceneManager : MonoBehaviour
             var line = currentScene.textLines[i];
             Debug.Log($"[IntroCutscene] Queueing text line {i + 1}: {line}");
             
-            // Fade out previous text
-            _currentSequence.Append(textCanvasGroup.DOFade(0, textFadeDuration));
+            // Fade out previous text (if not first line)
+            if (i > 0)
+            {
+                _currentSequence.Append(textCanvasGroup.DOFade(0, textFadeDuration));
+                _currentSequence.AppendInterval(0.1f); // Small pause between fade out and in
+            }
             
             // Set new text and type it out
             _currentSequence.AppendCallback(() => {
                 Debug.Log($"[IntroCutscene] Starting to type line: {line}");
                 textDisplay.text = "";
-                textDisplay.rectTransform.anchoredPosition = new Vector2(0, -i * lineSpacing * textDisplay.fontSize);
                 
-                // Type out the text with sound
-                var typeSequence = DOTween.Sequence();
-                for (int j = 0; j < line.Length; j++)
+                // Position text relative to screen bottom
+                if (textContainer != null)
                 {
-                    int currentIndex = j;
-                    typeSequence.AppendCallback(() => {
-                        textDisplay.text = line.Substring(0, currentIndex + 1);
-                        if (typeSound != null)
-                            _audioSource.PlayOneShot(typeSound);
-                    });
-                    typeSequence.AppendInterval(textTypeSpeed);
+                    textContainer.anchoredPosition = new Vector2(0, textYOffset);
+                    Debug.Log($"[IntroCutscene] Set text container position to y={textYOffset}");
                 }
             });
-            
-            // Fade in new text
+
+            // Fade in before typing starts
             _currentSequence.Append(textCanvasGroup.DOFade(1, textFadeDuration));
             
-            // Wait before next line
-            _currentSequence.AppendInterval(0.3f);
+            // Type out the text with sound
+            float typeDuration = line.Length * textTypeSpeed;
+            _currentSequence.Append(DOTween.To(
+                () => 0,
+                (progress) => {
+                    int charsToShow = Mathf.FloorToInt(progress * line.Length);
+                    textDisplay.text = line.Substring(0, charsToShow);
+                    if (typeSound != null && charsToShow > 0 && charsToShow <= line.Length)
+                        _audioSource.PlayOneShot(typeSound);
+                },
+                1f,
+                typeDuration
+            ));
+
+            // Add a small pause after typing
+            _currentSequence.AppendInterval(0.2f);
         }
 
-        // Wait for scene duration
-        Debug.Log($"[IntroCutscene] Waiting for scene duration: {currentScene.duration}s");
-        _currentSequence.AppendInterval(currentScene.duration);
+        // Wait for scene duration (minus time already spent on text)
+        float textTime = currentScene.textLines.Count * (textFadeDuration * 2 + 0.2f) + 
+                        currentScene.textLines.Sum(line => line.Length) * textTypeSpeed;
+        float remainingDuration = Mathf.Max(0.5f, currentScene.duration - textTime);
+        Debug.Log($"[IntroCutscene] Waiting for remaining duration: {remainingDuration}s");
+        _currentSequence.AppendInterval(remainingDuration);
 
         // Fade out text
         _currentSequence.Append(textCanvasGroup.DOFade(0, textFadeDuration));
