@@ -86,7 +86,6 @@ public class IntroCutsceneManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textDisplay;
     [SerializeField] private CanvasGroup textCanvasGroup;
     [SerializeField] private RectTransform textContainer;
-    [SerializeField] private float textYOffset = 100f; // Distance from bottom of screen
     
     [Header("Animation Settings")]
     [SerializeField] private float textFadeDuration = 0.3f;
@@ -215,6 +214,15 @@ public class IntroCutsceneManager : MonoBehaviour
             var line = currentScene.textLines[i];
             Debug.Log($"[IntroCutscene] Queueing text line {i + 1}: {line}");
             
+            // Set new text and type it out
+            _currentSequence.AppendCallback(() => {
+                Debug.Log($"[IntroCutscene] Starting to type line: {line}");
+                textDisplay.text = "";
+            });
+
+            // Fade in before typing starts
+            _currentSequence.Append(textCanvasGroup.DOFade(1, textFadeDuration));
+            
             // Type out the text with sound
             float typeDuration = line.Length * textTypeSpeed;
             _currentSequence.Append(DOTween.To(
@@ -233,28 +241,12 @@ public class IntroCutsceneManager : MonoBehaviour
             // Add the configurable delay after typing
             _currentSequence.AppendInterval(textDisplayDelay);
 
-            // Fade out previous text (if not first line)
-            if (i > 0)
+            // Fade out text (for all lines except the last one)
+            if (i < currentScene.textLines.Count - 1)
             {
                 _currentSequence.Append(textCanvasGroup.DOFade(0, textFadeDuration));
                 _currentSequence.AppendInterval(0.1f); // Small pause between fade out and in
             }
-            
-            // Set new text and type it out
-            _currentSequence.AppendCallback(() => {
-                Debug.Log($"[IntroCutscene] Starting to type line: {line}");
-                textDisplay.text = "";
-                
-                // Position text relative to screen bottom
-                if (textContainer != null)
-                {
-                    textContainer.anchoredPosition = new Vector2(0, textYOffset);
-                    Debug.Log($"[IntroCutscene] Set text container position to y={textYOffset}");
-                }
-            });
-
-            // Fade in before typing starts
-            _currentSequence.Append(textCanvasGroup.DOFade(1, textFadeDuration));
         }
 
         // Wait for scene duration (minus time already spent on text)

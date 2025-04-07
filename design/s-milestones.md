@@ -60,13 +60,13 @@ Milestone 3:
 Must Haves:
 x - All 5 Bosses
 x - Sounds
-- Tutorial/Explanation
+x - Tutorial/Explanation
 
 Stretch:
+x - Intro Video
 - Powers
 - Animations
 - Nicer UI
-- Intro Video
 
 
 -----
@@ -82,7 +82,6 @@ Deadline:
 06pm - Marketing Pages
 07pm - Submission - Final Build
 08pm - Submitted
-
 
 
 -----

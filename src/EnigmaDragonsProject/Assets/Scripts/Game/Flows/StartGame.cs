@@ -13,7 +13,7 @@ public class StartGame : MonoBehaviour
 
     private void Awake()
     {
-        if (initializeOnStartIfNotInitialized && CurrentGameState.ReadOnly == null || !CurrentGameState.ReadOnly.IsInitialized)
+        if (initializeOnStartIfNotInitialized && CurrentGameState.ReadOnly is not { IsInitialized: true })
         {
             InitializeGame();
         }

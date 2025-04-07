@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingCash: 0
-  initializeOnStartIfNotInitialized: 1
+  initializeOnStartIfNotInitialized: 0
 --- !u!1 &1715951582
 GameObject:
   m_ObjectHideFlags: 0
