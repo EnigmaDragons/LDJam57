@@ -104,6 +104,7 @@ public class IntroCutsceneManager : MonoBehaviour
     private bool _isPlaying = false;
     private AudioSource _audioSource;
     private bool _hasAttemptedSkip = false;
+    private float _lastSoundTime = -0.7f;
 
     private void Start()
     {
@@ -234,7 +235,14 @@ public class IntroCutsceneManager : MonoBehaviour
                     int charsToShow = Mathf.Min(line.Length, Mathf.FloorToInt(progress * line.Length));
                     textDisplay.text = line.Substring(0, charsToShow);
                     if (typeSound != null && charsToShow > 0 && charsToShow <= line.Length)
-                        _audioSource.PlayOneShot(typeSound);
+                    {
+                        float currentTime = Time.time;
+                        if (currentTime - _lastSoundTime >= 0.2f)
+                        {
+                            _audioSource.PlayOneShot(typeSound);
+                            _lastSoundTime = currentTime;
+                        }
+                    }
                 },
                 1f,
                 typeDuration

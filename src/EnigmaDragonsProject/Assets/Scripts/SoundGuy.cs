@@ -9,6 +9,8 @@ public enum SoundType
     SnapCard = 4,
     AcceptOffer = 5,
     ItsYourTurn = 6,
+    CharacterCashPower = 7,
+    CharacterDodgePower = 8,
 }
 
 public class SoundGuy : OnMessage<PlayUiSound>
