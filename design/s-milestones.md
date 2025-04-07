@@ -40,9 +40,9 @@ Milestone 2:
   [x] More Player Cat Arts
   [x] Five Days
   [x] Position Bosses Correctly in their Environments
-  [] Sounds
-  [] Boss Mood Bar
-  [] Show when More Snaps Are Added
+  [x] Sounds
+  [x] Boss Mood Bar
+  [x] Show when More Snaps Are Added
   [] Deck 
     [] Num Cards
     [] Num Snaps
@@ -58,12 +58,38 @@ Milestone 3:
 
 
 Must Haves:
-- All 5 Bosses
-- Sounds
+x - All 5 Bosses
+x - Sounds
 - Tutorial/Explanation
 
 Stretch:
 - Powers
 - Animations
 - Nicer UI
+- Intro Video
+
+
+-----
+
+Final Day Timeline
+
+Deadline: 
+08am - Intro Video
+10am - Powers
+12pm - Unlocks & Cat Pickers
+02pm - First WebGL test
+04pm - Art Polish
+06pm - Marketing Pages
+07pm - Submission - Final Build
+08pm - Submitted
+
+
+
+-----
+
+Keys to Today:
+- LOTS of Coffee
+- Add Powers
+- Cool Intro
+- Submit
 

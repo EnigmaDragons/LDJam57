@@ -7,6 +7,7 @@ using UnityEditor;
 public class PlayerUi : MonoBehaviour
 {
     [SerializeField] private Image characterFaceImage;
+    [SerializeField] private TextMeshProUGUI youText;
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI totalCashText;
     [SerializeField] private TextMeshProUGUI totalFinalCashText;
@@ -134,7 +135,8 @@ public class PlayerUi : MonoBehaviour
                 Debug.LogWarning("CanvasGroup component not found on PlayerUI. Cannot fade out inactive player.");
             }
         }
-            
+
+        youText.text = playerState.Player.PlayerType == PlayerType.Human ? "You" : "";
         // Update character face
         if (characterFaceImage != null && playerState.Player.Character != null)
         {
