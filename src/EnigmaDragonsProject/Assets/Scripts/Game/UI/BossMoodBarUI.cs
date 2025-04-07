@@ -13,12 +13,17 @@ public class BossMoodBarUI : MonoBehaviour
     
     [Header("Mood Color Settings")]
     [SerializeField] private Color calmColor = new Color(0.3f, 0.8f, 0.3f); // Green
-    [SerializeField] private Color annoyedColor = new Color(0.9f, 0.9f, 0.2f); // Yellow
-    [SerializeField] private Color angryColor = new Color(0.9f, 0.3f, 0.2f); // Red
+    [SerializeField] private Color waryColor = new Color(0.9f, 0.9f, 0.2f); // Yellow
+    [SerializeField] private Color budgetConsciousColor = new Color(0.9f, 0.3f, 0.2f); // Red
     
     [Header("Mood Thresholds")]
-    [SerializeField] private int annoyedThreshold = 20;
-    [SerializeField] private int angryThreshold = 40;
+    [SerializeField] private int waryThreshold = 20;
+    [SerializeField] private int budgetConsciousThreshold = 40;
+    
+    [Header("Gradient Animation")]
+    [SerializeField] private float gradientAnimSpeed = 0.5f;
+    [SerializeField] private float gradientTiling = 2f;
+    [SerializeField] private float gradientContrast = 0.2f; // How strong the gradient effect is (0-1)
     
     [Header("Feedback Settings")]
     [SerializeField] private float feedbackDisplayTime = 3f;
@@ -29,9 +34,15 @@ public class BossMoodBarUI : MonoBehaviour
     
     private GameState _lastKnownState;
     private int _previousMoodTier = 0;
+    private Material _gradientMaterial;
+    private float _gradientOffset = 0f;
+    private static readonly int MainTexOffset = Shader.PropertyToID("_MainTex_ST");
     
     private void Start()
     {
+        // Setup the animated gradient material
+        SetupGradientMaterial();
+        
         // Subscribe to game state changes
         CurrentGameState.Subscribe(OnGameStateChanged, this);
         
@@ -53,12 +64,52 @@ public class BossMoodBarUI : MonoBehaviour
         if (moodChangeFeedback != null)
             moodChangeFeedback.SetActive(false);
     }
+
+    private void Update()
+    {
+        // Animate the gradient
+        AnimateGradient();
+    }
     
     private void OnDestroy()
     {
+        // Clean up material
+        if (_gradientMaterial != null && Application.isPlaying)
+            Destroy(_gradientMaterial);
+            
         // Unsubscribe when this object is destroyed
         CurrentGameState.Unsubscribe(this);
         Message.Unsubscribe(this);
+    }
+    
+    private void SetupGradientMaterial()
+    {
+        if (moodFillBar != null)
+        {
+            // Create a new material based on the current one
+            _gradientMaterial = new Material(moodFillBar.material);
+            
+            // Set the tiling to create a gradient effect
+            _gradientMaterial.SetVector(MainTexOffset, new Vector4(gradientTiling, 1, 0, 0));
+            
+            // Apply it to the image
+            moodFillBar.material = _gradientMaterial;
+        }
+    }
+    
+    private void AnimateGradient()
+    {
+        if (_gradientMaterial == null)
+            return;
+            
+        // Update the offset for animation
+        _gradientOffset += Time.deltaTime * gradientAnimSpeed;
+        if (_gradientOffset > 1f)
+            _gradientOffset -= 1f;
+            
+        // Update the material
+        Vector4 currentOffset = _gradientMaterial.GetVector(MainTexOffset);
+        _gradientMaterial.SetVector(MainTexOffset, new Vector4(currentOffset.x, currentOffset.y, _gradientOffset, 0));
     }
     
     private void OnGameStateChanged(GameStateChanged evt)
@@ -106,22 +157,40 @@ public class BossMoodBarUI : MonoBehaviour
         float fillAmount = Mathf.Clamp01((float)currentMood / maxMoodValue);
         moodFillBar.fillAmount = fillAmount;
         
-        // Set the color based on mood level
-        if (currentMood >= angryThreshold)
+        // Smoothly interpolate between colors based on mood level
+        float t1 = Mathf.InverseLerp(0, waryThreshold, currentMood);
+        float t2 = Mathf.InverseLerp(waryThreshold, budgetConsciousThreshold, currentMood);
+        
+        Color barColor;
+        string moodLabel;
+        
+        if (currentMood >= budgetConsciousThreshold)
         {
-            moodFillBar.color = angryColor;
-            moodLabelText.text = "FURIOUS";
+            // Interpolate between wary and budget-conscious
+            float t = Mathf.InverseLerp(budgetConsciousThreshold, maxMoodValue, currentMood);
+            barColor = Color.Lerp(waryColor, budgetConsciousColor, t);
+            moodLabel = "BUDGET-CONSCIOUS";
         }
-        else if (currentMood >= annoyedThreshold)
+        else if (currentMood >= waryThreshold)
         {
-            moodFillBar.color = annoyedColor;
-            moodLabelText.text = "ANNOYED";
+            // Interpolate between calm and wary
+            float t = Mathf.InverseLerp(waryThreshold, budgetConsciousThreshold, currentMood);
+            barColor = Color.Lerp(calmColor, waryColor, t);
+            moodLabel = "WARY";
         }
         else
         {
-            moodFillBar.color = calmColor;
-            moodLabelText.text = "HAPPY";
+            // Interpolate from happy to almost-wary based on how close to wary threshold
+            float t = Mathf.InverseLerp(0, waryThreshold, currentMood);
+            barColor = Color.Lerp(calmColor, Color.Lerp(calmColor, waryColor, 0.5f), t);
+            moodLabel = "HAPPY";
         }
+        
+        // Apply the base color to the material
+        moodFillBar.color = barColor;
+        
+        // Apply mood label
+        moodLabelText.text = moodLabel;
         
         // Log for debugging
         Debug.Log($"Boss Mood Updated: {bossState.Boss.Name}, Mood: {currentMood}, MoodTier: {currentMoodTier}");

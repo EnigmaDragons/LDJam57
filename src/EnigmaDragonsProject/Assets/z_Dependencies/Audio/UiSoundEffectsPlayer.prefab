@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6698065958409640548}
   - component: {fileID: 7318196694813104344}
   - component: {fileID: 8343361537247501593}
+  - component: {fileID: 411951770179663801}
   m_Layer: 0
   m_Name: UiSoundEffectsPlayer
   m_TagString: UiSounds
@@ -166,3 +167,31 @@ MonoBehaviour:
     FloatVariable: {fileID: 0}
   player: {fileID: 0}
   demoSound: {fileID: 0}
+--- !u!114 &411951770179663801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438735157852827517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552de7e0b0ee4fc0b3fa3a7657b8c25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxPlayer: {fileID: 11400000, guid: bfe56e3518f684c4387de97bd5db348d, type: 2}
+  deckShuffled:
+    clip: {fileID: 8300000, guid: ca35ca2f5feea9a4f8b4926e832f31e9, type: 3}
+    volume: 1
+  cardDraw:
+    clip: {fileID: 8300000, guid: e9d80c907449a5e48acfc194684c2304, type: 3}
+    volume: 1
+  cardFlip:
+    clip: {fileID: 8300000, guid: 71bf7306bc34f0e4bbfe298ea0e522dc, type: 3}
+    volume: 1
+  happyCard:
+    clip: {fileID: 8300000, guid: 619a4f07b56cad7499da046965a26827, type: 3}
+    volume: 1
+  snapCard:
+    clip: {fileID: 8300000, guid: 7045d8ddd690f734589454b68cf1d7d1, type: 3}
+    volume: 1
