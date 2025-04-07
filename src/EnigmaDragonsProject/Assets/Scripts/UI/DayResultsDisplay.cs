@@ -32,16 +32,14 @@ public class DayResultsDisplay : MonoBehaviour
     {
         Message.Subscribe<ShowDayResults>(OnShowDayResults, this);
         
-        if (continueButton != null)
-            continueButton.onClick.AddListener(OnContinueClicked);
+        continueButton.onClick.AddListener(OnContinueClicked);
     }
     
     private void OnDisable()
     {
         Message.Unsubscribe(this);
         
-        if (continueButton != null)
-            continueButton.onClick.RemoveListener(OnContinueClicked);
+        continueButton.onClick.RemoveListener(OnContinueClicked);
     }
     
     private void OnShowDayResults(ShowDayResults msg)
@@ -126,9 +124,7 @@ public class DayResultsDisplay : MonoBehaviour
     
     private void OnContinueClicked()
     {
-        // Hide the results panel
-        if (resultsPanel != null)
-            resultsPanel.SetActive(false);
+        resultsPanel.SetActive(false);
             
         // Reset and hide all player UIs
         foreach (var playerUI in playerUis)
@@ -140,9 +136,7 @@ public class DayResultsDisplay : MonoBehaviour
             }
         }
         
-        // Hide the darken background
-        if (darken != null)
-            darken.SetActive(false);
+        darken.SetActive(false);
         
         Message.Publish(new ContinueToNextDayButtonPressed());
     }

@@ -22,7 +22,7 @@ public sealed class GameState
     public int PlayerTurnIndex = 0;
     public bool IsDayFinished = false;
 
-    public PlayerState ActivePlayer => PlayerStates[PlayerTurnIndex];
+    public PlayerState ActivePlayer => PlayerTurnIndex > -1 ? PlayerStates[PlayerTurnIndex] : null;
     public int ActivePlayerCount => PlayerStates.Count(x => x.IsActiveInDay);
     
     public void AdvanceToNextDay()

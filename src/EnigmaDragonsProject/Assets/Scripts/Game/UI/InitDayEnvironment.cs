@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System;
 using System.Collections;
 using TMPro;
 
 public class InitDayEnvironment : MonoBehaviour
 {
-    [SerializeField] private Image backgroundImage;
-    [SerializeField] private Image bossCharacterImage;
+    [SerializeField] private GameObject[] bossEnvironments;
     [SerializeField] private GameMusicPlayer musicPlayer;
     [SerializeField] private TextMeshProUGUI bossNameText;
     [SerializeField] private TextMeshProUGUI locationText;
@@ -19,8 +16,7 @@ public class InitDayEnvironment : MonoBehaviour
     
     private void Start()
     {
-        if (backgroundImage == null || bossCharacterImage == null || musicPlayer == null || 
-            bossNameText == null || locationText == null)
+        if (musicPlayer == null || bossNameText == null || locationText == null)
         {
             Debug.LogError("One or more required components not assigned to InitDayEnvironment");
             return;
@@ -86,19 +82,7 @@ public class InitDayEnvironment : MonoBehaviour
             }
         }
         
-        // Update background image
-        Sprite environmentSprite = currentBoss.Environment;
-        if (environmentSprite != null)
-        {
-            backgroundImage.sprite = environmentSprite;
-        }
-        
-        // Update boss character image
-        Sprite profileSprite = currentBoss.Profile;
-        if (profileSprite != null)
-        {
-            bossCharacterImage.sprite = profileSprite;
-        }
+        bossEnvironments.ForEachIndex((g, i) => g.SetActive(i == currentBoss.Id));
         
         // Update boss name and location text
         bossNameText.text = currentBoss.Name;

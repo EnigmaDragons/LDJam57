@@ -3,6 +3,7 @@ using UnityEngine;
 
 public interface Boss
 {
+    public int Id { get; }
     public string Name { get; }
     public Dictionary<int, int> MoodSnapsTable { get; }
 
@@ -16,6 +17,7 @@ public interface Boss
 
 public class StaticBoss : Boss
 {
+    public int Id { get; set; } = -1;
     public string Name { get; set; }
     public string EnvironmentName { get; set; }
     public Dictionary<int, int> MoodSnapsTable { get; set; }

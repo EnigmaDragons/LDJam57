@@ -37,9 +37,10 @@ Milestone 1:
 [x] Game Won
 
 Milestone 2:
+  [x] More Player Cat Arts
+  [x] Five Days
   [] Sounds
-  [] Five Days
-  [] More Player Cat Arts
+  [] Position Bosses Correctly in their Environments
   [] Boss Mood Bar
   [] Deck 
     [] Num Cards
@@ -52,4 +53,16 @@ Milestone 2:
 Milestone 3:
 
     [] Nice to have Boss Speech Bubbles for Each Interaction
+
+
+
+Must Haves:
+- All 5 Bosses
+- Sounds
+- Tutorial/Explanation
+
+Stretch:
+- Powers
+- Animations
+- Nicer UI
 

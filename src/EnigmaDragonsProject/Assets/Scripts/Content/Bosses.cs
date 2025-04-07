@@ -5,6 +5,7 @@ public static class Bosses
 {
     public static readonly Boss MrMittens = new StaticBoss
     {
+        Id = 4,
         Name = "Mr. Mittens",
         EnvironmentName = "CEO Office",
         SpriteEnvironmentPath = "Sprites/Environments/Env-MrMittens",
@@ -29,6 +30,7 @@ public static class Bosses
     
     public static readonly Boss VictoriaClawford = new StaticBoss
     {
+        Id = 3,
         Name = "Victoria Clawford",
         EnvironmentName = "Finance Department",
         SpriteEnvironmentPath = "Sprites/Environments/Env-VictoriaClawford",
@@ -53,6 +55,7 @@ public static class Bosses
     
     public static readonly Boss RexGrowlington = new StaticBoss
     {
+        Id = 2,
         Name = "Rex Growlington",
         EnvironmentName = "Security Office",
         SpriteEnvironmentPath = "Sprites/Environments/Env-RexGrowlington",
@@ -77,6 +80,7 @@ public static class Bosses
     
     public static readonly Boss PawlaWhiskerberg = new StaticBoss
     {
+        Id = 1,
         Name = "Pawla Whiskerberg",
         EnvironmentName = "Legal Department",
         SpriteEnvironmentPath = "Sprites/Environments/Env-PawlaWhiskerberg",
@@ -101,6 +105,7 @@ public static class Bosses
     
     public static readonly Boss DrFelixBytepaws = new StaticBoss
     {
+        Id = 0,
         Name = "Dr. Felix Bytepaws",
         EnvironmentName = "Tech Department",
         SpriteEnvironmentPath = "Sprites/Environments/Env-DrFelixBytepaws",

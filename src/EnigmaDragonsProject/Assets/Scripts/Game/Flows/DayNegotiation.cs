@@ -120,8 +120,6 @@ public class DayNegotiation : MonoBehaviour
         switch (_currentDayEndStep)
         {
             case DayEndStep.ShowResults:
-                // ATTN: Need to implement UI to show day results and final standings
-                // UI should call AdvanceToNextDay() when player is ready to continue
                 break;
                 
             case DayEndStep.ProcessToNextDay:
@@ -150,6 +148,11 @@ public class DayNegotiation : MonoBehaviour
     private void OnCardDrawShown(Finished<ShowCardDrawn> msg)
     {
         var currentPlayer = CurrentGameState.ReadOnly.ActivePlayer;
+        if (currentPlayer == null)
+        {
+            return;
+        }
+        
         Card card = msg.Message.Card;
         
         // Apply card effects to the player
@@ -228,10 +231,7 @@ public class DayNegotiation : MonoBehaviour
     }
     
     public void AdvanceToNextDay()
-    {
-        if (_currentPhase != Phase.DayEnd || _currentDayEndStep != DayEndStep.ShowResults)
-            return;
-            
+    {           
         _currentDayEndStep = DayEndStep.ProcessToNextDay;
         ProcessCurrentStep();
     }
