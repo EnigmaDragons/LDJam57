@@ -8,6 +8,7 @@ public enum PowerType
 
 public interface CharacterPower 
 {
+  public bool IsImplemented { get; }
   public bool IsAvailable { get; }
   public PowerType PowerType { get; }
   public void NotifyNewGameStarted();

@@ -11,18 +11,22 @@ public enum SoundType
     ItsYourTurn = 6,
     CharacterCashPower = 7,
     CharacterDodgePower = 8,
+    DeckShuffledShort = 9,
 }
 
 public class SoundGuy : OnMessage<PlayUiSound>
 {
     [SerializeField] private UiSfxPlayer sfxPlayer;
     [SerializeField] private AudioClipVolume deckShuffled;
+    [SerializeField] private AudioClipVolume deckShuffledShort;
     [SerializeField] private AudioClipVolume cardDraw;
     [SerializeField] private AudioClipVolume cardFlip;
     [SerializeField] private AudioClipVolume happyCard;
     [SerializeField] private AudioClipVolume snapCard;
     [SerializeField] private AudioClipVolume acceptOffer;
     [SerializeField] private AudioClipVolume itsYourTurn;
+    [SerializeField] private AudioClipVolume characterCashPower;
+    [SerializeField] private AudioClipVolume characterDodgePower;
     
     protected override void Execute(PlayUiSound msg)
     {
@@ -30,6 +34,9 @@ public class SoundGuy : OnMessage<PlayUiSound>
         {
             case SoundType.DeckShuffled:
                 sfxPlayer.Play(deckShuffled);
+                break;
+            case SoundType.DeckShuffledShort:
+                sfxPlayer.Play(deckShuffledShort);
                 break;
             case SoundType.CardDraw:
                 sfxPlayer.Play(cardDraw);

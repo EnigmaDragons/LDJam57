@@ -1,5 +1,6 @@
 public class NoPower : CharacterPower
 {
+    public bool IsImplemented => false;
     public bool IsAvailable => false;
     public PowerType PowerType => PowerType.AutoStartOfWeek;
     public void NotifyNewGameStarted() { }
@@ -15,7 +16,7 @@ public class GainMoneyAtStartOfDayPower : CharacterPower
     {
         _amount = amount;
     }
-    
+    public bool IsImplemented => true;
     public bool IsAvailable { get; private set; } = true;
     public PowerType PowerType => PowerType.AutoStartOfDay;
     
@@ -43,6 +44,7 @@ public class GainMoneyAtStartOfDayPower : CharacterPower
 
 public class IgnoreOneSnapCardEver : CharacterPower
 {
+    public bool IsImplemented => true;
     public bool IsAvailable { get; private set; }
     public PowerType PowerType => PowerType.DiscardSnapAfterDrawn;
     
