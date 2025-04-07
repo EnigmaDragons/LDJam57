@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using System;
 
 public class DayNegotiation : MonoBehaviour
 {
@@ -234,8 +235,17 @@ public class DayNegotiation : MonoBehaviour
 
         if (!skipApply)
         {
+            Func<int, int> valueModifier = (int value) => value;
+            if (card.Type == CardType.Offer && power.PowerType == PowerType.OfferInverter && power.IsAvailable)
+            {
+                OfferCard offerCard = card as OfferCard;
+                valueModifier = (int value) => 25 - value;
+                Message.Publish(new ShowCharacterPowerExplanation(
+                    $"{character.Name} uses {character.PowerName}. Original: ${offerCard.Value}. New: ${valueModifier(offerCard.Value)}", currentPlayer));
+            }
+
             // Apply card effects to the player
-            card.Apply(CurrentGameState.ReadOnly, currentPlayer);
+            card.Apply(CurrentGameState.ReadOnly, currentPlayer, valueModifier);
 
             // Update Boss Mood
             var cardBossMoodMod = card.BossMoodMod;

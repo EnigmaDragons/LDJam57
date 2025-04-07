@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public interface Card
@@ -7,7 +8,7 @@ public interface Card
     int BossMoodMod { get; }
     string Description { get; }
 
-    void Apply(GameState gs, PlayerState actingPlayer);
+    void Apply(GameState gs, PlayerState actingPlayer, Func<int, int> valueModifier);
 }
 
 public enum CardType 
@@ -23,6 +24,8 @@ public class OfferCard : Card
     private readonly int _id;
     private readonly int _value;
 
+    public int Value => _value;
+
     public OfferCard(int value, int bossMoodMod)
     {
         _value = value;
@@ -34,9 +37,9 @@ public class OfferCard : Card
     public int BossMoodMod { get; }
     public string Description => $"+${_value}";
 
-    public void Apply(GameState gs, PlayerState actingPlayer)
+    public void Apply(GameState gs, PlayerState actingPlayer, Func<int, int> valueModifier)
     {
-        CurrentGameState.UpdateState(_ => actingPlayer.ChangeCurrentDayCash(_value));
+        CurrentGameState.UpdateState(_ => actingPlayer.ChangeCurrentDayCash(valueModifier(_value)));
     }
 
     public int id => _id + 1000;
@@ -57,7 +60,7 @@ public class SnapCard : Card
     public int BossMoodMod => 0;
     public string Description => "SNAP! Lose today's cash!";
     
-    public void Apply(GameState gs, PlayerState actingPlayer)
+    public void Apply(GameState gs, PlayerState actingPlayer, Func<int, int> valueModifier)
     {
         // The player loses all cash from today and is knocked out
         CurrentGameState.UpdateState(_ => actingPlayer.NotifySnapped());

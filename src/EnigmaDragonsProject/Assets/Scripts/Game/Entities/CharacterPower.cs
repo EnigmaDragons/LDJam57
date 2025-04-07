@@ -8,6 +8,7 @@ public enum PowerType
   SeeSnapOdds = 4,
   AfterBankPower = 5,
   AfterDrawCardSelectedBeforeDraw = 6,
+  OfferInverter = 7,
 }
 
 public interface CharacterPower 

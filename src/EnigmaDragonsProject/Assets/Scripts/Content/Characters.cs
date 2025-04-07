@@ -89,6 +89,7 @@ public class Characters
         PowerDescription = "Gain more money for low value cards, and less for high value cards.",
         Department = "Social Media",
         SpritePathFace = "Sprites/PlayerCharacters/Face-DJScratchy",
+        Power = new OfferInverterPower()
     };
     
     public static Character DrPurrington = new StaticCharacter

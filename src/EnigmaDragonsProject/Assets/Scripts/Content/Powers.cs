@@ -221,3 +221,7 @@ public class BrilliantIdeaPower : CharacterPower
     }
 }
 
+public class OfferInverterPower : PassivePower {
+  public OfferInverterPower() : base(PowerType.OfferInverter) { }
+}
+
