@@ -156,6 +156,11 @@ public class PlayerState
         IsActiveInDay = false;    
     }
 
+    public void AddDirectlyToBank(int amount)
+    {
+        BankedCash += amount;
+    }
+
     public void NotifySnapped()
     {
         CurrentRoundCash = 0;

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class NoPower : CharacterPower
 {
     public bool IsImplemented => false;
@@ -56,6 +58,27 @@ public class IgnoreOneSnapCardEver : CharacterPower
         Message.Publish(new ShowCharacterPowerExplanation($"{context.UsingPlayer.Player.Character.Name} used their power to ignore the snap.", context.UsingPlayer));
         CurrentGameState.UpdateState(gs =>
         {
+            context.UsingPlayer.RecordPowerUsed();
+        });
+    }
+}
+
+public class BankInterestPower : CharacterPower
+{
+    public bool IsImplemented => true;
+    public bool IsAvailable { get; private set; }
+    public PowerType PowerType => PowerType.AutoStartOfDay;
+    
+    public void NotifyNewDayStarted() { }
+    public void NotifyNewGameStarted() => IsAvailable = true;
+    public void Apply(PowerContext context)
+    {
+        IsAvailable = false;
+        var interestAmount = Mathf.CeilToInt(context.UsingPlayer.BankedCash * 0.10f);
+        Message.Publish(new ShowCharacterPowerExplanation($"{context.UsingPlayer.Player.Character.Name} gained ${interestAmount} interest.", context.UsingPlayer));
+        CurrentGameState.UpdateState(gs =>
+        {
+            context.UsingPlayer.AddDirectlyToBank(interestAmount);
             context.UsingPlayer.RecordPowerUsed();
         });
     }

@@ -26,10 +26,11 @@ public class Characters
     public static Character WhiskersMcNumbers = new StaticCharacter
     {
         Name = "Whiskers McNumbers",
-        PowerName = "Financial Acumen",
-        PowerDescription = "Gets +10% bonus on all Offer Cards because he knows where the money is hidden.",
+        PowerName = "Saavy Investor",
+        PowerDescription = "Each day, bank 10% interest before negotiations start.",
         Department = "Finance",
         SpritePathFace = "Sprites/PlayerCharacters/Face-WhiskersMcNumbers",
+        Power = new BankInterestPower()
     };
     
     public static Character SirPouncelot = new StaticCharacter
