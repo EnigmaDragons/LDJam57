@@ -140,7 +140,7 @@ public class PlayerState
         Player.Character.Power.NotifyNewDayStarted();
     }
 
-    public void RecordPowerUser()
+    public void RecordPowerUsed()
     {
         PowerUsedToday = true;
         PowerUsedEver = true;

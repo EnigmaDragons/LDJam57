@@ -33,7 +33,11 @@ public class GainMoneyAtStartOfDayPower : CharacterPower
     {
         IsAvailable = false;
         Message.Publish(new ShowCharacterPowerExplanation($"{context.UsingPlayer.Player.Character.Name} used their power to gain ${_amount}", context.UsingPlayer));
-        CurrentGameState.UpdateState(gs => context.UsingPlayer.ChangeCashFromEffect(_amount));
+        CurrentGameState.UpdateState(gs =>
+        {
+            context.UsingPlayer.ChangeCashFromEffect(_amount);
+            context.UsingPlayer.RecordPowerUsed();
+        });
     }
 }
 
@@ -48,5 +52,9 @@ public class IgnoreOneSnapCardEver : CharacterPower
     {
         IsAvailable = false;
         Message.Publish(new ShowCharacterPowerExplanation($"{context.UsingPlayer.Player.Character.Name} used their power to ignore the snap.", context.UsingPlayer));
+        CurrentGameState.UpdateState(gs =>
+        {
+            context.UsingPlayer.RecordPowerUsed();
+        });
     }
 }

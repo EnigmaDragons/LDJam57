@@ -16,17 +16,17 @@ public class BossMoodBarUI : MonoBehaviour
     [SerializeField] private List<MoodTierConfig> moodTiers = new List<MoodTierConfig>
     {
         new MoodTierConfig(0, "DELIGHTED", new Color(0.0f, 0.7f, 0.0f)),       // Dark Green
-        new MoodTierConfig(5, "CONTENT", new Color(0.2f, 0.8f, 0.2f)),          // Green
-        new MoodTierConfig(10, "SATISFIED", new Color(0.4f, 0.8f, 0.4f)),       // Light Green
-        new MoodTierConfig(15, "ATTENTIVE", new Color(0.6f, 0.8f, 0.4f)),       // Yellow-Green
-        new MoodTierConfig(20, "CURIOUS", new Color(0.8f, 0.8f, 0.2f)),         // Yellow
-        new MoodTierConfig(25, "NEUTRAL", new Color(0.9f, 0.8f, 0.2f)),         // Dark Yellow
-        new MoodTierConfig(30, "CONCERNED", new Color(0.9f, 0.7f, 0.1f)),       // Orange-Yellow
-        new MoodTierConfig(35, "SKEPTICAL", new Color(0.9f, 0.6f, 0.1f)),       // Orange
-        new MoodTierConfig(40, "WARY", new Color(0.9f, 0.5f, 0.1f)),            // Dark Orange
-        new MoodTierConfig(45, "IRRITATED", new Color(0.9f, 0.3f, 0.1f)),       // Red-Orange
-        new MoodTierConfig(50, "AGITATED", new Color(0.9f, 0.2f, 0.1f)),        // Light Red
-        new MoodTierConfig(55, "BUDGET-CONSCIOUS", new Color(0.9f, 0.1f, 0.1f)) // Deep Red
+        new MoodTierConfig(3, "CONTENT", new Color(0.2f, 0.8f, 0.2f)),          // Green
+        new MoodTierConfig(6, "SATISFIED", new Color(0.4f, 0.8f, 0.4f)),       // Light Green
+        new MoodTierConfig(9, "ATTENTIVE", new Color(0.6f, 0.8f, 0.4f)),       // Yellow-Green
+        new MoodTierConfig(12, "CURIOUS", new Color(0.8f, 0.8f, 0.2f)),         // Yellow
+        new MoodTierConfig(15, "NEUTRAL", new Color(0.9f, 0.8f, 0.2f)),         // Dark Yellow
+        new MoodTierConfig(18, "CONCERNED", new Color(0.9f, 0.7f, 0.1f)),       // Orange-Yellow
+        new MoodTierConfig(21, "SKEPTICAL", new Color(0.9f, 0.6f, 0.1f)),       // Orange
+        new MoodTierConfig(24, "WARY", new Color(0.9f, 0.5f, 0.1f)),            // Dark Orange
+        new MoodTierConfig(27, "IRRITATED", new Color(0.9f, 0.3f, 0.1f)),       // Red-Orange
+        new MoodTierConfig(30, "AGITATED", new Color(0.9f, 0.2f, 0.1f)),        // Light Red
+        new MoodTierConfig(33, "BUDGET-CONSCIOUS", new Color(0.9f, 0.1f, 0.1f)) // Deep Red
     };
     
     [Header("Gradient Animation")]
