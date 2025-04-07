@@ -17,9 +17,10 @@ public class Characters
     {
         Name = "Miss Meowgan",
         PowerName = "Spin Doctor",  
-        PowerDescription = "Can discard 1 Snap card per round by explaining it away as a \"strategic pivot.\"",
+        PowerDescription = "First time you draw a snap card this week, ignore it.",
         Department = "Public Relations",
         SpritePathFace = "Sprites/PlayerCharacters/Face-MissMeowgan",
+        Power = new IgnoreOneSnapCardEver()
     };
     
     public static Character WhiskersMcNumbers = new StaticCharacter

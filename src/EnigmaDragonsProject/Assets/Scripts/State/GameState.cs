@@ -137,6 +137,7 @@ public class PlayerState
         IsActiveInDay = true;
         HasDrawnCardToday = false;
         CashBankedToday = 0;
+        Player.Character.Power.NotifyNewDayStarted();
     }
 
     public void RecordPowerUser()

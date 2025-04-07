@@ -3,12 +3,14 @@ public enum PowerType
 {
   AutoStartOfDay = 0,
   AutoStartOfWeek = 1,
+  DiscardSnapAfterDrawn = 2,
 }
 
 public interface CharacterPower 
 {
   public bool IsAvailable { get; }
   public PowerType PowerType { get; }
+  public void NotifyNewGameStarted();
   public void NotifyNewDayStarted();
   public void Apply(PowerContext context);
 }

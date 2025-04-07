@@ -216,47 +216,57 @@ public class DayNegotiation : MonoBehaviour
     {
         var currentPlayer = CurrentGameState.ReadOnly.ActivePlayer;
         if (currentPlayer == null)
-        {
             return;
-        }
-        
-        Card card = msg.Message.Card;
-        
-        // Apply card effects to the player
-        card.Apply(CurrentGameState.ReadOnly, currentPlayer);
-        
-        // Update boss mood based on the card
-        CurrentGameState.UpdateState(gs => 
+
+        var card = msg.Message.Card;
+        // NOTE: It's not clear that this logic belongs here... but for now we have to implement fast
+        var character = currentPlayer.Player.Character;
+        var power = character.Power;
+        var skipApply = false;
+        if (card.Type == CardType.Snap && power.PowerType == PowerType.DiscardSnapAfterDrawn && power.IsAvailable)
         {
-            // Check if the card affects boss mood
-            int moodChange = card.BossMoodMod;
-            
-            // If the card affects boss mood, update it
-            if (moodChange != 0)
+            power.Apply(new PowerContext(CurrentGameState.ReadOnly, currentPlayer));
+            skipApply = true;
+        }
+
+        if (!skipApply)
+        {
+            // Apply card effects to the player
+            card.Apply(CurrentGameState.ReadOnly, currentPlayer);
+
+            // Update boss mood based on the card
+            CurrentGameState.UpdateState(gs =>
             {
-                // Get the number of snaps to add based on mood change
-                int snapsToAdd = gs.BossState.UpdateMoodAndGetSnapsChanges(moodChange);
-                
-                // If snaps should be added, create and shuffle them into the deck
-                if (snapsToAdd > 0)
+                // Check if the card affects boss mood
+                int moodChange = card.BossMoodMod;
+
+                // If the card affects boss mood, update it
+                if (moodChange != 0)
                 {
-                    Debug.Log($"Boss mood increased! Adding {snapsToAdd} snap(s) to the deck");
-                    
-                    // Create snap cards and add them to the deck
-                    for (int i = 0; i < snapsToAdd; i++)
+                    // Get the number of snaps to add based on mood change
+                    int snapsToAdd = gs.BossState.UpdateMoodAndGetSnapsChanges(moodChange);
+
+                    // If snaps should be added, create and shuffle them into the deck
+                    if (snapsToAdd > 0)
                     {
-                        gs.CurrentDeck.ShuffleCardIn(new SnapCard());
+                        Debug.Log($"Boss mood increased! Adding {snapsToAdd} snap(s) to the deck");
+
+                        // Create snap cards and add them to the deck
+                        for (int i = 0; i < snapsToAdd; i++)
+                        {
+                            gs.CurrentDeck.ShuffleCardIn(new SnapCard());
+                        }
+
+                        // Notify of new snaps
+                        Message.Publish(new SnapsAddedToDeck(snapsToAdd));
+
+                        // Play deck shuffled sound when we add snaps to the deck
+                        Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
                     }
-                    
-                    // Notify of new snaps
-                    Message.Publish(new SnapsAddedToDeck(snapsToAdd));
-                    
-                    // Play deck shuffled sound when we add snaps to the deck
-                    Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
                 }
-            }
-        });
-        
+            });
+        }
+
         ContinuePlayerTurnFlow();
     }
     

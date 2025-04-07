@@ -80,7 +80,7 @@ X - 08am - Intro Video
 X - 10am - Unlocks & Cat Pickers
 12pm - Powers
 02pm - First WebGL test
-04pm - Art Polish
+04pm - More Powers
 06pm - Marketing Page
 07pm - Submission - Final Build
 08pm - Submitted

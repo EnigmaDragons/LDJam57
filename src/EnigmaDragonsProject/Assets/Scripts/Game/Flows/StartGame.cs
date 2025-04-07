@@ -62,6 +62,7 @@ public class StartGame : MonoBehaviour
     {
         var player = new Player(index, character, isHuman ? PlayerType.Human : PlayerType.AI);
         var playerState = new PlayerState(player, startingCash, isHuman ? new NoAi() : new BasicRiskAwareAi());
+        character.Power.NotifyNewGameStarted();
         
         Debug.Log($"Start Game: Created player {index}: {(isHuman ? "Human" : "AI")} player using {character.Name}");
         
