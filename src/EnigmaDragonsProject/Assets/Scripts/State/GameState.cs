@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 [Serializable]
 public sealed class GameState
@@ -144,7 +145,8 @@ public class BossState
 
     public int UpdateMoodAndGetSnapsChanges(int moodChange)
     {
-        CurrentMood += moodChange;
+        // Apply the mood change but ensure it doesn't go below 0
+        CurrentMood = Mathf.Max(0, CurrentMood + moodChange);
         int newMoodTier = GetMoodTier(CurrentMood);
         
         // Check if we've crossed a mood threshold to a higher tier
