@@ -252,7 +252,7 @@ public class DayNegotiation : MonoBehaviour
         CurrentGameState.ReadOnly.ActivePlayer.BankCash();
         
         // Play happy card sound when accepting an offer
-        Message.Publish(new PlayUiSound(SoundType.HappyCard));
+        Message.Publish(new PlayUiSound(SoundType.AcceptOffer));
         
         // ATTN: Need to implement UI notification for player accepting offer
 

@@ -23,6 +23,7 @@ public class PlayerChoicePresenter : OnMessage<ReadyForPlayerSelection>
         if (msg.Player.Player.PlayerType != PlayerType.Human)
             return;
 
+        Message.Publish(new PlayUiSound(SoundType.ItsYourTurn));
         _currentPlayer = msg.Player;
         dayCashLabel.text = $"${_currentPlayer.CurrentRoundCash}";
         uiParent.SetActive(true);

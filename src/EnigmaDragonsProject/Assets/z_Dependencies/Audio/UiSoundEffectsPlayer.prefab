@@ -195,3 +195,9 @@ MonoBehaviour:
   snapCard:
     clip: {fileID: 8300000, guid: 7045d8ddd690f734589454b68cf1d7d1, type: 3}
     volume: 1
+  acceptOffer:
+    clip: {fileID: 8300000, guid: 88b683fc94404f64f87890c6aa6a3c91, type: 3}
+    volume: 1
+  itsYourTurn:
+    clip: {fileID: 8300000, guid: 36d2f91271c89f14a9be079825860dff, type: 3}
+    volume: 1
