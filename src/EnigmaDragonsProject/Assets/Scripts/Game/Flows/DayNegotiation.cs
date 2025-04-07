@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 
 public class DayNegotiation : MonoBehaviour
 {
@@ -73,16 +74,29 @@ public class DayNegotiation : MonoBehaviour
     
     private void ProcessSetupStep()
     {
-        var dieRollResult = UnityEngine.Random.Range(1, 7);
-        Debug.Log($"Rolling a D6 to determine first player. Result: {dieRollResult}");
         CurrentGameState.UpdateState(gs =>
         {
             gs.CurrentDeck = BasicDeck.CreateStandardDeck().Shuffled();
-            gs.PlayerTurnIndex = (dieRollResult - 1) % gs.PlayerStates.Length;
         });
         
         // Play deck shuffled sound when we create a new deck
         Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
+        
+        // Wait 2.5 seconds after shuffling before rolling
+        StartCoroutine(DelayedDieRoll());
+    }
+
+    private System.Collections.IEnumerator DelayedDieRoll()
+    {
+        yield return new WaitForSeconds(2.5f);
+        
+        var dieRollResult = UnityEngine.Random.Range(1, 7);
+        Debug.Log($"Rolling a D6 to determine first player. Result: {dieRollResult}");
+        
+        CurrentGameState.UpdateState(gs =>
+        {
+            gs.PlayerTurnIndex = (dieRollResult - 1) % gs.PlayerStates.Length;
+        });
         
         Message.Publish(new ShowDieRoll(dieRollResult, 6));
         
