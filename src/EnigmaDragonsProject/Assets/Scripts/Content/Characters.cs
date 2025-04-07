@@ -32,6 +32,16 @@ public class Characters
         SpritePathFace = "Sprites/PlayerCharacters/Face-WhiskersMcNumbers",
         Power = new BankInterestPower()
     };
+
+    public static Character DuchessFluffington = new StaticCharacter
+    {
+        Name = "Duchess Fluffington",
+        PowerName = "Executive Connection",
+        PowerDescription = "Passive: You negotiating for more money never escalates the chief's mood.",
+        Department = "Executive Relations",
+        SpritePathFace = "Sprites/PlayerCharacters/Face-DuchessFluffington",
+        Power = new NoMoodEscalationPower()
+    };
     
     public static Character SirPouncelot = new StaticCharacter
     {
@@ -55,7 +65,7 @@ public class Characters
     {
         Name = "Rocky Clawboa",
         PowerName = "Hustle & Grind",
-        PowerDescription = "Can draw two cards at once, must keep both (good or bad).",
+        PowerDescription = "Draws two cards at once.",
         Department = "Product Development",
         SpritePathFace = "Sprites/PlayerCharacters/Face-RockyClawboa",
     };
@@ -87,16 +97,6 @@ public class Characters
         SpritePathFace = "Sprites/PlayerCharacters/Face-ProfessorWhiskerton",
     };
     
-    // Power Concept Designed
-    public static Character DuchessFluffington = new StaticCharacter
-    {
-        Name = "Duchess Fluffington",
-        PowerName = "Executive Connection",
-        PowerDescription = "Negotiating for more money never escalates the chief's mood.",
-        Department = "Executive Relations",
-        SpritePathFace = "Sprites/PlayerCharacters/Face-DuchessFluffington",
-    };
-
     public static List<Character> AllCharacters { get; } = new List<Character>
     {
         TabbyTom,

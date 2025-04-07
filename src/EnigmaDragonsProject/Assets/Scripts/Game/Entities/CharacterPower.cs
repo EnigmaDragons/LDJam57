@@ -4,6 +4,7 @@ public enum PowerType
   AutoStartOfDay = 0,
   AutoStartOfWeek = 1,
   DiscardSnapAfterDrawn = 2,
+  NoMoodEscalation = 3,
 }
 
 public interface CharacterPower 

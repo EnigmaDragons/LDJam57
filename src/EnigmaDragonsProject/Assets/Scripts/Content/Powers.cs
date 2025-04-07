@@ -83,3 +83,24 @@ public class BankInterestPower : CharacterPower
         });
     }
 }
+
+public abstract class PassivePower : CharacterPower
+{
+    public bool IsImplemented => true;
+    public bool IsAvailable { get; private set; } = true;
+    public PowerType PowerType { get; private set; }
+
+    public PassivePower(PowerType powerType)
+    {
+        PowerType = powerType;
+    }
+
+    public void NotifyNewDayStarted() { }
+    public void NotifyNewGameStarted() => IsAvailable = true;
+    public void Apply(PowerContext context) { }
+}
+
+public class NoMoodEscalationPower : PassivePower
+{
+    public NoMoodEscalationPower() : base(PowerType.NoMoodEscalation) { }
+}

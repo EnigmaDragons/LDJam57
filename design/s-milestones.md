@@ -78,7 +78,7 @@ Final Day Timeline
 Deadline: 
 X - 08am - Intro Video
 X - 10am - Unlocks & Cat Pickers
-12pm - Powers
+X - 12pm - Powers
 02pm - First WebGL test
 04pm - More Powers
 06pm - Marketing Page
@@ -91,7 +91,7 @@ X - 10am - Unlocks & Cat Pickers
 Keys to Today:
 X - LOTS of Coffee
 - Add Powers
-- Cool Intro
+X - Cool Intro
 - Submit
 
 
@@ -102,3 +102,5 @@ Minor Polish:
 - Draw card to above the player characters?
 - Scale Punch the Money Bag when Banked 
   - And display Comic Lines as a quick fade out
+- Add Animation Time Spacing for Start of Day Powers
+- Show Infinite Symbol for Passive Ongoing Power
