@@ -6,10 +6,11 @@ public class Characters
     public static Character TabbyTom = new StaticCharacter
     {
         Name = "Tabby Tom",
-        PowerName = "Eager to Please",
+        PowerName = "Eager Bird",
         PowerDescription = "Start each day with $5",
         Department = "Customer Service",
         SpritePathFace = "Sprites/PlayerCharacters/Face-TabbyTom",
+        Power = new GainMoneyAtStartOfDayPower(5)
     };
     
     public static Character MissMeowgan = new StaticCharacter

@@ -124,6 +124,11 @@ public class PlayerState
         HasDrawnCardToday = true;
     }
 
+    public void ChangeCashFromEffect(int amount)
+    {
+        CurrentRoundCash += amount;
+    }
+
     public void NotifyDayChanged()
     {
         PowerUsedToday = false;

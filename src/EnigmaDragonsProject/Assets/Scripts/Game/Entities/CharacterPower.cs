@@ -1,27 +1,26 @@
 
-public enum CharacterPowerFrequency
+public enum PowerType
 {
-  OncePerDay,
-  OnceEver
-}
-
-public enum CharacterPowerActivationType
-{ 
-  Automatic,
-  ReactiveChoice,
-  ActivateOnDemand,
+  AutoStartOfDay = 0,
+  AutoStartOfWeek = 1,
 }
 
 public interface CharacterPower 
 {
   public bool IsAvailable { get; }
-  public CharacterPowerActivationType ActivationType { get; }
+  public PowerType PowerType { get; }
   public void NotifyNewDayStarted();
   public void Apply(PowerContext context);
 }
 
 public class PowerContext
 {
-  public PlayerState UsingPlayer { get; set; }
-  public GameState GameState { get; set; }
+  public PlayerState UsingPlayer { get; }
+  public GameState GameState { get; }
+
+  public PowerContext(GameState gs, PlayerState usingPlayer)
+  {
+    GameState = gs;
+    UsingPlayer = usingPlayer;
+  }
 }

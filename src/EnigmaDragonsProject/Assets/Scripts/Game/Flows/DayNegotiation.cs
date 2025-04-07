@@ -48,6 +48,7 @@ public class DayNegotiation : MonoBehaviour
         foreach (var player in CurrentGameState.ReadOnly.PlayerStates) 
             player.NotifyDayChanged();
 
+        CharacterPowerProcessor.TriggerStartOfWeekPowers();
         ProcessCurrentStep();
     }
     
@@ -84,6 +85,8 @@ public class DayNegotiation : MonoBehaviour
         Message.Publish(new PlayUiSound(SoundType.DeckShuffled));
         
         Message.Publish(new ShowDieRoll(dieRollResult, 6));
+        
+        CharacterPowerProcessor.TriggerStartOfDayPowers();
     }
 
     private void FinishSetup()
