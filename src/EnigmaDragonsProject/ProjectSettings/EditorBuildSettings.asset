@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final-DontTOUCH/CreditsScene.unity
     guid: 514d334c5df4df64f87ea2cadf28e400
+  - enabled: 1
+    path: Assets/Scenes/Final-DontTOUCH/CatPickerScene.unity
+    guid: 39f45498107f39e4c8515240a2b68a4f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
