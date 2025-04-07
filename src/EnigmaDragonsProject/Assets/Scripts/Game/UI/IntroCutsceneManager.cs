@@ -86,6 +86,7 @@ public class IntroCutsceneManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textDisplay;
     [SerializeField] private CanvasGroup textCanvasGroup;
     [SerializeField] private RectTransform textContainer;
+    [SerializeField] private GameObject skipConfirmationPrompt;
     
     [Header("Animation Settings")]
     [SerializeField] private float textFadeDuration = 0.3f;
@@ -102,6 +103,7 @@ public class IntroCutsceneManager : MonoBehaviour
     private Sequence _currentSequence;
     private bool _isPlaying = false;
     private AudioSource _audioSource;
+    private bool _hasAttemptedSkip = false;
 
     private void Start()
     {
@@ -286,8 +288,7 @@ public class IntroCutsceneManager : MonoBehaviour
         _isPlaying = false;
         
         // Load the character selection scene
-        Debug.Log("[IntroCutscene] Loading MainMenu scene");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        NavigateToCatPicker();
     }
 
     private void Update()
@@ -295,13 +296,25 @@ public class IntroCutsceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Debug.Log("[IntroCutscene] Skip requested by user");
-            if (_currentSequence != null)
+            if (!_hasAttemptedSkip)
             {
-                Debug.Log("[IntroCutscene] Completing and killing current sequence");
-                _currentSequence.Complete();
-                _currentSequence.Kill();
+                Debug.Log("[IntroCutscene] Showing skip confirmation");
+                _hasAttemptedSkip = true;
+                if (skipConfirmationPrompt != null)
+                    skipConfirmationPrompt.SetActive(true);
             }
-            EndCutscene();
+            else
+            {
+                Debug.Log("[IntroCutscene] Skipping cutscene");
+                NavigateToCatPicker();
+            }
         }
+    }
+
+    private void NavigateToCatPicker()
+    {
+        DOTween.KillAll();
+        Debug.Log("[IntroCutscene] Loading CatPickerScene");
+        Message.Publish(new NavigateToSceneRequested("CatPickerScene"));
     }
 } 
