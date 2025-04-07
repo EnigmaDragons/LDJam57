@@ -9,7 +9,8 @@ public class IntroCutsceneManager : MonoBehaviour
     [System.Serializable]
     public class CutsceneScene
     {
-        public GameObject backgroundObject;
+        public string sceneName;
+        public string setupInstructions;
         public List<string> textLines;
         public float duration;
     }
@@ -19,11 +20,15 @@ public class IntroCutsceneManager : MonoBehaviour
     {
         new CutsceneScene
         {
+            sceneName = "Title Screen",
+            setupInstructions = "WHISKR logo centered, dark background, subtle glow effect",
             textLines = new List<string> { "DEEP MEOWGOTIATIONS" },
             duration = 2f
         },
         new CutsceneScene
         {
+            sceneName = "Company Introduction",
+            setupInstructions = "WHISKR office building exterior, daytime, corporate setting",
             textLines = new List<string> 
             { 
                 "Welcome to WHISKR",
@@ -33,6 +38,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
+            sceneName = "Product Showcase",
+            setupInstructions = "Cat using smartphone, app interface visible, happy cat expression",
             textLines = new List<string> 
             { 
                 "Every cat with a smartphone uses Whiskr",
@@ -42,6 +49,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
+            sceneName = "Project Announcement",
+            setupInstructions = "SnapCat app mockup, floating UI elements, modern design",
             textLines = new List<string> 
             { 
                 "Your team's MEOW-velous new project",
@@ -51,6 +60,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
+            sceneName = "Conflict Setup",
+            setupInstructions = "Money pile with cat paws reaching, dramatic lighting",
             textLines = new List<string> 
             { 
                 "But there's a cat-astrophe brewing!",
@@ -60,6 +71,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
+            sceneName = "CEO Introduction",
+            setupInstructions = "Serious cat in business suit, imposing pose, office background",
             textLines = new List<string> 
             { 
                 "The CEO has approved your project...",
@@ -69,6 +82,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
+            sceneName = "Game Rules",
+            setupInstructions = "Card being drawn, Snap card visible, dramatic angle",
             textLines = new List<string> 
             { 
                 "Draw cards to collect cash for your department",
@@ -79,6 +94,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
+            sceneName = "Risk vs Reward",
+            setupInstructions = "Split screen: safe small pile vs risky large pile of money",
             textLines = new List<string> 
             { 
                 "Will you play it safe with a small pile of coins?",
@@ -88,6 +105,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
+            sceneName = "Final Warning",
+            setupInstructions = "Your character looking determined, office background",
             textLines = new List<string> 
             { 
                 "Remember: In the corporate cat world...",
@@ -98,6 +117,8 @@ public class IntroCutsceneManager : MonoBehaviour
         },
         new CutsceneScene
         {
+            sceneName = "Call to Action",
+            setupInstructions = "WHISKR logo with dramatic lighting, motivational angle",
             textLines = new List<string> 
             { 
                 "GOOD LUCK, BUSINESS CAT!",
@@ -106,6 +127,9 @@ public class IntroCutsceneManager : MonoBehaviour
             duration = 3f
         }
     };
+
+    [Header("Scene Objects")]
+    [SerializeField] private Transform sceneContainer;
 
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI textDisplay;
@@ -121,7 +145,8 @@ public class IntroCutsceneManager : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip typeSound;
     [SerializeField] private AudioClip sceneTransitionSound;
-
+    
+    private List<GameObject> _sceneObjects;
     private int _currentSceneIndex = 0;
     private Sequence _currentSequence;
     private bool _isPlaying = false;
@@ -129,16 +154,32 @@ public class IntroCutsceneManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("[IntroCutscene] Initializing cutscene manager");
         _audioSource = GetComponent<AudioSource>();
         if (_audioSource == null)
+        {
+            Debug.Log("[IntroCutscene] Adding AudioSource component");
             _audioSource = gameObject.AddComponent<AudioSource>();
+        }
             
         // Initialize all scenes as inactive
-        foreach (var scene in scenes)
+        _sceneObjects = new List<GameObject>();
+        for (int i = 0; i < sceneContainer.childCount; i++)
         {
-            if (scene.backgroundObject != null)
-                scene.backgroundObject.SetActive(false);
+            Transform child = sceneContainer.GetChild(i);
+            if (child != null)
+            {
+                GameObject sceneObject = child.gameObject;
+                _sceneObjects.Add(sceneObject);
+                sceneObject.SetActive(false);
+                Debug.Log($"[IntroCutscene] Deactivated scene object: {sceneObject.name}");
+            }
+            else
+            {
+                Debug.LogWarning("[IntroCutscene] Found null child in scene container!");
+            }
         }
+        Debug.Log($"[IntroCutscene] Initialized {_sceneObjects.Count} scene objects");
         
         // Start the cutscene
         PlayCutscene();
@@ -146,7 +187,13 @@ public class IntroCutsceneManager : MonoBehaviour
 
     public void PlayCutscene()
     {
-        if (_isPlaying) return;
+        if (_isPlaying)
+        {
+            Debug.Log("[IntroCutscene] Cutscene already playing, ignoring PlayCutscene call");
+            return;
+        }
+        
+        Debug.Log("[IntroCutscene] Starting cutscene");
         _isPlaying = true;
         _currentSceneIndex = 0;
             
@@ -157,42 +204,60 @@ public class IntroCutsceneManager : MonoBehaviour
     {
         if (_currentSceneIndex >= scenes.Count)
         {
+            Debug.Log("[IntroCutscene] Reached end of scenes, ending cutscene");
             EndCutscene();
             return;
         }
 
         var currentScene = scenes[_currentSceneIndex];
+        Debug.Log($"[IntroCutscene] Playing scene {_currentSceneIndex + 1}/{scenes.Count}: {currentScene.sceneName}");
         
         // Kill any existing sequence
         if (_currentSequence != null)
+        {
+            Debug.Log("[IntroCutscene] Killing existing sequence");
             _currentSequence.Kill();
+        }
 
         // Create new sequence
         _currentSequence = DOTween.Sequence();
+        Debug.Log("[IntroCutscene] Created new sequence");
 
         // Play transition sound
         if (sceneTransitionSound != null)
+        {
+            Debug.Log("[IntroCutscene] Playing transition sound");
             _audioSource.PlayOneShot(sceneTransitionSound);
+        }
 
         // Activate current scene
-        if (currentScene.backgroundObject != null)
+        if (_currentSceneIndex < _sceneObjects.Count && _sceneObjects[_currentSceneIndex] != null)
         {
-            currentScene.backgroundObject.SetActive(true);
-            _currentSequence.Append(currentScene.backgroundObject.transform.DOScale(1.1f, sceneTransitionDuration)
+            var currentSceneObject = _sceneObjects[_currentSceneIndex];
+            Debug.Log($"[IntroCutscene] Activating scene object: {currentSceneObject.name}");
+            currentSceneObject.SetActive(true);
+            _currentSequence.Append(currentSceneObject.transform.DOScale(1.1f, sceneTransitionDuration)
                 .From(1f)
                 .SetEase(Ease.OutQuad));
         }
+        else
+        {
+            Debug.LogWarning($"[IntroCutscene] No scene object found for index {_currentSceneIndex}");
+        }
 
         // Play text lines
+        Debug.Log($"[IntroCutscene] Playing {currentScene.textLines.Count} text lines");
         for (int i = 0; i < currentScene.textLines.Count; i++)
         {
             var line = currentScene.textLines[i];
+            Debug.Log($"[IntroCutscene] Queueing text line {i + 1}: {line}");
             
             // Fade out previous text
             _currentSequence.Append(textCanvasGroup.DOFade(0, textFadeDuration));
             
             // Set new text and type it out
             _currentSequence.AppendCallback(() => {
+                Debug.Log($"[IntroCutscene] Starting to type line: {line}");
                 textDisplay.text = "";
                 textDisplay.rectTransform.anchoredPosition = new Vector2(0, -i * lineSpacing * textDisplay.fontSize);
                 
@@ -218,21 +283,25 @@ public class IntroCutsceneManager : MonoBehaviour
         }
 
         // Wait for scene duration
+        Debug.Log($"[IntroCutscene] Waiting for scene duration: {currentScene.duration}s");
         _currentSequence.AppendInterval(currentScene.duration);
 
         // Fade out text
         _currentSequence.Append(textCanvasGroup.DOFade(0, textFadeDuration));
 
         // Deactivate current scene
-        if (currentScene.backgroundObject != null)
+        if (_currentSceneIndex < _sceneObjects.Count && _sceneObjects[_currentSceneIndex] != null)
         {
-            _currentSequence.Append(currentScene.backgroundObject.transform.DOScale(1f, sceneTransitionDuration)
+            var currentSceneObject = _sceneObjects[_currentSceneIndex];
+            Debug.Log($"[IntroCutscene] Deactivating scene object: {currentSceneObject.name}");
+            _currentSequence.Append(currentSceneObject.transform.DOScale(1f, sceneTransitionDuration)
                 .SetEase(Ease.InQuad));
-            _currentSequence.AppendCallback(() => currentScene.backgroundObject.SetActive(false));
+            _currentSequence.AppendCallback(() => currentSceneObject.SetActive(false));
         }
 
         // Move to next scene
         _currentSequence.OnComplete(() => {
+            Debug.Log($"[IntroCutscene] Completed scene {_currentSceneIndex + 1}, moving to next");
             _currentSceneIndex++;
             PlayNextScene();
         });
@@ -240,19 +309,22 @@ public class IntroCutsceneManager : MonoBehaviour
 
     private void EndCutscene()
     {
+        Debug.Log("[IntroCutscene] Ending cutscene");
         _isPlaying = false;
         
         // Load the character selection scene
+        Debug.Log("[IntroCutscene] Loading MainMenu scene");
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
-    // Optional: Add skip functionality
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
+            Debug.Log("[IntroCutscene] Skip requested by user");
             if (_currentSequence != null)
             {
+                Debug.Log("[IntroCutscene] Completing and killing current sequence");
                 _currentSequence.Complete();
                 _currentSequence.Kill();
             }
