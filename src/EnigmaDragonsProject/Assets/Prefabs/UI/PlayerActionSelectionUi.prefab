@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 5357731266503882280}
   - component: {fileID: 8895960243776228128}
   - component: {fileID: 7162372396120504077}
+  - component: {fileID: 7600696820601902628}
   m_Layer: 5
   m_Name: DrawButton
   m_TagString: Untagged
@@ -350,6 +351,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7600696820601902628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073265853527728441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2f8fee63b8472cb49e686c5220708b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 7162372396120504077}
+  clickSound: {fileID: 8300000, guid: 75fae4de0e1b481468d47e02771ebcab, type: 3}
+  hoverSound: {fileID: 8300000, guid: 53d1097473127cc4697a8b6b41c54a25, type: 3}
+  player: {fileID: 11400000, guid: bfe56e3518f684c4387de97bd5db348d, type: 2}
+  volume:
+    UseConstant: 1
+    ConstantValue: 1
+    FloatVariable: {fileID: 0}
 --- !u!1 &5575379758451025038
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +383,7 @@ GameObject:
   - component: {fileID: 3469671185810716945}
   - component: {fileID: 1251414861982273371}
   - component: {fileID: 5640208159065971928}
+  - component: {fileID: 6747263200288940188}
   m_Layer: 5
   m_Name: BankButton
   m_TagString: Untagged
@@ -471,6 +493,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6747263200288940188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5575379758451025038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2f8fee63b8472cb49e686c5220708b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 5640208159065971928}
+  clickSound: {fileID: 8300000, guid: 75fae4de0e1b481468d47e02771ebcab, type: 3}
+  hoverSound: {fileID: 8300000, guid: 53d1097473127cc4697a8b6b41c54a25, type: 3}
+  player: {fileID: 11400000, guid: bfe56e3518f684c4387de97bd5db348d, type: 2}
+  volume:
+    UseConstant: 1
+    ConstantValue: 1
+    FloatVariable: {fileID: 0}
 --- !u!1 &5629218774487370958
 GameObject:
   m_ObjectHideFlags: 0

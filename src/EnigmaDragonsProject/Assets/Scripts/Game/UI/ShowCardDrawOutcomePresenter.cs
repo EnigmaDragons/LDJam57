@@ -60,6 +60,9 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
             return;
         }
         
+        // Play card draw sound when the card animation begins
+        Message.Publish(new PlayUiSound(SoundType.CardDraw));
+        
         // Start the card animation sequence
         _msg = msg;
         StartCoroutine(AnimateCardSequence(drawnCard));
@@ -100,6 +103,9 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
         // Small delay before flip
         yield return new WaitForSeconds(0.3f);
         
+        // Play card flip sound right before the flip animation starts
+        Message.Publish(new PlayUiSound(SoundType.CardFlip));
+        
         // Flip animation
         Sequence flipSequence = DOTween.Sequence();
         
@@ -120,6 +126,16 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
             .SetEase(Ease.OutSine));
         
         yield return flipSequence.WaitForCompletion();
+        
+        // Play appropriate sound based on card type after the card is revealed
+        if (card is SnapCard)
+        {
+            Message.Publish(new PlayUiSound(SoundType.SnapCard));
+        }
+        else if (card is OfferCard)
+        {
+            Message.Publish(new PlayUiSound(SoundType.HappyCard));
+        }
         
         // Wait while the card is displayed
         yield return new WaitForSeconds(showDuration);

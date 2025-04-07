@@ -46,6 +46,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationPrefab: {fileID: 1968655741087477557, guid: ab0da6b0875ecd8449004e60fdba1520,
     type: 3}
+--- !u!1 &4033471461170057281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4250232286052449750}
+  - component: {fileID: 3326503709903795555}
+  - component: {fileID: 42683506266511973}
+  m_Layer: 0
+  m_Name: VolumeLevels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4250232286052449750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033471461170057281}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2207082868855502368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3326503709903795555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033471461170057281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429f671631269d34f9c200d687c5c1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: d6eedae8265dd6146907e7ef03b80fb6, type: 2}
+  valueName: MusicVolume
+  reductionDb:
+    UseConstant: 1
+    ConstantValue: 6
+    FloatVariable: {fileID: 0}
+  player: {fileID: 0}
+  demoSound: {fileID: 0}
+--- !u!114 &42683506266511973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033471461170057281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429f671631269d34f9c200d687c5c1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: d6eedae8265dd6146907e7ef03b80fb6, type: 2}
+  valueName: UiVolume
+  reductionDb:
+    UseConstant: 1
+    ConstantValue: 0
+    FloatVariable: {fileID: 0}
+  player: {fileID: 0}
+  demoSound: {fileID: 0}
 --- !u!1 &4434601779088953899
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +154,7 @@ Transform:
   - {fileID: 1488846569787017908}
   - {fileID: 5944537405236440824}
   - {fileID: 6938713485287663960}
+  - {fileID: 4250232286052449750}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1795910146158426943

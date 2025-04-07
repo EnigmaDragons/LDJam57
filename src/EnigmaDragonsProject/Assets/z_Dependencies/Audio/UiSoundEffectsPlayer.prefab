@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d7812d1c69a27040b8afb30845ad1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiAudioSource: {fileID: 0}
+  uiAudioSource: {fileID: 7318196694813104344}
   uiSfxPlayer: {fileID: 11400000, guid: bfe56e3518f684c4387de97bd5db348d, type: 2}
 --- !u!82 &7318196694813104344
 AudioSource:

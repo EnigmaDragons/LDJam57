@@ -155,9 +155,6 @@ public class DayNegotiation : MonoBehaviour
             
         _currentPlayerTurnStep = PlayerTurnStep.ProcessPlayerSelection;
         
-        // Play card draw sound effect
-        Message.Publish(new PlayUiSound(SoundType.CardDraw));
-        
         var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
         CurrentGameState.UpdateState(gs => gs);
         Message.Publish(new ShowCardDrawn(card));
@@ -172,19 +169,6 @@ public class DayNegotiation : MonoBehaviour
         }
         
         Card card = msg.Message.Card;
-        
-        // Play card flip sound effect
-        Message.Publish(new PlayUiSound(SoundType.CardFlip));
-        
-        // Play appropriate sound based on card type
-        if (card is SnapCard)
-        {
-            Message.Publish(new PlayUiSound(SoundType.SnapCard));
-        }
-        else if (card is OfferCard)
-        {
-            Message.Publish(new PlayUiSound(SoundType.HappyCard));
-        }
         
         // Apply card effects to the player
         card.Apply(CurrentGameState.ReadOnly, currentPlayer);

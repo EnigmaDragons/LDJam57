@@ -50,8 +50,8 @@ public class Deck
     {
         if (card != null)
         {
-            int position = _rng.Next(_cards.Count + 1);
-            _cards.Insert(position, card);
+            PutCardOnTop(card);
+            Shuffle();
         }
     }
 
