@@ -34,7 +34,7 @@ public class CharacterUnlockManager : MonoBehaviour
         }
     }
 
-    private void SaveUnlockedCharacters()
+    private static void SaveUnlockedCharacters()
     {
         string chars = string.Join(",", _unlockedCharacters);
         PlayerPrefs.SetString(UNLOCKED_CHARACTERS_KEY, chars);

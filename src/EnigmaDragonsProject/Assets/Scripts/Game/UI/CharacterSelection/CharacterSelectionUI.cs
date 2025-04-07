@@ -25,7 +25,7 @@ public class CharacterSelectionUI : MonoBehaviour
     private void Start()
     {
         // Get all characters from the Characters class
-        _allCharacters = Characters.AllCharacters;
+        _allCharacters = Characters.AllCharacters.ToArray();
         
         // Initialize UI
         UpdateCharacterDisplay();

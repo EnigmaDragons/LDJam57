@@ -132,3 +132,19 @@ cartoon corporate cats, semi-polished linework, defined edges, newspaper comic s
 
 ### Player Character Options for Scene 9
 cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, waist-up portrait, vibrant colors, simple shapes, expressive personality, white background, business suit with company ID badge, winking at viewer, confident pose, friendly approachable expression, professional appearance with playful attitude --ar 9:16
+
+---
+
+## Music Prompt for Intro Cutscene
+
+### Intro Cutscene Music
+Quirky jazz fusion sassy saxophone playful piano smooth synth beats. Corporate atmosphere builds mysterious triumphant victorious. Professional playful tone gradual intensity concludes optimistic flourish.
+
+Key musical moments:
+- Opening: Soft, intriguing jazz with subtle synth establishing corporate setting
+- Middle: Building instrumentation as player learns about Whiskr and the project
+- Climax: Full jazz ensemble when introducing the budget competition
+- Conclusion: Upbeat, playful jazz fusion that establishes the game's lighthearted tone
+
+Duration: Approximately 2-3 minutes to accompany the full cutscene sequence, with natural loop points for extended scenes if needed.
+
