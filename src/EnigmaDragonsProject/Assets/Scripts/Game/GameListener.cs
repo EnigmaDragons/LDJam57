@@ -14,6 +14,7 @@ public class GameListener : MonoBehaviour
         Message.Subscribe<ReadyForPlayerSelection>(OnReadyForPlayerSelection, this);
         Message.Subscribe<DayFinished>(OnDayFinished, this);
         Message.Subscribe<GameOver>(OnGameOver, this);
+        Message.Subscribe<DayTransitionCompleted>(OnDayTransitionCompleted, this);
     }
 
     private void OnGameOver(GameOver obj)
@@ -72,5 +73,11 @@ public class GameListener : MonoBehaviour
         
         // Player must click a button that calls day.AdvanceToNextDay() to continue
         // This is already set up in DayNegotiation.ProcessDayEndStep() > DayEndStep.ShowResults
+    }
+    
+    private void OnDayTransitionCompleted(DayTransitionCompleted msg)
+    {
+        Debug.Log($"Day transition completed. New day started: {msg.NewDay}");
+        // Additional logic for day transition completion if needed
     }
 }

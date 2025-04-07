@@ -124,7 +124,16 @@ public class DayNegotiation : MonoBehaviour
                 
             case DayEndStep.ProcessToNextDay:
                 CurrentGameState.UpdateState(gs => gs.AdvanceToNextDay());
-                // ATTN: Need to implement day completion event/callback to notify game flow
+                
+                // Reset phase to Setup to begin the new day
+                _currentPhase = Phase.Setup;
+                Debug.Log($"Day transition complete. Starting new day: {CurrentGameState.ReadOnly.CurrentDay}");
+                
+                // Publish day transition completed message
+                Message.Publish(new DayTransitionCompleted(CurrentGameState.ReadOnly.CurrentDay));
+                
+                // Restart the flow for the new day
+                ProcessCurrentStep();
                 break;
                 
             default:

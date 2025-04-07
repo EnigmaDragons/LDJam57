@@ -87,6 +87,7 @@ public class PlayerState
     public bool PowerUsedToday { get; private set; }
     public bool PowerUsedEver { get; private set; }
     public bool IsActiveInDay { get; private set; }
+    public bool HasDrawnCardToday { get; private set; }
 
     public PlayerState(Player p, int currentCash, Ai ai)
     {
@@ -98,6 +99,7 @@ public class PlayerState
     public void ChangeCurrentDayCash(int byAmount)
     {
         CurrentRoundCash += byAmount;
+        HasDrawnCardToday = true;
     }
 
     public void NotifyDayChanged()
@@ -106,6 +108,7 @@ public class PlayerState
         BankedCash += CurrentRoundCash;
         CurrentRoundCash = 0;
         IsActiveInDay = true;
+        HasDrawnCardToday = false;
     }
 
     public void RecordPowerUser()

@@ -57,7 +57,12 @@ cartoon corporate cat, semi-polished linework, defined edges, newspaper comic st
 cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, waist-up portrait, vibrant colors, simple shapes, expressive personality, white background, female cat, russian blue cat, sleek gray suit with skirt, reading glasses, methodical precise expression, briefcase of contracts, pearl necklace --ar 9:16
 
 ### Dr. Felix Bytepaws (CTO)
-cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, waist-up portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, ginger tabby, electrified wild fur, wrinkled button-up shirt, pocket protector, mismatched socks, brilliant scattered expression, tech gadgets --ar 9:16
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, waist-up portrait, vibrant colors, simple shapes, expressive personality, white background, male cat, ginger tabby, electrified wild fur, wrinkled button-up shirt, pocket protector, mismatched socks, 
+brilliant scattered expression, tech gadgets --ar 9:16
+
+### Cathy Whiskertail (Receptionist)
+cartoon corporate cat, semi-polished linework, defined edges, newspaper comic style, full-body portrait, muted colors, simple shapes, friendly personality, white background, female cat, young tortoiseshell cat, neat professional appearance, warm welcoming smile, subtle headset with microphone, simple white blouse with small company logo, clipboard in paw, kind eyes, standing in professional pose, visible legs and feet in modest black shoes, complete body visible from head to toe --ar 9:16
+
 
 ## Player Cat Character Prompts v6
 
