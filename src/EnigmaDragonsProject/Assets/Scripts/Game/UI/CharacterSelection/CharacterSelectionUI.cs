@@ -54,8 +54,10 @@ public class CharacterSelectionUI : MonoBehaviour
         powerNameText.text = _selectedCharacter.PowerName;
         powerDescriptionText.text = _selectedCharacter.PowerDescription;
         
+        // ATTN: Jam Version... just unlock everyone for now
+        bool isUnlocked = true;
         // Check if character is unlocked
-        bool isUnlocked = CharacterUnlockManager.IsCharacterUnlocked(_selectedCharacter.Name);
+        //bool isUnlocked = CharacterUnlockManager.IsCharacterUnlocked(_selectedCharacter.Name);
         lockedIcon.SetActive(!isUnlocked);
         continueButton.SetActive(isUnlocked);
         
