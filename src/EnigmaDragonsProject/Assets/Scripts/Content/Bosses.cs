@@ -38,18 +38,18 @@ public static class Bosses
         MusicPath = "Music/V3 - THURSDAY - VICTORIA CLAWFORD'S FINANCE DEPARTMENT",
         MoodSnapsTable = new Dictionary<int, int>
         {
-          { 5, 4 },
-          { 10, 5 },
-          { 15, 6 },
-          { 20, 7 },
-          { 25, 8 },
-          { 30, 9 },
-          { 35, 10 },
-          { 40, 11 },
-          { 45, 12 },
-          { 50, 13 },
-          { 55, 14 },
-          { 60, 15 },
+          { 5, 3 },
+          { 10, 4 },
+          { 15, 5 },
+          { 20, 6 },
+          { 25, 7 },
+          { 30, 8 },
+          { 35, 9 },
+          { 40, 10 },
+          { 45, 11 },
+          { 50, 12 },
+          { 55, 13 },
+          { 60, 14 },
         }
     };
     
@@ -63,18 +63,18 @@ public static class Bosses
         MusicPath = "Music/V3 - WEDNESDAY - REX GROWLINGTON'S SECURITY OPERATIONS CENTER",
         MoodSnapsTable = new Dictionary<int, int>
         {
-          { 5, 5 },
-          { 10, 5 },
-          { 15, 5 },
-          { 20, 5 },
-          { 25, 5 },
-          { 30, 5 },
-          { 35, 5 },
-          { 40, 5 },
-          { 45, 5 },
-          { 50, 5 },
-          { 55, 5 },
-          { 60, 5 },
+          { 5, 6 },
+          { 10, 4 },
+          { 15, 4 },
+          { 20, 4 },
+          { 25, 4 },
+          { 30, 4 },
+          { 35, 4 },
+          { 40, 4 },
+          { 45, 4 },
+          { 50, 4 },
+          { 55, 4 },
+          { 60, 4 },
         }
     };
     
@@ -88,8 +88,8 @@ public static class Bosses
         MusicPath = "Music/V3 - TUESDAY - PAWLA WHISKERBERG'S LEGAL DEPARTMENT",
         MoodSnapsTable = new Dictionary<int, int>
         {
-          { 5, 5 },
-          { 10, 5 },
+          { 5, 4 },
+          { 10, 4 },
           { 15, 4 },
           { 20, 4 },
           { 25, 3 },
@@ -113,7 +113,7 @@ public static class Bosses
         MusicPath = "Music/V3 - MONDAY - DR. FELIX BYTEPAWS' TECH DEVELOPMENT LAB",
         MoodSnapsTable = new Dictionary<int, int>
         {
-          { 5, 5 },
+          { 5, 4 },
           { 10, 4 },
           { 15, 3 },
           { 20, 2 },

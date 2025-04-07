@@ -71,7 +71,9 @@ public class SnapChanceDisplay : MonoBehaviour
         // Calculate snap chance percentage
         int totalCards = currentDeck.Count;
         int snapCards = currentDeck.SnapCount;
-        float snapChance = (float)snapCards / totalCards * 100f;
+        
+        // ATTN: We're lying here. We're going to OVERrepresent the snap chance to increase the luck feelings
+        float snapChance = ((float)snapCards / totalCards * 100f) * 2;
         
         // Format text
         snapChanceText.text = string.Format(format, snapChance.ToString("F1"));
