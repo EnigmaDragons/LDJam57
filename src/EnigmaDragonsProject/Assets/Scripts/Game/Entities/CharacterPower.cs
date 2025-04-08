@@ -1,4 +1,3 @@
-
 public enum PowerType
 {
   AutoStartOfDay = 0,
@@ -9,6 +8,7 @@ public enum PowerType
   AfterBankPower = 5,
   AfterDrawCardSelectedBeforeDraw = 6,
   OfferInverter = 7,
+  DrawTwoCards = 8,
 }
 
 public interface CharacterPower 

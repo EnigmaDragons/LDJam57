@@ -182,39 +182,65 @@ public class DayNegotiation : MonoBehaviour
             currentPlayer.Player.Character.Power.Apply(new PowerContext(CurrentGameState.ReadOnly, currentPlayer));
         }
         
-        // Draw a card from the deck
-        var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
+        // Draw cards from the deck
+        var cards = new List<Card>();
         var isFirstCard = currentPlayer.CurrentRoundCash == 0;
-        // CHEAT: If it's the player's first card and it's a Snap card, put it back and draw a non-snap card
-        if (isFirstCard && card is SnapCard)
+        
+        // If player has DrawTwoCards power, draw two cards
+        bool drawTwoCards = currentPlayer.Player.Character.Power.PowerType == PowerType.DrawTwoCards;
+        int cardsToDraw = drawTwoCards ? 2 : 1;
+        
+        for (int i = 0; i < cardsToDraw; i++)
         {
-            Debug.Log("CHEAT ACTIVATED: Player would have drawn a Snap as their first card. Drawing a different card instead.");
+            var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
             
-            // Put the Snap card back (at a random position)
-            CurrentGameState.UpdateState(gs => {
-                gs.CurrentDeck.ShuffleCardIn(card);
-            });
-            
-            // Keep drawing until we get a non-Snap card
-            bool foundNonSnapCard = false;
-            while (!foundNonSnapCard)
+            // CHEAT: If it's the player's first card and it's a Snap card, put it back and draw a non-snap card
+            if (isFirstCard && card is SnapCard)
             {
-                card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
-                foundNonSnapCard = !(card is SnapCard);
+                Debug.Log("CHEAT ACTIVATED: Player would have drawn a Snap as their first card. Drawing a different card instead.");
                 
-                if (!foundNonSnapCard)
+                // Put the Snap card back (at a random position)
+                CurrentGameState.UpdateState(gs => {
+                    gs.CurrentDeck.ShuffleCardIn(card);
+                });
+                
+                // Keep drawing until we get a non-Snap card
+                bool foundNonSnapCard = false;
+                while (!foundNonSnapCard)
                 {
-                    // Put the Snap card back again
-                    CurrentGameState.UpdateState(gs => {
-                        gs.CurrentDeck.ShuffleCardIn(card);
-                    });
+                    card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
+                    foundNonSnapCard = !(card is SnapCard);
+                    
+                    if (!foundNonSnapCard)
+                    {
+                        // Put the Snap card back again
+                        CurrentGameState.UpdateState(gs => {
+                            gs.CurrentDeck.ShuffleCardIn(card);
+                        });
+                    }
                 }
             }
+            
+            cards.Add(card);
         }
         
         CurrentGameState.UpdateState(gs => gs);
-        Message.Publish(new ShowCardDrawn(card));
+        
+        if (drawTwoCards)
+        {
+            // Show and process first card
+            Message.Publish(new ShowCardDrawn(cards[0]));
+            // Second card will be processed after the first one is shown
+            _pendingSecondCard = cards[1];
+        }
+        else
+        {
+            // Show single card
+            Message.Publish(new ShowCardDrawn(cards[0]));
+        }
     }
+    
+    private Card _pendingSecondCard;
     
     private void OnCardDrawShown(Finished<ShowCardDrawn> msg)
     {
@@ -284,6 +310,15 @@ public class DayNegotiation : MonoBehaviour
                     }
                 });
             }
+        }
+
+        // If we have a pending second card, show it now
+        if (_pendingSecondCard != null)
+        {
+            var secondCard = _pendingSecondCard;
+            _pendingSecondCard = null;
+            Message.Publish(new ShowCardDrawn(secondCard));
+            return; // Don't continue the turn flow yet
         }
 
         ContinuePlayerTurnFlow();
