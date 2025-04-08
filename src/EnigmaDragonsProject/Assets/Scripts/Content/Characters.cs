@@ -80,6 +80,7 @@ public class Characters
         PowerDescription = "Always draws two cards per ask, instead of one.",
         Department = "Product Development",
         SpritePathFace = "Sprites/PlayerCharacters/Face-RockyClawboa",
+        Power = new DrawTwoCardsPower()
     };
 
     public static Character DJScratchy = new StaticCharacter

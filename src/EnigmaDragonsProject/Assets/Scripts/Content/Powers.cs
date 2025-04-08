@@ -225,18 +225,6 @@ public class OfferInverterPower : PassivePower {
   public OfferInverterPower() : base(PowerType.OfferInverter) { }
 }
 
-public class DrawTwoCardsPower : CharacterPower
-{
-    public bool IsImplemented => true;
-    public bool IsAvailable => true;
-    public PowerType PowerType => PowerType.DrawTwoCards;
-    
-    public void NotifyNewDayStarted() { }
-    public void NotifyNewGameStarted() { }
-    
-    public void Apply(PowerContext ctx)
-    {
-        // This power is handled in DayNegotiation.cs
-    }
+public class DrawTwoCardsPower : PassivePower {
+  public DrawTwoCardsPower() : base(PowerType.DrawTwoCards) { }
 }
-
