@@ -1,10 +1,10 @@
 # DEEP MEOWGOTIATIONS
 
 ## Tagline
-"Descend into the depths of corporate cat chaos!"
+"Stack your cash, push your luck, and out-negotiate your rivals in this corporate cat showdown!"
 
 ## Short Description
-A card-based negotiation game where you play as corporate cats fighting for budget supremacy. Draw cards, collect cash, but beware - the deeper you go, the more the CEO watches!
+A card-based negotiation game where you play as corporate cats fighting for budget supremacy. Draw cards, collect cash, but beware - the deeper you go, the more the CEO watches! The cat with the deepest stack of cash wins.
 
 ## Full Description
 
@@ -14,42 +14,35 @@ Welcome to WHISKR, the most PAW-some social media company in the world! Your tea
 ### The Game
 - Draw cards to collect cash for your department
 - Each decision takes you deeper into corporate intrigue
-- The deeper you go, the more the CEO watches
-- Play as unique cat characters with special powers
+- The deeper you go, the more the C-Suite Chiefs watch
+- Play as 10 different unique cat characters with special powers
 - Risk it all for a kitty bank that overflows, or play it safe with a small pile of coins
+- The cat with the deepest stack of cash wins!
 
 ### Features
-- **Strategic Depth**: Each decision affects your standing in the corporate hierarchy
+- **Push Your Luck**: Go deeper for bigger rewards, but risk losing it all
 - **Unique Cat Characters**: Each with special powers that change how you play
 - **Risk vs Reward**: Push your luck or play it safe - the choice is yours
 - **Corporate Cat Theme**: A fresh take on corporate life with feline flair
 - **Card-Based Mechanics**: Simple to learn, challenging to master
 
 ### Theme Connection
-The "Depth" theme is reflected in the corporate hierarchy and the escalating risks you take. Each decision takes you deeper into the corporate jungle, where the stakes get higher and the CEO's watchful eye grows more intense. How deep are you willing to go for that budget? Will you stay in the shallows of safety, or dive deep into risky territory?
+The "Depth" theme is reflected in multiple layers of gameplay:
+- **Negotiation Depth**: Each decision takes you deeper into corporate intrigue
+- **Risk Depth**: The deeper you push your luck, the higher the stakes
+- **Cash Depth**: The cat with the deepest stack of cash wins
+- **Strategic Depth**: Multiple layers of decision-making in each turn
+
+How deep are you willing to go for that budget? Will you stay in the shallows of safety and inch ahead of your rival, or dive deep for a massive payoff?
 
 ### Development Notes
 Created in 72 hours for Ludum Dare 57, DEEP MEOWGOTIATIONS combines strategic depth with feline corporate chaos. The game was inspired by the tension of corporate budget meetings and our love for cats who think they own the world.
 
 ### Credits
-- Game Design & Programming: [Your Name]
-- Art & Animation: [Your Name/Team]
-- Sound Design: [Your Name/Team]
-- Special Thanks: [Anyone who helped]
+- Everything: Silas Reinagel
 
 ## Controls
-- Left Click: Draw Card
-- Right Click: Accept Offer
-- Space: Skip Cutscenes
-
-## System Requirements
-- Windows/Mac/Linux
-- Keyboard & Mouse
-- 2GB RAM
-- 500MB Storage
-
-## Download
-[Download Button]
+- Use your Mouse to click on the Game Interface Buttons
 
 ## Support
 If you enjoy the game, please consider:
@@ -58,8 +51,3 @@ If you enjoy the game, please consider:
 - Sharing with friends
 - Following for future updates
 
-## Social Links
-[Twitter] [Discord] [Website]
-
-## Devlog
-[Link to your devlog]
