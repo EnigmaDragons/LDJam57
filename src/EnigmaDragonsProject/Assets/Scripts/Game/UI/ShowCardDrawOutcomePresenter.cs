@@ -25,6 +25,7 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
     private Vector3 _initialScale;
     private bool _isAnimating = false;
     private ShowCardDrawn _msg;
+    private ShowCardDrawn _queuedCard;
     
     private void Awake()
     {
@@ -49,8 +50,12 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
 
     protected override void Execute(ShowCardDrawn msg)
     {
-        // Don't interrupt existing animations
-        if (_isAnimating) return;
+        // If we're animating, queue this card for later
+        if (_isAnimating)
+        {
+            _queuedCard = msg;
+            return;
+        }
         
         // Get card info from the message
         var drawnCard = msg.Card;
@@ -154,5 +159,13 @@ public class ShowCardDrawOutcomePresenter : OnMessage<ShowCardDrawn>
 
         _msg = null;
         _isAnimating = false;
+
+        // If we have a queued card, show it now
+        if (_queuedCard != null)
+        {
+            var queuedMsg = _queuedCard;
+            _queuedCard = null;
+            Execute(queuedMsg);
+        }
     }
 }

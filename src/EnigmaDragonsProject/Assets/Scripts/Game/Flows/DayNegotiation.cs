@@ -190,6 +190,8 @@ public class DayNegotiation : MonoBehaviour
         bool drawTwoCards = currentPlayer.Player.Character.Power.PowerType == PowerType.DrawTwoCards;
         int cardsToDraw = drawTwoCards ? 2 : 1;
         
+        Debug.Log($"Drawing {cardsToDraw} cards for {currentPlayer.Player.Character.Name}");
+        
         for (int i = 0; i < cardsToDraw; i++)
         {
             var card = CurrentGameState.ReadOnly.CurrentDeck.DrawOne();
@@ -222,19 +224,23 @@ public class DayNegotiation : MonoBehaviour
             }
             
             cards.Add(card);
+            Debug.Log($"Drew card {i + 1}: {card.GetType().Name}");
         }
         
         CurrentGameState.UpdateState(gs => gs);
         
         if (drawTwoCards)
         {
+            Debug.Log("Showing first card for two-card draw");
             // Show and process first card
             Message.Publish(new ShowCardDrawn(cards[0]));
             // Second card will be processed after the first one is shown
             _pendingSecondCard = cards[1];
+            Debug.Log($"Stored second card: {_pendingSecondCard.GetType().Name}");
         }
         else
         {
+            Debug.Log("Showing single card");
             // Show single card
             Message.Publish(new ShowCardDrawn(cards[0]));
         }
@@ -249,6 +255,25 @@ public class DayNegotiation : MonoBehaviour
             return;
 
         var card = msg.Message.Card;
+        Debug.Log($"Processing card: {card.GetType().Name}");
+        ProcessCardEffects(card, currentPlayer);
+
+        // If we have a pending second card, show it now
+        if (_pendingSecondCard != null)
+        {
+            var secondCard = _pendingSecondCard;
+            _pendingSecondCard = null;
+            Debug.Log($"Showing second card: {secondCard.GetType().Name}");
+            Message.Publish(new ShowCardDrawn(secondCard));
+            return; // Don't continue the turn flow yet
+        }
+
+        Debug.Log("No pending second card, continuing turn flow");
+        ContinuePlayerTurnFlow();
+    }
+
+    private void ProcessCardEffects(Card card, PlayerState currentPlayer)
+    {
         // NOTE: It's not clear that this logic belongs here... but for now we have to implement fast
         var character = currentPlayer.Player.Character;
         var power = character.Power;
@@ -311,17 +336,6 @@ public class DayNegotiation : MonoBehaviour
                 });
             }
         }
-
-        // If we have a pending second card, show it now
-        if (_pendingSecondCard != null)
-        {
-            var secondCard = _pendingSecondCard;
-            _pendingSecondCard = null;
-            Message.Publish(new ShowCardDrawn(secondCard));
-            return; // Don't continue the turn flow yet
-        }
-
-        ContinuePlayerTurnFlow();
     }
     
     public void AcceptOffer()
